@@ -1,9 +1,8 @@
-"use client"; // для Next.js 14 и выше, чтобы использовать useState/useEffect
+"use client";
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Простейшие компоненты Card и Button
 const Card = ({ children, className = "" }) => (
   <div className={`rounded-2xl border border-zinc-800 backdrop-blur p-2 ${className}`}>
     {children}
@@ -25,14 +24,11 @@ export default function BerOnTelegramWebApp() {
   const [tapPower] = useState(1);
   const [multiplier] = useState(1);
   const [activeTab, setActiveTab] = useState("mine");
-
   const [bpLevel, setBpLevel] = useState(1);
   const [bpExp, setBpExp] = useState(0);
-
   const [critEffect, setCritEffect] = useState(null);
   const [shake, setShake] = useState(false);
   const [flyingCoins, setFlyingCoins] = useState([]);
-
   const expToBPLevel = bpLevel * 300;
 
   useEffect(() => {
@@ -70,25 +66,20 @@ export default function BerOnTelegramWebApp() {
 
   const handleTap = () => {
     if (energy <= 0) return;
-
     const isMegaCrit = Math.random() < 0.05;
     const isUltraCrit = Math.random() < 0.01;
-
     let reward = tapPower * multiplier;
     if (isUltraCrit) reward *= 20;
     else if (isMegaCrit) reward *= 5;
-
     setCoins((c) => c + reward);
     setEnergy((e) => e - 1);
     gainBPExp(2);
     spawnCoins();
-
     if (typeof window !== "undefined" && window.Telegram?.WebApp) {
       if (isUltraCrit) window.Telegram.WebApp.HapticFeedback.notificationOccurred("success");
       else if (isMegaCrit) window.Telegram.WebApp.HapticFeedback.impactOccurred("medium");
       else window.Telegram.WebApp.HapticFeedback.impactOccurred("light");
     }
-
     setCritEffect(isUltraCrit ? "ULTRA CRIT 🔥" : isMegaCrit ? "MEGA CRIT 😈" : null);
     if (isUltraCrit) triggerShake();
     setTimeout(() => setCritEffect(null), 600);
@@ -101,24 +92,15 @@ export default function BerOnTelegramWebApp() {
   };
 
   return (
-    <div
-      className={`min-h-screen bg-black text-white flex justify-center relative overflow-hidden ${
-        shake ? "animate-pulse" : ""
-      }`}
-    >
+    <div className={`min-h-screen bg-black text-white flex justify-center relative overflow-hidden ${shake ? "animate-pulse" : ""}`}>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.15),transparent_40%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(236,72,153,0.12),transparent_40%)]" />
-
       <div className="w-full max-w-md p-4 space-y-4 pb-32 relative z-10">
         <div className="text-center space-y-1">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-            BerOn ⚡️
-          </h1>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">BerOn ⚡️</h1>
           <p className="text-xs text-zinc-500">Ultra Telegram Experience</p>
         </div>
-
         <AnimatePresence mode="wait">
-          {/* Mine Tab */}
           {activeTab === "mine" && (
             <motion.div key="mine" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-3">
               <Card className="bg-zinc-950/80 shadow-[0_0_30px_rgba(99,102,241,0.35)]">
@@ -127,110 +109,32 @@ export default function BerOnTelegramWebApp() {
                   <div className="text-xs text-zinc-500">BER Coins</div>
                 </CardContent>
               </Card>
-
               <div className="flex justify-center py-4 relative">
                 <motion.button onClick={handleTap} whileTap={{ scale: 0.9 }}>
-                  <div className="w-44 h-44 rounded-full bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 flex items-center justify-center text-6xl shadow-[0_0_80px_rgba(139,92,246,1)]">
-                    ⚡️
-                  </div>
+                  <div className="w-44 h-44 rounded-full bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 flex items-center justify-center text-6xl shadow-[0_0_80px_rgba(139,92,246,1)]">⚡️</div>
                 </motion.button>
-
                 <AnimatePresence>
                   {critEffect && (
-                    <motion.div
-                      initial={{ scale: 0.5, opacity: 0 }}
-                      animate={{ scale: 1.2, opacity: 1 }}
-                      exit={{ scale: 0.5, opacity: 0 }}
-                      className="absolute text-lg font-bold text-pink-400"
-                    >
+                    <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1.2, opacity: 1 }} exit={{ scale: 0.5, opacity: 0 }} className="absolute text-lg font-bold text-pink-400">
                       {critEffect}
                     </motion.div>
                   )}
                 </AnimatePresence>
-
                 {flyingCoins.map((coin) => (
-                  <motion.div
-                    key={coin.id}
-                    initial={{ opacity: 1, x: 0, y: 0 }}
-                    animate={{ opacity: 0, x: coin.x, y: coin.y }}
-                    transition={{ duration: 0.8 }}
-                    className="absolute text-yellow-400"
-                  >
+                  <motion.div key={coin.id} initial={{ opacity: 1, x: 0, y: 0 }} animate={{ opacity: 0, x: coin.x, y: coin.y }} transition={{ duration: 0.8 }} className="absolute text-yellow-400">
                     🪙
                   </motion.div>
                 ))}
               </div>
-
               <Card className="bg-zinc-950/80">
                 <CardContent className="p-3 flex justify-between text-xs text-zinc-400">
                   <span>Energy</span>
-                  <span>
-                    {energy} / {maxEnergy}
-                  </span>
-                </CardContent>
-              </Card>
-            </motion.div>
-          )}
-
-          {/* Cases Tab */}
-          {activeTab === "cases" && (
-            <motion.div key="cases" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <Card className="bg-zinc-950/80 shadow-[0_0_40px_rgba(236,72,153,0.35)]">
-                <CardContent className="p-6 text-center space-y-3">
-                  <div className="text-lg font-bold">Cases PRO MAX 🎰</div>
-                  <div className="text-xs text-zinc-500">Open & get insane rewards</div>
-                  <motion.div whileTap={{ scale: 0.9 }}>
-                    <Button className="w-full bg-gradient-to-r from-pink-600 to-indigo-600" onClick={openCase}>
-                      🔥 OPEN CASE 🔥
-                    </Button>
-                  </motion.div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          )}
-
-          {/* Withdraw Tab */}
-          {activeTab === "withdraw" && (
-            <motion.div key="withdraw" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <Card className="bg-zinc-950/80">
-                <CardContent className="p-6 text-center space-y-2">
-                  <div className="text-lg font-bold">Withdraw 💸</div>
-                  <Button className="w-full opacity-70 cursor-not-allowed">SOON 😈🔥</Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          )}
-
-          {/* PvP Tab */}
-          {activeTab === "pvp" && (
-            <motion.div key="pvp" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <Card className="bg-zinc-950/80">
-                <CardContent className="p-6 text-center">
-                  <div className="text-lg font-bold">PvP Arena 😈</div>
-                  <Button onClick={() => setCoins((c) => c + 300)}>⚔️ Fight</Button>
+                  <span>{energy} / {maxEnergy}</span>
                 </CardContent>
               </Card>
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
-
-      {/* Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-zinc-950/90 border-t border-zinc-800 flex justify-center">
-        <div className="w-full max-w-md flex justify-around p-3 text-xs">
-          <button onClick={() => setActiveTab("mine")} className={activeTab === "mine" ? "text-indigo-400" : "text-zinc-500"}>
-            ⚡️ Mine
-          </button>
-          <button onClick={() => setActiveTab("cases")} className={activeTab === "cases" ? "text-pink-400" : "text-zinc-500"}>
-            🎰 Cases
-          </button>
-          <button onClick={() => setActiveTab("withdraw")} className={activeTab === "withdraw" ? "text-emerald-400" : "text-zinc-500"}>
-            💸 Withdraw
-          </button>
-          <button onClick={() => setActiveTab("pvp")} className={activeTab === "pvp" ? "text-red-400" : "text-zinc-500"}>
-            ⚔️ PvP
-          </button>
-        </div>
       </div>
     </div>
   );
