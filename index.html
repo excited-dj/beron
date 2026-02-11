@@ -6,17 +6,66 @@
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0d1b3a;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .app-container {
+      background: rgba(10, 25, 60, 0.8);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px #1e3cff;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3rem;
+      color: #1e3cff;
+      text-shadow: 0 0 10px #1e3cff, 0 0 20px #1e3cff;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(90deg, #1e3cff, #3f6eff);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 0 20px #1e3cff;
+      transition: 0.3s ease;
+    }
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px #1e3cff;
+    }
+  </style>
 </head>
 <body>
   <div id="root"></div>
 
   <script type="text/babel">
-    // Пример упрощённого кода из твоего скрина
     function App() {
-      const [coins, setCoins] = React.useState(0);
+      const [coins, setCoins] = React.useState(() => {
+        return Number(localStorage.getItem("coins") || 0);
+      });
+
+      React.useEffect(() => {
+        localStorage.setItem("coins", coins);
+      }, [coins]);
 
       return (
-        <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
+        <div className="app-container">
           <h1>BerOn ⚡</h1>
           <p>BER Coins: {coins}</p>
           <button onClick={() => setCoins(c => c + Math.floor(Math.random() * 100))}>
