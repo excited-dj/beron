@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BerOn ⚡️</title>
+<style>
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: black;
+    color: white;
+    overflow-x: hidden;
+  }
+  .container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+  }
+  h1 {
+    font-size: 2rem;
+    background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+  p { color: #aaa; font-size:0.8rem; margin-bottom:1rem; }
+  .tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .tabs button {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 0.9rem;
+    margin: 0 0.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .tabs button.active { color: #6366f1; }
+  .card {
+    background: rgba(24,24,27,0.8);
+    border: 1px solid #27272a;
+    border-radius: 1rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    position: relative;
+  }
+  .tap-button {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    font-size: 2rem;
+    background: linear-gradient(to bottom right, #6366f1, #a855f7, #ec4899);
+    border: none;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(139,92,246,1);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.1s;
+  }
+  .tap-button:active { transform: scale(0.9); }
+  .flying-coin {
+    position: absolute;
+    font-size: 1.5rem;
+    pointer-events: none;
+    animation: fly 0.8s ease-out forwards;
+  }
+  @keyframes fly {
+    0% { transform: translate(0,0); opacity: 1; }
+    100% { transform: translate(var(--x), var(--y)); opacity: 0; }
+  }
+  .crit {
+    position: absolute;
+    font-weight: bold;
+    color: #ec4899;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: critAnim 0.6s ease-out forwards;
+  }
+  @keyframes critAnim {
+    0% { opacity: 0; transform: translateX(-50%) scale(0.5); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+    100% { opacity: 0; transform: translateX(-50%) scale(0.5); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>BerOn ⚡️</h1>
+  <p>Ultra Telegram Experience</p>
+
+  <div class="tabs">
+    <button class="active" data-tab="mine">⚡️ Mine</button>
+    <button data-tab="cases">🎰 Cases</button>
+    <button data-tab="withdraw">💸 Withdraw</button>
+    <button data-tab="pvp">⚔️ PvP</button>
+  </div>
+
+  <div id="tab-content">
+    <!-- Mine -->
+    <div class="tab" id="mine-tab">
+      <div class="card">
+        <div id="coins" style="font-size:1.5rem;">0</div>
+        <div style="font-size:0.8rem; color:#aaa;">BER Coins</div>
+      </div>
+      <button class="tap-button" id="tap-btn">⚡️</button>
+      <div id="crit-text"></div>
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:#aaa;">
+          <span>Energy</span>
+          <span id="energy">1000 / 1000</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cases -->
+    <div class="tab" id="cases-tab" style="display:none;">
+      <div class="card">
+        <div style="font-weight:bold;">Cases PRO MAX 🎰</div>
+        <div style="font-size:0.8rem; color:#aaa;">Open & get insane rewards</div>
+        <button id="open-case" style="margin-top:0.5rem; padding:0.5rem 1rem; border:none; border-radius:0.5rem; background: linear-gradient(to right, #ec4899, #6366f1); color:white; cursor:pointer;">
+          🔥 OPEN CASE 🔥
+        </button>
+      </div>
+    </div>
+
+    <!-- Withdraw -->
+    <div class="tab" id="withdraw-tab" style="display:none;">
+      <div class="card">
+        <div style="font-weight:bold;">Withdraw 💸</div>
+        <button style="margin-top:0.5rem; padding:0.5rem 1rem; opacity:0.7; cursor:not-allowed;">SOON 😈🔥</button>
+      </div>
+    </div>
+
+    <!-- PvP -->
+    <div class="tab" id="pvp-tab" style="display:none;">
+      <div class="card">
+        <div style="font-weight:bold;">PvP Arena 😈</div>
+        <button id="pvp-fight" style="margin-top:0.5rem; padding:0.5rem 1rem; border:none; border-radius:0.5rem; background:#f87171; color:white; cursor:pointer;">⚔️ Fight</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let coins = 0;
+let energy = 1000;
+let maxEnergy = 1000;
+
+// Load saved progress
+const saved = JSON.parse(localStorage.getItem('beron') || '{}');
+coins = saved.coins || 0;
+energy = saved.energy || 1000;
+
+document.getElementById('coins').textContent = coins;
+document.getElementById('energy').textContent = energy + ' / ' + maxEnergy;
+
+// Tab switching
+document.querySelectorAll(".tabs button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tabs button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    const tab = btn.dataset.tab;
+    document.querySelectorAll(".tab").forEach(t => t.style.display="none");
+    document.getElementById(tab + "-tab").style.display = "block";
+  });
+});
+
+// Energy regen
+setInterval(() => {
+  energy = Math.min(maxEnergy, energy + 3);
+  document.getElementById("energy").textContent = energy + " / " + maxEnergy;
+  saveProgress();
+}, 1000);
+
+// Save progress
+function saveProgress() {
+  localStorage.setItem('beron', JSON.stringify({ coins, energy }));
+}
+
+// Tap button
+document.getElementById("tap-btn").addEventListener("click", e => {
+  if(energy <= 0) return;
+  energy--;
+  let reward = 1;
+  const isMegaCrit = Math.random() < 0.05;
+  const isUltraCrit = Math.random() < 0.01;
+  if(isUltraCrit) reward *= 20;
+  else if(isMegaCrit) reward *= 5;
+  coins += reward;
+
+  document.getElementById('coins').textContent = coins;
+  document.getElementById('energy').textContent = energy + ' / ' + maxEnergy;
+  saveProgress();
+
+  // Crit
+  const critText = document.getElementById('crit-text');
+  if(isUltraCrit) critText.innerHTML = '<div class="crit">ULTRA CRIT 🔥</div>';
+  else if(isMegaCrit) critText.innerHTML = '<div class="crit">MEGA CRIT 😈</div>';
+  else critText.innerHTML = '';
+
+  // Spawn flying coins
+  for(let i=0;i<6;i++){
+    const coin = document.createElement('div');
+    coin.textContent = '🪙';
+    coin.className = 'flying-coin';
+    const x = (Math.random()-0.5)*150 + 'px';
+    const y = -Math.random()*150 + 'px';
+    coin.style.setProperty('--x', x);
+    coin.style.setProperty('--y', y);
+    coin.style.left = '50%';
+    coin.style.top = '50%';
+    document.querySelector('.container').appendChild(coin);
+    setTimeout(()=>coin.remove(),800);
+  }
+});
+
+// Open case
+document.getElementById("open-case").addEventListener("click", () => {
+  const reward = Math.floor(Math.random()*800+200);
+  coins += reward;
+  document.getElementById('coins').textContent = coins;
+  saveProgress();
+});
+
+// PvP fight
+document.getElementById("pvp-fight").addEventListener("click", () => {
+  coins += 300;
+  document.getElementById('coins').textContent = coins;
+  saveProgress();
+});
+</script>
+</body>
+</html>
