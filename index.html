@@ -2,326 +2,280 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>BerOn EVOLUTION 3.0 😈🔥</title>
+<title>BerOn</title>
 
 <style>
-* { box-sizing: border-box; font-family: Arial; }
-
-body {
-    margin: 0;
-    background: radial-gradient(circle at top, #1a1a1a, #000);
-    color: white;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+body{
+margin:0;
+background:radial-gradient(circle at top,#1a1a1a,#000);
+color:#fff;
+display:flex;
+justify-content:center;
+overflow-x:hidden;
 }
-
-.app {
-    width: 100%;
-    max-width: 420px;
-    padding: 20px;
-    padding-bottom: 120px;
+.app{
+width:100%;
+max-width:420px;
+padding:20px;
+padding-bottom:100px;
+transition:.15s;
 }
-
-.logo {
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    background: linear-gradient(45deg, #ff3cac, #784ba0, #2b86c5);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 20px;
+.shake{transform:scale(1.03)}
+.logo{
+text-align:center;
+font-size:28px;
+font-weight:bold;
+background:linear-gradient(45deg,#ff3cac,#784ba0,#2b86c5);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:20px;
 }
-
-.card {
-    background: rgba(15,15,15,0.9);
-    border-radius: 20px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 0 50px rgba(255, 0, 150, 0.35);
-    margin-bottom: 15px;
+.card{
+background:rgba(15,15,15,.95);
+border-radius:20px;
+padding:20px;
+text-align:center;
+box-shadow:0 0 50px rgba(255,0,150,.35);
+margin-bottom:15px;
 }
-
-.tap-wrap {
-    text-align: center;
-    position: relative;
+.tap-btn{
+width:170px;
+height:170px;
+border-radius:50%;
+border:none;
+font-size:55px;
+color:#fff;
+cursor:pointer;
+transition:.12s;
+animation:glowPulse 2s infinite;
 }
-
-.tap-btn {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    border: none;
-    font-size: 50px;
-    color: white;
-    background: linear-gradient(45deg, #3a1c71, #d76d77, #ffaf7b);
-    box-shadow: 0 0 100px rgba(255, 0, 150, 0.9);
-    transition: 0.12s;
+@keyframes glowPulse{
+0%{box-shadow:0 0 40px rgba(255,0,150,.5)}
+50%{box-shadow:0 0 120px rgba(255,0,150,1)}
+100%{box-shadow:0 0 40px rgba(255,0,150,.5)}
 }
-
-.tap-btn:active { transform: scale(1.12); }
-
-.damage {
-    position: absolute;
-    left: 50%;
-    top: 45%;
-    transform: translate(-50%, 0);
-    font-weight: bold;
-    font-size: 20px;
-    animation: dmg 0.7s ease-out forwards;
+.skin1{background:linear-gradient(45deg,#3a1c71,#d76d77,#ffaf7b)}
+.skin2{background:linear-gradient(45deg,#11998e,#38ef7d)}
+.skin3{background:linear-gradient(45deg,#fc466b,#3f5efb)}
+.tap-btn:active{transform:scale(1.15)}
+button.main{
+width:100%;
+height:42px;
+margin-top:10px;
+border-radius:12px;
+border:none;
+background:linear-gradient(45deg,#ff3cac,#784ba0);
+color:#fff;
+font-weight:bold;
+cursor:pointer;
 }
-
-@keyframes dmg {
-    from { opacity: 1; transform: translate(-50%, 0) scale(0.6); }
-    to { opacity: 0; transform: translate(-50%, -60px) scale(1.4); }
+.coin{
+position:fixed;
+font-size:18px;
+pointer-events:none;
+animation:fly .8s forwards;
 }
-
-.flash {
-    position: fixed;
-    inset: 0;
-    background: rgba(255,0,150,0.2);
-    animation: flashAnim 0.25s;
+@keyframes fly{
+from{transform:translateY(0) scale(1);opacity:1}
+to{transform:translateY(-80px) scale(1.6);opacity:0}
 }
-
-@keyframes flashAnim { from {opacity:1;} to {opacity:0;} }
-
-.ring {
-    position: fixed;
-    inset: 0;
-    border: 2px solid rgba(255,0,150,0.7);
-    border-radius: 50%;
-    animation: ringAnim 0.6s ease-out forwards;
+.combo-burst{
+position:fixed;
+left:50%;
+top:40%;
+transform:translateX(-50%);
+font-size:22px;
+font-weight:bold;
+color:#ff4ecd;
+animation:burst .5s forwards;
 }
-
-@keyframes ringAnim {
-    from { transform: scale(0.3); opacity: 1; }
-    to { transform: scale(2); opacity: 0; }
+@keyframes burst{
+from{opacity:0;transform:translateX(-50%) scale(.5)}
+to{opacity:1;transform:translateX(-50%) scale(1.4)}
 }
-
-.bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #111;
-    border-top: 1px solid #222;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 10px;
-    text-align: center;
-    font-size: 11px;
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.95);
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
 }
-
-.bottom-nav button {
-    background: none;
-    border: none;
-    color: white;
+.case-box{
+font-size:46px;
+animation:pulse .6s infinite alternate;
 }
-.tab { display: none; }
-
-.skin {
-    font-size: 22px;
+@keyframes pulse{
+from{transform:scale(1)}
+to{transform:scale(1.2)}
 }
 </style>
 </head>
-
 <body>
 
-<div class="app">
+<div class="app" id="app">
 
-    <div class="logo">BerOn 😈 EVOLUTION 3.0</div>
+<div class="logo">BerOn INSANITY 😈🔥</div>
 
-    <div class="card">
-        <div id="coins" style="font-size:26px">0</div>
-        <div style="font-size:12px;color:#777">Coins</div>
-        <div style="color:#ff4ecd;margin-top:6px">
-            💎 <span id="ber">0</span> BER
-        </div>
-        <div id="rank" style="margin-top:8px;color:#00ffd5">
-            Bronze 🏆
-        </div>
-    </div>
-
-    <!-- ⚡️ MINE -->
-    <div class="tab" id="mine" style="display:block">
-
-        <div class="tap-wrap">
-            <button class="tap-btn" id="tap">⚡️</button>
-            <div id="skin" class="skin">Default ⚡️</div>
-        </div>
-
-        <div style="text-align:center;font-size:12px;color:#777;margin-top:10px">
-            Energy: <span id="energy">1000</span><br>
-            Combo: <span id="combo">0</span> 🔥
-        </div>
-
-        <button onclick="exchange()" style="width:100%;margin-top:10px;height:40px">
-            💎 1000 → 10 BER
-        </button>
-
-    </div>
-
-    <!-- 🎰 CASES -->
-    <div class="tab" id="cases">
-        <div class="card">
-            🎰 GOD CASE 😈🔥
-            <button onclick="openCase()" style="width:100%;margin-top:10px;height:40px">
-                OPEN CASE
-            </button>
-        </div>
-    </div>
-
-    <!-- 🧬 SKINS -->
-    <div class="tab" id="skins">
-        <div class="card">
-            🧬 SKINS 😈🔥<br><br>
-            Скины зависят от ранга 👁🔥
-        </div>
-    </div>
-
-    <!-- 📈 META -->
-    <div class="tab" id="meta">
-        <div class="card">
-            📈 META PROGRESSION 😈🔥
-        </div>
-    </div>
-
+<div class="card">
+<div id="coins" style="font-size:26px">0</div>
+<div style="font-size:12px;color:#777">Coins</div>
+<div style="color:#ff4ecd;margin-top:6px">
+💎 <span id="ber">0</span> BER
+</div>
 </div>
 
-<div class="bottom-nav">
-    <button onclick="showTab('mine')">⚡️ Mine</button>
-    <button onclick="showTab('cases')">🎰 Cases</button>
-    <button onclick="showTab('skins')">🧬 Skins</button>
-    <button onclick="showTab('meta')">📈 Meta</button>
+<div style="text-align:center">
+<button id="tapBtn" class="tap-btn skin1" onclick="tap()"⚡️</button>
+
+<div style="font-size:12px;color:#777;margin-top:10px">
+Energy: <span id="energy">1000</span><br>
+Combo: <span id="combo">0</span> 🔥
+</div>
+
+<button class="main" onclick="exchange()">💎 1000 → 10 BER</button>
+<button class="main" onclick="openDailyCase()">🎰 DAILY CASE</button>
+<button class="main" onclick="withdraw()">💸 Withdraw BER</button>
+</div>
+</div>
+
+<div class="overlay" id="overlay">
+<div class="case-box" id="roulette">🎰</div>
+<div style="font-size:14px;color:#888;margin-top:10px">
+UNLOCKING INSANITY...
+</div>
 </div>
 
 <script>
-let coins = 0;
-let ber = 0;
-let energy = 1000;
-let combo = 0;
 
-const coinsEl = document.getElementById("coins");
-const berEl = document.getElementById("ber");
-const energyEl = document.getElementById("energy");
-const comboEl = document.getElementById("combo");
-const rankEl = document.getElementById("rank");
-const skinEl = document.getElementById("skin");
+let coins=parseInt(localStorage.getItem("coins"))||0;
+let ber=parseInt(localStorage.getItem("ber"))||0;
+let energy=parseInt(localStorage.getItem("energy"))||1000;
+let combo=parseInt(localStorage.getItem("combo"))||0;
+let skin=parseInt(localStorage.getItem("skin"))||1;
 
-function update() {
-    coinsEl.innerText = Math.floor(coins);
-    berEl.innerText = ber;
-    energyEl.innerText = energy;
-    comboEl.innerText = combo;
-    updateRank();
+function save(){
+localStorage.setItem("coins",coins);
+localStorage.setItem("ber",ber);
+localStorage.setItem("energy",energy);
+localStorage.setItem("combo",combo);
+localStorage.setItem("skin",skin);
 }
 
-setInterval(() => {
-    energy = Math.min(1000, energy + 4);
-    update();
-}, 1000);
+const coinsEl=document.getElementById("coins");
+const berEl=document.getElementById("ber");
+const energyEl=document.getElementById("energy");
+const comboEl=document.getElementById("combo");
+const overlay=document.getElementById("overlay");
+const roulette=document.getElementById("roulette");
+const app=document.getElementById("app");
+const tapBtn=document.getElementById("tapBtn");
 
-document.getElementById("tap").onclick = () => {
-    if (energy <= 0) return;
-
-    let reward = 1;
-    combo++;
-
-    const roll = Math.random();
-
-    if (roll < 0.12) reward *= 5;
-    if (roll < 0.03) {
-        reward *= 20;
-        flash(); ring();
-        damage("MYTHIC +" + reward, true);
-    } else {
-        damage("+" + reward);
-    }
-
-    if (combo % 25 === 0) {
-        reward *= 5;
-        ring();
-        damage("RAGE +" + reward);
-    }
-
-    coins += reward;
-    energy--;
-
-    update();
-};
-
-function exchange() {
-    if (coins < 1000) return alert("😈 Мало Coins");
-
-    coins -= 1000;
-    ber += 10;
-
-    update();
+function update(){
+coinsEl.innerText=coins;
+berEl.innerText=ber;
+energyEl.innerText=energy;
+comboEl.innerText=combo;
+tapBtn.className="tap-btn skin"+skin;
 }
 
-function openCase() {
-    const roll = Math.random();
-    let reward;
+setInterval(()=>{
+energy=Math.min(1000,energy+4);
+save();
+update();
+},1000);
 
-    if (roll < 0.6) reward = 500;
-    else if (roll < 0.9) reward = 3000;
-    else {
-        reward = 10000;
-        flash(); ring();
-        damage("LEGENDARY +" + reward, true);
-    }
-
-    coins += reward;
-    update();
+function shake(){
+app.classList.add("shake");
+setTimeout(()=>app.classList.remove("shake"),100);
 }
 
-function damage(text, rare=false) {
-    const d = document.createElement("div");
-    d.className = "damage";
-    d.innerText = text;
-
-    if (rare) {
-        d.style.background = "linear-gradient(45deg,#ff3cac,#784ba0,#2b86c5)";
-        d.style.webkitBackgroundClip = "text";
-        d.style.webkitTextFillColor = "transparent";
-    }
-
-    document.querySelector(".tap-wrap").appendChild(d);
-    setTimeout(() => d.remove(), 700);
+function flyingCoin(){
+const coin=document.createElement("div");
+coin.className="coin";
+coin.innerText="💎";
+coin.style.left=(window.innerWidth/2+(Math.random()*80-40))+"px";
+coin.style.top="55%";
+document.body.appendChild(coin);
+setTimeout(()=>coin.remove(),800);
 }
 
-function updateRank() {
-    let rank = "Bronze 🏆";
-    let skin = "⚡️";
-
-    if (coins > 5000) { rank = "Silver ⚔️"; skin = "🔥"; }
-    if (coins > 20000) { rank = "Gold 👑"; skin = "💥"; }
-    if (coins > 80000) { rank = "Diamond 💎"; skin = "🌈"; }
-    if (coins > 200000) { rank = "MYTHIC 😈🔥"; skin = "😈"; }
-
-    rankEl.innerText = rank;
-    skinEl.innerText = "Skin: " + skin;
+function comboBurst(){
+if(combo%20!==0)return;
+const burst=document.createElement("div");
+burst.className="combo-burst";
+burst.innerText="COMBO x"+combo+" 🔥";
+document.body.appendChild(burst);
+setTimeout(()=>burst.remove(),500);
 }
 
-function flash() {
-    const f = document.createElement("div");
-    f.className = "flash";
-    document.body.appendChild(f);
-    setTimeout(() => f.remove(), 250);
+function tap(){
+if(energy<=0)return;
+let reward=1;
+combo++;
+const roll=Math.random();
+if(roll<0.12)reward*=5;
+if(roll<0.03)reward*=20;
+coins+=reward;
+energy--;
+flyingCoin();
+comboBurst();
+shake();
+if(combo%100===0)skin=Math.min(3,skin+1);
+save();
+update();
 }
 
-function ring() {
-    const r = document.createElement("div");
-    r.className = "ring";
-    document.body.appendChild(r);
-    setTimeout(() => r.remove(), 600);
+function exchange(){
+if(coins<1000)return alert("😈 Недостаточно Coins");
+coins-=1000;
+ber+=10;
+shake();
+save();
+update();
 }
 
-function showTab(id) {
-    document.querySelectorAll(".tab").forEach(t => t.style.display = "none");
-    document.getElementById(id).style.display = "block";
+function withdraw(){
+alert("💸 Withdraw System\nSOON 😈🔥");
 }
+
+function openDailyCase(){
+const lastOpen=localStorage.getItem("daily_case");
+if(lastOpen){
+const diff=Date.now()-parseInt(lastOpen);
+if(diff<86400000){
+const hours=Math.ceil((86400000-diff)/3600000);
+return alert("😈 Кейc недоступен\nПодожди "+hours+"ч");
+}
+}
+overlay.style.display="flex";
+const rewards=[5000,3000,1000,500,400,100];
+let spins=0;
+const spinInterval=setInterval(()=>{
+roulette.innerText=rewards[Math.floor(Math.random()*rewards.length)];
+spins++;
+if(spins>30){
+clearInterval(spinInterval);
+const final=rewards[Math.floor(Math.random()*rewards.length)];
+setTimeout(()=>{
+roulette.innerText="+"+final+" 😈🔥";
+coins+=final;
+localStorage.setItem("daily_case",Date.now());
+shake();
+save();
+setTimeout(()=>{
+overlay.style.display="none";
+update();
+},900);
+},400);
+}
+},80);
+}
+
+update();
+
 </script>
-
 </body>
 </html>
