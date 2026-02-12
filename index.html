@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>BerOn</title>
+<title>BerOn EVOLUTION 3.0 😈🔥</title>
 
 <style>
 * { box-sizing: border-box; font-family: Arial; }
@@ -13,7 +13,7 @@ body {
     color: white;
     display: flex;
     justify-content: center;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .app {
@@ -39,21 +39,21 @@ body {
     padding: 20px;
     text-align: center;
     box-shadow: 0 0 50px rgba(255, 0, 150, 0.35);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
-.coins { font-size: 28px; font-weight: bold; }
-
-.tap-wrap { text-align: center; position: relative; }
+.tap-wrap {
+    text-align: center;
+    position: relative;
+}
 
 .tap-btn {
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     border: none;
-    font-size: 60px;
+    font-size: 50px;
     color: white;
-    cursor: pointer;
     background: linear-gradient(45deg, #3a1c71, #d76d77, #ffaf7b);
     box-shadow: 0 0 100px rgba(255, 0, 150, 0.9);
     transition: 0.12s;
@@ -64,28 +64,16 @@ body {
 .damage {
     position: absolute;
     left: 50%;
-    top: 40%;
+    top: 45%;
+    transform: translate(-50%, 0);
     font-weight: bold;
-    font-size: 22px;
-    pointer-events: none;
-    animation: dmgAnim 0.7s ease-out forwards;
+    font-size: 20px;
+    animation: dmg 0.7s ease-out forwards;
 }
 
-@keyframes dmgAnim {
-    from { transform: translate(-50%, 0) scale(0.6); opacity: 1; }
-    to { transform: translate(-50%, -60px) scale(1.3); opacity: 0; }
-}
-
-.coin-float {
-    position: absolute;
-    font-size: 18px;
-    pointer-events: none;
-    animation: coinAnim 0.8s ease-out forwards;
-}
-
-@keyframes coinAnim {
-    from { transform: translateY(0) scale(0.7); opacity: 1; }
-    to { transform: translateY(-80px) scale(1.4); opacity: 0; }
+@keyframes dmg {
+    from { opacity: 1; transform: translate(-50%, 0) scale(0.6); }
+    to { opacity: 0; transform: translate(-50%, -60px) scale(1.4); }
 }
 
 .flash {
@@ -100,28 +88,15 @@ body {
 .ring {
     position: fixed;
     inset: 0;
-    border-radius: 50%;
     border: 2px solid rgba(255,0,150,0.7);
+    border-radius: 50%;
     animation: ringAnim 0.6s ease-out forwards;
 }
 
 @keyframes ringAnim {
-    from { transform: scale(0.4); opacity: 1; }
+    from { transform: scale(0.3); opacity: 1; }
     to { transform: scale(2); opacity: 0; }
 }
-
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.92);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 10;
-}
-
-.roulette { font-size: 42px; }
 
 .bottom-nav {
     position: fixed;
@@ -131,12 +106,22 @@ body {
     background: #111;
     border-top: 1px solid #222;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     padding: 10px;
     text-align: center;
-    font-size: 12px;
+    font-size: 11px;
 }
-.bottom-nav button { background: none; border: none; color: white; }
+
+.bottom-nav button {
+    background: none;
+    border: none;
+    color: white;
+}
+.tab { display: none; }
+
+.skin {
+    font-size: 22px;
+}
 </style>
 </head>
 
@@ -144,70 +129,97 @@ body {
 
 <div class="app">
 
-    <div class="logo">BerOn</div>
+    <div class="logo">BerOn 😈 EVOLUTION 3.0</div>
 
     <div class="card">
-        <div class="coins" id="coins">0</div>
+        <div id="coins" style="font-size:26px">0</div>
         <div style="font-size:12px;color:#777">Coins</div>
+        <div style="color:#ff4ecd;margin-top:6px">
+            💎 <span id="ber">0</span> BER
+        </div>
+        <div id="rank" style="margin-top:8px;color:#00ffd5">
+            Bronze 🏆
+        </div>
     </div>
 
-    <div class="tap-wrap">
-        <button class="tap-btn" id="tap">⚡</button>
+    <!-- ⚡️ MINE -->
+    <div class="tab" id="mine" style="display:block">
+
+        <div class="tap-wrap">
+            <button class="tap-btn" id="tap">⚡️</button>
+            <div id="skin" class="skin">Default ⚡️</div>
+        </div>
+
+        <div style="text-align:center;font-size:12px;color:#777;margin-top:10px">
+            Energy: <span id="energy">1000</span><br>
+            Combo: <span id="combo">0</span> 🔥
+        </div>
+
+        <button onclick="exchange()" style="width:100%;margin-top:10px;height:40px">
+            💎 1000 → 10 BER
+        </button>
+
     </div>
 
-    <div style="text-align:center;font-size:12px;color:#777;margin-top:10px">
-        Energy: <span id="energy">1000</span><br>
-        Combo: <span id="combo">0</span> 🔥
+    <!-- 🎰 CASES -->
+    <div class="tab" id="cases">
+        <div class="card">
+            🎰 GOD CASE 😈🔥
+            <button onclick="openCase()" style="width:100%;margin-top:10px;height:40px">
+                OPEN CASE
+            </button>
+        </div>
     </div>
 
-    <button onclick="openCase()" style="width:100%;margin-top:15px;height:42px;border-radius:14px;border:none">
-        🎰 DAILY GOD ROULETTE
-    </button>
+    <!-- 🧬 SKINS -->
+    <div class="tab" id="skins">
+        <div class="card">
+            🧬 SKINS 😈🔥<br><br>
+            Скины зависят от ранга 👁🔥
+        </div>
+    </div>
 
-    <div id="timer" style="text-align:center;font-size:12px;color:#ff4ecd;margin-top:6px">
-        Ready 🔥
+    <!-- 📈 META -->
+    <div class="tab" id="meta">
+        <div class="card">
+            📈 META PROGRESSION 😈🔥
+        </div>
     </div>
 
 </div>
 
 <div class="bottom-nav">
-    <button>⚡ Mine</button>
-    <button>🎰 Case</button>
-    <button>😈 Ultra</button>
-</div>
-
-<div id="overlay" class="overlay" style="display:none">
-    <div style="font-size:70px">🎰</div>
-    <div class="roulette" id="roulette">---</div>
-    <div style="font-size:12px;color:#777;margin-top:10px">INSANITY SPINNING...</div>
+    <button onclick="showTab('mine')">⚡️ Mine</button>
+    <button onclick="showTab('cases')">🎰 Cases</button>
+    <button onclick="showTab('skins')">🧬 Skins</button>
+    <button onclick="showTab('meta')">📈 Meta</button>
 </div>
 
 <script>
 let coins = 0;
+let ber = 0;
 let energy = 1000;
 let combo = 0;
 
-const rewards = [5000, 3000, 1000, 500, 400, 100];
-const DAY = 86400000;
-
 const coinsEl = document.getElementById("coins");
+const berEl = document.getElementById("ber");
 const energyEl = document.getElementById("energy");
 const comboEl = document.getElementById("combo");
-const rouletteEl = document.getElementById("roulette");
-const overlay = document.getElementById("overlay");
-const timerEl = document.getElementById("timer");
-const tapWrap = document.querySelector(".tap-wrap");
+const rankEl = document.getElementById("rank");
+const skinEl = document.getElementById("skin");
+
+function update() {
+    coinsEl.innerText = Math.floor(coins);
+    berEl.innerText = ber;
+    energyEl.innerText = energy;
+    comboEl.innerText = combo;
+    updateRank();
+}
 
 setInterval(() => {
     energy = Math.min(1000, energy + 4);
     update();
 }, 1000);
-
-function update() {
-    coinsEl.innerText = Math.floor(coins);
-    energyEl.innerText = energy;
-    comboEl.innerText = combo;
-}
 
 document.getElementById("tap").onclick = () => {
     if (energy <= 0) return;
@@ -216,119 +228,80 @@ document.getElementById("tap").onclick = () => {
     combo++;
 
     const roll = Math.random();
-    let isCrit = false;
 
-    if (roll < 0.12) { reward *= 5; isCrit = true; }
+    if (roll < 0.12) reward *= 5;
     if (roll < 0.03) {
         reward *= 20;
         flash(); ring();
-        isCrit = true;
+        damage("MYTHIC +" + reward, true);
+    } else {
+        damage("+" + reward);
     }
 
-    if (combo % 10 === 0) reward *= 3;
-    if (combo % 50 === 0) { reward *= 10; ring(); }
+    if (combo % 25 === 0) {
+        reward *= 5;
+        ring();
+        damage("RAGE +" + reward);
+    }
 
     coins += reward;
     energy--;
 
-    crunch();
-    damageNumber(reward, isCrit);
-    floatingCoins();
-
     update();
 };
 
-function damageNumber(value, crit) {
-    const dmg = document.createElement("div");
-    dmg.className = "damage";
+function exchange() {
+    if (coins < 1000) return alert("😈 Мало Coins");
 
-    if (value >= 20) {
-        dmg.style.background = "linear-gradient(45deg,#ff3cac,#784ba0,#2b86c5)";
-        dmg.style.webkitBackgroundClip = "text";
-        dmg.style.webkitTextFillColor = "transparent";
-        dmg.innerText = "MYTHIC +" + value;
-    }
-    else if (crit) {
-        dmg.style.color = "#ff4ecd";
-        dmg.innerText = "CRIT +" + value;
-    }
-    else {
-        dmg.style.color = "#fff";
-        dmg.innerText = "+" + value;
-    }
+    coins -= 1000;
+    ber += 10;
 
-    tapWrap.appendChild(dmg);
-    setTimeout(() => dmg.remove(), 700);
-}
-
-function floatingCoins() {
-    const coin = document.createElement("div");
-    coin.className = "coin-float";
-    coin.innerText = "🪙";
-    coin.style.left = (Math.random() * 120 + 30) + "px";
-    coin.style.top = "80px";
-
-    tapWrap.appendChild(coin);
-    setTimeout(() => coin.remove(), 800);
+    update();
 }
 
 function openCase() {
-    const lastOpen = localStorage.getItem("daily_case");
-    const now = Date.now();
+    const roll = Math.random();
+    let reward;
 
-    if (lastOpen && now - lastOpen < DAY) {
-        alert("🎰 Daily Roulette на кулдауне 😈🔥");
-        return;
+    if (roll < 0.6) reward = 500;
+    else if (roll < 0.9) reward = 3000;
+    else {
+        reward = 10000;
+        flash(); ring();
+        damage("LEGENDARY +" + reward, true);
     }
 
-    localStorage.setItem("daily_case", now);
-
-    overlay.style.display = "flex";
-
-    let spins = 0;
-
-    const spinAnim = setInterval(() => {
-        const r = rewards[Math.floor(Math.random() * rewards.length)];
-        rouletteEl.innerText = r;
-        spins++;
-
-        if (spins > 25) {
-            clearInterval(spinAnim);
-
-            const finalReward = rewards[Math.floor(Math.random() * rewards.length)];
-            rouletteEl.innerText = finalReward;
-
-            setTimeout(() => {
-                overlay.style.display = "none";
-                coins += finalReward;
-
-                flash(); ring();
-
-                alert(`😈 GOD DROP\n+${finalReward} Coins 🔥`);
-                update();
-            }, 400);
-        }
-    }, 80);
+    coins += reward;
+    update();
 }
 
-function updateTimer() {
-    const lastOpen = localStorage.getItem("daily_case");
-    const now = Date.now();
+function damage(text, rare=false) {
+    const d = document.createElement("div");
+    d.className = "damage";
+    d.innerText = text;
 
-    if (!lastOpen || now - lastOpen >= DAY) {
-        timerEl.innerText = "Ready 😈🔥";
-    } else {
-        const remaining = DAY - (now - lastOpen);
-        const h = Math.floor(remaining / 3600000);
-        const m = Math.floor((remaining % 3600000) / 60000);
-        const s = Math.floor((remaining % 60000) / 1000);
-
-        timerEl.innerText = `⏳ ${h}ч ${m}м ${s}с`;
+    if (rare) {
+        d.style.background = "linear-gradient(45deg,#ff3cac,#784ba0,#2b86c5)";
+        d.style.webkitBackgroundClip = "text";
+        d.style.webkitTextFillColor = "transparent";
     }
+
+    document.querySelector(".tap-wrap").appendChild(d);
+    setTimeout(() => d.remove(), 700);
 }
 
-setInterval(updateTimer, 1000);
-updateTimer();
+function updateRank() {
+    let rank = "Bronze 🏆";
+    let skin = "⚡️";
+
+    if (coins > 5000) { rank = "Silver ⚔️"; skin = "🔥"; }
+    if (coins > 20000) { rank = "Gold 👑"; skin = "💥"; }
+    if (coins > 80000) { rank = "Diamond 💎"; skin = "🌈"; }
+    if (coins > 200000) { rank = "MYTHIC 😈🔥"; skin = "😈"; }
+
+    rankEl.innerText = rank;
+    skinEl.innerText = "Skin: " + skin;
+}
 
 function flash() {
     const f = document.createElement("div");
@@ -344,22 +317,11 @@ function ring() {
     setTimeout(() => r.remove(), 600);
 }
 
-function crunch() {
-    try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const o = ctx.createOscillator();
-        const g = ctx.createGain();
-        o.type = "square";
-        o.frequency.value = 140;
-        g.gain.value = 0.05;
-        o.connect(g);
-        g.connect(ctx.destination);
-        o.start();
-        o.stop(ctx.currentTime + 0.04);
-    } catch {}
+function showTab(id) {
+    document.querySelectorAll(".tab").forEach(t => t.style.display = "none");
+    document.getElementById(id).style.display = "block";
 }
 </script>
 
 </body>
 </html>
-
