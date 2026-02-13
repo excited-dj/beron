@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Beron</title>
+<title>Beron - Crypto Casino</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 *{
   margin:0;
@@ -20,7 +20,7 @@
 body{
   background:#000;
   color:#fff;
-  font-family:'Exo 2',sans-serif;
+  font-family:'Poppins',sans-serif;
   overflow-x:hidden;
 }
 
@@ -29,45 +29,54 @@ body{
   max-width:430px;
   min-height:100vh;
   margin:0 auto;
-  background:linear-gradient(135deg,#0a0a0a 0%,#1a0520 100%);
+  background:#0a0a0f;
   position:relative;
   overflow-y:auto;
   overflow-x:hidden;
   padding-bottom:80px;
 }
 
-.bg-pattern{
+.animated-bg{
   position:fixed;
   inset:0;
   background:
-    radial-gradient(circle at 20% 50%, rgba(0,102,255,0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(0,136,255,0.05) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, rgba(0,170,255,0.05) 0%, transparent 50%);
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(200,200,200,0.15) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
   pointer-events:none;
   z-index:0;
+  animation:bgPulse 8s ease-in-out infinite;
 }
 
-.cyber-grid{
+@keyframes bgPulse{
+  0%,100%{opacity:0.5}
+  50%{opacity:1}
+}
+
+.scan-lines{
   position:fixed;
   inset:0;
-  background-image:
-    linear-gradient(rgba(0,102,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,102,255,0.03) 1px, transparent 1px);
-  background-size:50px 50px;
+  background:repeating-linear-gradient(
+    0deg,
+    rgba(200,200,200,0.03) 0px,
+    transparent 2px,
+    transparent 4px,
+    rgba(200,200,200,0.03) 4px
+  );
   pointer-events:none;
-  z-index:0;
-  animation:gridScroll 20s linear infinite;
+  z-index:1;
+  animation:scan 8s linear infinite;
 }
 
-@keyframes gridScroll{
-  0%{background-position:0 0}
-  100%{background-position:50px 50px}
+@keyframes scan{
+  0%{transform:translateY(0)}
+  100%{transform:translateY(100px)}
 }
 
 .content{
   position:relative;
-  z-index:1;
-  padding:20px;
+  z-index:2;
+  padding:15px;
 }
 
 .tab-content{
@@ -80,7 +89,7 @@ body{
 
 .header{
   text-align:center;
-  margin-bottom:30px;
+  margin-bottom:20px;
   animation:slideDown 0.6s ease-out;
 }
 
@@ -90,95 +99,160 @@ body{
 }
 
 .logo{
-  font-family:'Orbitron',sans-serif;
-  font-size:42px;
+  font-family:'Poppins',sans-serif;
+  font-size:48px;
   font-weight:900;
-  background:linear-gradient(45deg,#0066ff,#00aaff,#0066ff);
+  background:linear-gradient(135deg,#fff 0%,#ccc 50%,#fff 100%);
   background-size:200%;
   -webkit-background-clip:text;
   background-clip:text;
   -webkit-text-fill-color:transparent;
-  text-shadow:0 0 40px rgba(0,102,255,0.5);
-  animation:gradientShift 3s ease infinite;
-  letter-spacing:3px;
+  text-shadow:0 0 60px rgba(255,255,255,0.8);
+  animation:logoGlow 3s ease infinite;
+  letter-spacing:8px;
+  position:relative;
 }
 
-@keyframes gradientShift{
-  0%,100%{background-position:0%}
-  50%{background-position:100%}
+@keyframes logoGlow{
+  0%,100%{background-position:0% 50%;filter:drop-shadow(0 0 20px rgba(255,255,255,0.6))}
+  50%{background-position:100% 50%;filter:drop-shadow(0 0 40px rgba(200,200,200,0.8))}
 }
 
 .stats-box{
-  background:rgba(10,10,30,0.7);
+  background:rgba(20,20,30,0.8);
   border-radius:20px;
   padding:20px;
-  margin-bottom:25px;
-  border:2px solid rgba(0,102,255,0.4);
-  box-shadow:0 8px 32px rgba(0,102,255,0.2);
-  backdrop-filter:blur(10px);
+  margin-bottom:20px;
+  border:2px solid rgba(200,200,200,0.3);
+  box-shadow:0 10px 40px rgba(200,200,200,0.2);
+  backdrop-filter:blur(20px);
   animation:fadeIn 0.8s ease-out 0.2s both;
+  position:relative;
+  overflow:hidden;
+}
+
+.stats-box::before{
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:linear-gradient(45deg,transparent,rgba(200,200,200,0.1),transparent);
+  animation:shimmer 3s linear infinite;
+}
+
+@keyframes shimmer{
+  0%{transform:translateX(-100%) translateY(-100%) rotate(45deg)}
+  100%{transform:translateX(100%) translateY(100%) rotate(45deg)}
 }
 
 @keyframes fadeIn{
-  from{opacity:0;transform:scale(0.9)}
+  from{opacity:0;transform:scale(0.95)}
   to{opacity:1;transform:scale(1)}
 }
 
 .coins{
-  font-size:32px;
+  font-size:36px;
   font-weight:bold;
-  color:#ffd700;
-  text-shadow:0 0 20px rgba(255,215,0,0.6);
-  margin-bottom:5px;
-  font-family:'Orbitron',sans-serif;
+  color:#fff;
+  text-shadow:0 0 30px rgba(255,255,255,0.8);
+  margin-bottom:10px;
+  font-family:'Poppins',sans-serif;
+  position:relative;
+  z-index:1;
 }
 
-.tokens,.rank{
-  font-size:13px;
-  color:#0088ff;
-  margin:2px 0;
-  text-shadow:0 0 10px rgba(0,136,255,0.5);
+.currency-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+  position:relative;
+  z-index:1;
+}
+
+.currency-item{
+  background:rgba(0,0,0,0.4);
+  padding:10px;
+  border-radius:10px;
+  border:1px solid rgba(200,200,200,0.2);
+  transition:all 0.3s;
+}
+
+.currency-item:active{
+  transform:scale(0.95);
+  border-color:rgba(200,200,200,0.5);
+}
+
+.currency-label{
+  font-size:11px;
+  color:#ccc;
+  margin-bottom:4px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.currency-value{
+  font-size:18px;
+  font-weight:700;
+  color:#fff;
+}
+
+.rank-badge{
+  background:linear-gradient(135deg,#fff,#fff);
+  padding:8px 16px;
+  border-radius:20px;
+  font-weight:700;
+  font-size:14px;
+  text-align:center;
+  margin-top:10px;
+  box-shadow:0 5px 20px rgba(255,255,255,0.4);
+  position:relative;
+  z-index:1;
 }
 
 .energy-bar{
   width:100%;
-  height:8px;
-  background:rgba(0,0,0,0.5);
+  height:10px;
+  background:rgba(0,0,0,0.6);
   border-radius:10px;
-  margin-top:12px;
+  margin-top:15px;
   overflow:hidden;
-  border:1px solid rgba(0,102,255,0.3);
+  border:1px solid rgba(200,200,200,0.3);
+  position:relative;
+  z-index:1;
 }
 
 .energy-fill{
   height:100%;
-  background:linear-gradient(90deg,#0066ff,#00aaff);
+  background:linear-gradient(90deg,#ccc,#00ff64);
   border-radius:10px;
   transition:width 0.3s;
-  box-shadow:0 0 10px rgba(0,136,255,0.6);
+  box-shadow:0 0 15px rgba(200,200,200,0.8);
 }
 
 .tap-section{
   text-align:center;
-  margin:30px 0;
+  margin:25px 0;
   animation:fadeIn 1s ease-out 0.4s both;
 }
 
 .tap-btn{
-  width:200px;
-  height:200px;
+  width:180px;
+  height:180px;
   border-radius:50%;
   border:none;
-  background:linear-gradient(135deg,#0066ff 0%,#0088ff 50%,#00aaff 100%);
+  background:linear-gradient(135deg,#fff 0%,#ccc 100%);
   color:#fff;
-  font-size:32px;
+  font-size:36px;
   font-weight:900;
-  font-family:'Orbitron',sans-serif;
+  font-family:'Poppins',sans-serif;
   cursor:pointer;
   box-shadow:
-    0 0 40px rgba(0,102,255,0.6),
-    0 0 80px rgba(0,102,255,0.3),
-    inset 0 0 20px rgba(255,255,255,0.2);
+    0 0 60px rgba(255,255,255,0.6),
+    0 0 100px rgba(200,200,200,0.3),
+    inset 0 0 30px rgba(255,255,255,0.2);
   transition:all 0.15s;
   position:relative;
   overflow:hidden;
@@ -188,95 +262,92 @@ body{
 .tap-btn::before{
   content:'';
   position:absolute;
-  inset:-10px;
-  background:linear-gradient(45deg,transparent,rgba(255,255,255,0.3),transparent);
-  animation:shine 2s linear infinite;
+  inset:-20px;
+  background:conic-gradient(from 0deg,transparent,rgba(255,255,255,0.4),transparent);
+  animation:rotate 2s linear infinite;
 }
 
-@keyframes shine{
-  0%{transform:translateX(-100%) rotate(45deg)}
-  100%{transform:translateX(200%) rotate(45deg)}
+@keyframes rotate{
+  0%{transform:rotate(0deg)}
+  100%{transform:rotate(360deg)}
 }
 
 .tap-btn:active{
-  transform:scale(0.92);
+  transform:scale(0.9);
   box-shadow:
-    0 0 20px rgba(0,102,255,0.8),
-    inset 0 0 30px rgba(0,0,0,0.3);
+    0 0 40px rgba(255,255,255,0.8),
+    inset 0 0 40px rgba(0,0,0,0.5);
 }
 
 .tap-btn.cooldown{
   opacity:0.6;
   cursor:not-allowed;
-  animation:pulse 0.5s;
+  animation:shake 0.3s;
 }
 
-@keyframes pulse{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.05)}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-5px)}
+  75%{transform:translateX(5px)}
 }
 
 .click-effect{
   position:fixed;
   pointer-events:none;
-  font-size:24px;
+  font-size:28px;
   font-weight:bold;
-  color:#ffd700;
-  text-shadow:0 0 10px rgba(255,215,0,0.8);
-  animation:floatUp 1s ease-out forwards;
+  color:#fff;
+  text-shadow:0 0 20px rgba(255,255,255,1);
+  animation:floatUp 1.2s ease-out forwards;
   z-index:9999;
-  font-family:'Orbitron',sans-serif;
+  font-family:'Poppins',sans-serif;
 }
 
 @keyframes floatUp{
   0%{opacity:1;transform:translateY(0) scale(1)}
-  100%{opacity:0;transform:translateY(-100px) scale(1.5)}
+  100%{opacity:0;transform:translateY(-120px) scale(1.8)}
 }
 
 .quick-actions{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin:25px 0;
+  gap:10px;
+  margin:20px 0;
   animation:fadeIn 1.2s ease-out 0.6s both;
 }
 
 .action-btn{
-  background:linear-gradient(135deg,rgba(0,102,255,0.2),rgba(0,136,255,0.2));
-  border:2px solid rgba(0,102,255,0.4);
-  color:#0088ff;
-  padding:14px;
+  background:linear-gradient(135deg,rgba(255,255,255,0.2),rgba(200,200,200,0.2));
+  border:2px solid rgba(200,200,200,0.3);
+  color:#ccc;
+  padding:15px;
   border-radius:15px;
   font-size:15px;
-  font-weight:600;
+  font-weight:700;
   cursor:pointer;
   transition:all 0.3s;
   backdrop-filter:blur(10px);
-  text-shadow:0 0 5px rgba(0,136,255,0.5);
+  text-shadow:0 0 10px rgba(200,200,200,0.5);
 }
 
 .action-btn:hover{
-  background:linear-gradient(135deg,rgba(0,102,255,0.3),rgba(0,136,255,0.3));
-  transform:translateY(-2px);
-  box-shadow:0 5px 20px rgba(0,102,255,0.3);
+  background:linear-gradient(135deg,rgba(255,255,255,0.3),rgba(200,200,200,0.3));
+  transform:translateY(-3px);
+  box-shadow:0 8px 25px rgba(200,200,200,0.4);
 }
 
 .action-btn:active{
   transform:translateY(0);
 }
 
-.games-section{
-  margin-top:30px;
-  animation:fadeIn 1.4s ease-out 0.8s both;
-}
-
 .section-title{
-  font-family:'Orbitron',sans-serif;
+  font-family:'Poppins',sans-serif;
   font-size:24px;
-  color:#0088ff;
-  margin-bottom:15px;
-  text-shadow:0 0 10px rgba(0,136,255,0.6);
+  color:#ccc;
+  margin:25px 0 15px 0;
+  text-shadow:0 0 20px rgba(200,200,200,0.8);
   text-align:center;
+  letter-spacing:2px;
 }
 
 .games-grid{
@@ -286,38 +357,54 @@ body{
 }
 
 .game-card{
-  background:linear-gradient(135deg,rgba(20,40,80,0.8),rgba(20,60,100,0.8));
-  border:2px solid rgba(0,136,255,0.3);
+  background:linear-gradient(135deg,rgba(40,20,60,0.8),rgba(20,40,60,0.8));
+  border:2px solid rgba(200,200,200,0.3);
   border-radius:15px;
-  padding:20px;
+  padding:18px;
   text-align:center;
   cursor:pointer;
   transition:all 0.3s;
   backdrop-filter:blur(10px);
+  position:relative;
+  overflow:hidden;
+}
+
+.game-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,transparent,rgba(200,200,200,0.1));
+  opacity:0;
+  transition:opacity 0.3s;
+}
+
+.game-card:hover::before{
+  opacity:1;
 }
 
 .game-card:hover{
   transform:translateY(-5px) scale(1.02);
-  border-color:rgba(0,136,255,0.6);
-  box-shadow:0 10px 30px rgba(0,136,255,0.3);
+  border-color:rgba(200,200,200,0.6);
+  box-shadow:0 15px 40px rgba(200,200,200,0.4);
 }
 
 .game-icon{
-  font-size:40px;
+  font-size:48px;
   margin-bottom:10px;
-  filter:drop-shadow(0 0 10px rgba(0,136,255,0.6));
+  filter:drop-shadow(0 0 15px rgba(200,200,200,0.6));
 }
 
 .game-name{
   font-size:16px;
-  font-weight:600;
-  color:#0088ff;
-  text-shadow:0 0 5px rgba(0,136,255,0.5);
+  font-weight:700;
+  color:#ccc;
+  text-shadow:0 0 10px rgba(200,200,200,0.5);
+  margin-bottom:5px;
 }
 
 .game-reward{
-  font-size:12px;
-  color:#00aaff;
+  font-size:11px;
+  color:#fff;
   margin-top:5px;
 }
 
@@ -329,14 +416,14 @@ body{
 }
 
 .case-card{
-  background:linear-gradient(135deg,rgba(20,40,80,0.8),rgba(20,60,100,0.8));
-  border:2px solid rgba(0,136,255,0.3);
+  background:linear-gradient(135deg,rgba(40,20,60,0.9),rgba(20,40,60,0.9));
+  border:3px solid;
   border-radius:20px;
   padding:25px;
   text-align:center;
   cursor:pointer;
-  transition:all 0.3s;
-  backdrop-filter:blur(10px);
+  transition:all 0.4s;
+  backdrop-filter:blur(20px);
   position:relative;
   overflow:hidden;
 }
@@ -344,10 +431,15 @@ body{
 .case-card::before{
   content:'';
   position:absolute;
-  inset:-2px;
-  background:linear-gradient(45deg,transparent,rgba(0,136,255,0.2),transparent);
-  animation:shine 3s linear infinite;
+  inset:-3px;
+  background:linear-gradient(45deg,transparent,rgba(255,255,255,0.2),transparent);
+  animation:shine 4s linear infinite;
   z-index:0;
+}
+
+@keyframes shine{
+  0%{transform:translateX(-100%) rotate(45deg)}
+  100%{transform:translateX(200%) rotate(45deg)}
 }
 
 .case-card-content{
@@ -355,55 +447,75 @@ body{
   z-index:1;
 }
 
+.case-card.daily{
+  border-color:#ccc;
+  box-shadow:0 10px 40px rgba(200,200,200,0.4);
+}
+
 .case-card.bronze{
-  border-color:rgba(205,127,50,0.5);
-  box-shadow:0 5px 20px rgba(205,127,50,0.2);
+  border-color:#cd7f32;
+  box-shadow:0 10px 40px rgba(205,127,50,0.4);
 }
 
 .case-card.silver{
-  border-color:rgba(192,192,192,0.5);
-  box-shadow:0 5px 20px rgba(192,192,192,0.2);
+  border-color:#c0c0c0;
+  box-shadow:0 10px 40px rgba(192,192,192,0.4);
 }
 
 .case-card.gold{
-  border-color:rgba(255,215,0,0.5);
-  box-shadow:0 5px 20px rgba(255,215,0,0.3);
+  border-color:#fff;
+  box-shadow:0 10px 40px rgba(255,215,0,0.5);
 }
 
-.case-card.daily{
-  border-color:rgba(0,136,255,0.5);
-  box-shadow:0 5px 20px rgba(0,136,255,0.3);
+.case-card.diamond{
+  border-color:#fff;
+  box-shadow:0 10px 40px rgba(255,255,255,0.5);
 }
 
 .case-card:hover{
-  transform:translateY(-5px);
+  transform:translateY(-8px) scale(1.02);
 }
 
 .case-icon{
-  font-size:60px;
+  font-size:70px;
   margin-bottom:15px;
-  filter:drop-shadow(0 0 15px rgba(0,136,255,0.6));
+  filter:drop-shadow(0 0 20px currentColor);
 }
 
 .case-name{
-  font-size:24px;
+  font-size:26px;
   font-weight:700;
-  margin-bottom:10px;
-  font-family:'Orbitron',sans-serif;
-  text-shadow:0 0 10px rgba(0,136,255,0.6);
+  margin-bottom:12px;
+  font-family:'Poppins',sans-serif;
+  text-shadow:0 0 15px currentColor;
 }
 
 .case-price{
-  font-size:18px;
-  color:#ffd700;
-  margin:10px 0;
-  font-weight:600;
+  font-size:20px;
+  color:#fff;
+  margin:12px 0;
+  font-weight:700;
+}
+
+.case-price-options{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin-top:10px;
+}
+
+.price-option{
+  background:rgba(0,0,0,0.4);
+  padding:8px 12px;
+  border-radius:10px;
+  font-size:13px;
+  border:1px solid rgba(255,255,255,0.2);
 }
 
 .case-rewards{
   font-size:14px;
-  color:#00aaff;
-  margin-top:10px;
+  color:#ccc;
+  margin-top:12px;
 }
 
 .nav-menu{
@@ -411,26 +523,26 @@ body{
   bottom:0;
   left:0;
   right:0;
-  background:rgba(10,10,30,0.95);
+  background:rgba(10,10,20,0.95);
   backdrop-filter:blur(20px);
-  border-top:2px solid rgba(0,102,255,0.3);
-  padding:10px;
+  border-top:2px solid rgba(200,200,200,0.3);
+  padding:8px;
   z-index:100;
   display:flex;
-  gap:8px;
+  gap:6px;
   justify-content:center;
   overflow-x:auto;
   overflow-y:hidden;
-  -webkit-overflow-scrolling:touch;
 }
 
 .nav-item{
-  background:rgba(0,102,255,0.1);
-  border:1px solid rgba(0,102,255,0.3);
-  color:#0088ff;
-  padding:8px 12px;
-  border-radius:10px;
-  font-size:11px;
+  background:rgba(200,200,200,0.1);
+  border:2px solid rgba(200,200,200,0.3);
+  color:#ccc;
+  padding:10px 14px;
+  border-radius:12px;
+  font-size:12px;
+  font-weight:700;
   white-space:nowrap;
   cursor:pointer;
   transition:all 0.3s;
@@ -438,13 +550,13 @@ body{
 }
 
 .nav-item.active{
-  background:rgba(0,102,255,0.3);
-  border-color:rgba(0,136,255,0.6);
-  color:#00ffff;
+  background:linear-gradient(135deg,rgba(255,255,255,0.3),rgba(200,200,200,0.3));
+  border-color:#ccc;
+  color:#fff;
+  box-shadow:0 5px 20px rgba(200,200,200,0.5);
 }
 
 .nav-item:active{
-  background:rgba(0,102,255,0.2);
   transform:scale(0.95);
 }
 
@@ -459,132 +571,490 @@ body{
   z-index:999;
   backdrop-filter:blur(10px);
   overflow-y:auto;
+  padding:20px;
 }
 
 .popup.active{display:flex}
 
 .popup-content{
-  background:linear-gradient(135deg,rgba(20,40,80,0.9),rgba(20,60,100,0.9));
-  border:3px solid rgba(0,102,255,0.5);
+  background:linear-gradient(135deg,rgba(40,20,60,0.95),rgba(20,40,60,0.95));
+  border:3px solid rgba(200,200,200,0.5);
   border-radius:25px;
   padding:30px;
   text-align:center;
   max-width:90%;
-  animation:popIn 0.4s cubic-bezier(0.68,-0.55,0.265,1.55);
+  animation:popIn 0.5s cubic-bezier(0.68,-0.55,0.265,1.55);
+  box-shadow:0 20px 60px rgba(200,200,200,0.3);
 }
 
 @keyframes popIn{
-  0%{transform:scale(0);opacity:0}
-  100%{transform:scale(1);opacity:1}
+  0%{transform:scale(0) rotate(-180deg);opacity:0}
+  100%{transform:scale(1) rotate(0deg);opacity:1}
 }
 
 .popup-title{
-  font-size:28px;
-  color:#0088ff;
+  font-size:32px;
+  color:#ccc;
   margin-bottom:20px;
-  font-family:'Orbitron',sans-serif;
-  text-shadow:0 0 20px rgba(0,136,255,0.6);
+  font-family:'Poppins',sans-serif;
+  text-shadow:0 0 30px rgba(200,200,200,0.8);
+  letter-spacing:2px;
 }
 
 .popup-reward{
-  font-size:48px;
-  color:#ffd700;
-  margin:20px 0;
+  font-size:56px;
+  color:#fff;
+  margin:25px 0;
   font-weight:bold;
-  text-shadow:0 0 30px rgba(255,215,0,0.8);
-  font-family:'Orbitron',sans-serif;
+  text-shadow:0 0 40px rgba(255,255,255,1);
+  font-family:'Poppins',sans-serif;
+  animation:rewardPulse 1s ease-in-out infinite;
+}
+
+@keyframes rewardPulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.1)}
 }
 
 .popup-btn{
-  background:linear-gradient(135deg,#0066ff,#0088ff);
+  background:linear-gradient(135deg,#fff,#ccc);
   color:#fff;
   border:none;
-  padding:12px 30px;
+  padding:14px 32px;
   border-radius:15px;
   font-size:16px;
   font-weight:bold;
   cursor:pointer;
   margin:8px;
-  box-shadow:0 5px 20px rgba(0,102,255,0.4);
+  box-shadow:0 8px 25px rgba(200,200,200,0.5);
   transition:all 0.3s;
+  font-family:'Poppins',sans-serif;
 }
 
 .popup-btn:active{
-  transform:scale(0.95);
+  transform:scale(0.92);
 }
 
-.game-canvas{
+.popup-btn:hover{
+  box-shadow:0 12px 35px rgba(200,200,200,0.7);
+}
+
+/* CASE OPENING ANIMATION */
+.case-reel{
   width:100%;
   max-width:350px;
-  height:500px;
+  height:120px;
   background:rgba(0,0,0,0.8);
-  border:3px solid rgba(0,102,255,0.5);
+  border:3px solid rgba(200,200,200,0.5);
   border-radius:15px;
   margin:20px auto;
+  overflow:hidden;
   position:relative;
 }
 
-.game-score{
+.case-reel-items{
+  display:flex;
   position:absolute;
-  top:10px;
-  right:10px;
-  font-size:24px;
-  color:#ffd700;
-  font-weight:bold;
-  text-shadow:0 0 10px rgba(255,215,0,0.8);
-  font-family:'Orbitron',sans-serif;
+  left:0;
+  top:0;
+  height:100%;
+  transition:left 3s cubic-bezier(0.25,0.1,0.25,1);
+}
+
+.case-reel-item{
+  min-width:100px;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:48px;
+  border-right:2px solid rgba(200,200,200,0.2);
+}
+
+.case-reel-pointer{
+  position:absolute;
+  left:50%;
+  top:0;
+  bottom:0;
+  width:3px;
+  background:#fff;
+  transform:translateX(-50%);
+  box-shadow:0 0 20px rgba(255,255,255,1);
   z-index:10;
 }
 
-.game-over{
-  position:absolute;
-  inset:0;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  background:rgba(0,0,0,0.9);
-  border-radius:15px;
-  z-index:20;
+/* MINES GAME */
+.mines-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+  margin:20px 0;
+  max-width:300px;
+  margin:20px auto;
 }
 
-.game-over.active{display:flex}
+.mine-cell{
+  aspect-ratio:1;
+  background:linear-gradient(135deg,rgba(200,200,200,0.2),rgba(255,255,255,0.2));
+  border:2px solid rgba(200,200,200,0.4);
+  border-radius:10px;
+  cursor:pointer;
+  transition:all 0.3s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+}
 
-.game-over-text{
-  font-size:36px;
-  color:#ff0066;
-  margin-bottom:20px;
-  font-family:'Orbitron',sans-serif;
-  text-shadow:0 0 20px rgba(255,0,102,0.8);
+.mine-cell:hover{
+  transform:scale(1.05);
+  box-shadow:0 5px 20px rgba(200,200,200,0.5);
+}
+
+.mine-cell.revealed{
+  cursor:default;
+  opacity:0.7;
+}
+
+.mine-cell.gem{
+  background:linear-gradient(135deg,rgba(200,200,200,0.4),rgba(0,200,255,0.4));
+  border-color:#ccc;
+}
+
+.mine-cell.bomb{
+  background:linear-gradient(135deg,rgba(255,255,255,0.4),rgba(255,100,0,0.4));
+  border-color:#fff;
+  animation:explode 0.5s ease-out;
+}
+
+@keyframes explode{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.3)}
+  100%{transform:scale(1)}
+}
+
+/* COIN FLIP */
+.coin-container{
+  perspective:1000px;
+  margin:30px auto;
+}
+
+.coin{
+  width:150px;
+  height:150px;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:transform 2s;
+  margin:0 auto;
+}
+
+.coin-side{
+  position:absolute;
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:64px;
+  backface-visibility:hidden;
+  border:4px solid;
+}
+
+.coin-heads{
+  background:linear-gradient(135deg,#ffd700,#ffed4e);
+  border-color:#fff;
+  box-shadow:0 0 40px rgba(255,255,255,0.6);
+}
+
+.coin-tails{
+  background:linear-gradient(135deg,#ccc,#00ff64);
+  border-color:#ccc;
+  transform:rotateY(180deg);
+  box-shadow:0 0 40px rgba(200,200,200,0.6);
+}
+
+.coin.flipping{
+  animation:coinFlip 2s ease-out;
+}
+
+@keyframes coinFlip{
+  0%{transform:rotateY(0deg)}
+  100%{transform:rotateY(1800deg)}
+}
+
+.choice-buttons{
+  display:flex;
+  gap:15px;
+  justify-content:center;
+  margin:20px 0;
+}
+
+.choice-btn{
+  padding:15px 30px;
+  border-radius:15px;
+  border:3px solid;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+  transition:all 0.3s;
+  font-family:'Poppins',sans-serif;
+}
+
+.choice-btn.heads{
+  background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(255,255,255,0.2));
+  border-color:#fff;
+  color:#fff;
+}
+
+.choice-btn.tails{
+  background:linear-gradient(135deg,rgba(200,200,200,0.2),rgba(0,255,100,0.2));
+  border-color:#ccc;
+  color:#ccc;
+}
+
+.choice-btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 8px 30px currentColor;
+}
+
+.choice-btn.selected{
+  background:linear-gradient(135deg,currentColor,currentColor);
+  color:#000;
+}
+
+/* BET INPUT */
+.bet-input-group{
+  margin:20px 0;
+}
+
+.bet-input{
+  width:100%;
+  max-width:250px;
+  padding:15px;
+  background:rgba(0,0,0,0.6);
+  border:2px solid rgba(200,200,200,0.4);
+  border-radius:12px;
+  color:#fff;
+  font-size:20px;
+  font-weight:700;
+  text-align:center;
+  font-family:'Poppins',sans-serif;
+  margin:0 auto;
+  display:block;
+}
+
+.bet-input:focus{
+  outline:none;
+  border-color:#ccc;
+  box-shadow:0 0 20px rgba(200,200,200,0.5);
+}
+
+.bet-presets{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin-top:10px;
+  flex-wrap:wrap;
+}
+
+.bet-preset{
+  padding:8px 16px;
+  background:rgba(200,200,200,0.1);
+  border:2px solid rgba(200,200,200,0.3);
+  border-radius:10px;
+  color:#ccc;
+  cursor:pointer;
+  transition:all 0.3s;
+  font-weight:700;
+}
+
+.bet-preset:hover{
+  background:rgba(200,200,200,0.2);
+  transform:scale(1.05);
+}
+
+/* TASKS */
+.task-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:15px;
+}
+
+.task-item{
+  background:linear-gradient(135deg,rgba(40,20,60,0.8),rgba(20,40,60,0.8));
+  border:2px solid rgba(200,200,200,0.3);
+  border-radius:15px;
+  padding:18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:all 0.3s;
+}
+
+.task-item:hover{
+  border-color:rgba(200,200,200,0.6);
+  box-shadow:0 8px 30px rgba(200,200,200,0.3);
+}
+
+.task-info{
+  flex:1;
+}
+
+.task-title{
+  font-size:16px;
+  font-weight:700;
+  color:#ccc;
+  margin-bottom:5px;
+}
+
+.task-reward{
+  font-size:14px;
+  color:#fff;
+}
+
+.task-btn{
+  padding:10px 20px;
+  background:linear-gradient(135deg,#fff,#ccc);
+  border:none;
+  border-radius:10px;
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+  transition:all 0.3s;
+}
+
+.task-btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 5px 20px rgba(200,200,200,0.5);
+}
+
+.task-btn.completed{
+  background:#333;
+  color:#666;
+  cursor:default;
+}
+
+/* LEADERBOARD */
+.leaderboard-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:15px;
+}
+
+.leaderboard-item{
+  background:rgba(20,20,30,0.8);
+  border:2px solid rgba(200,200,200,0.2);
+  border-radius:12px;
+  padding:15px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.leaderboard-rank{
+  font-size:24px;
+  font-weight:700;
+  color:#fff;
+  min-width:40px;
+  font-family:'Poppins',sans-serif;
+}
+
+.leaderboard-info{
+  flex:1;
+}
+
+.leaderboard-name{
+  font-size:16px;
+  font-weight:700;
+  color:#fff;
+}
+
+.leaderboard-score{
+  font-size:14px;
+  color:#ccc;
+}
+
+.leaderboard-item.current{
+  border-color:#fff;
+  background:rgba(255,255,255,0.1);
+  box-shadow:0 5px 20px rgba(255,255,255,0.3);
+}
+
+/* DEPOSIT */
+.deposit-options{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:20px;
+}
+
+.deposit-option{
+  background:rgba(20,20,30,0.8);
+  border:2px solid rgba(200,200,200,0.3);
+  border-radius:15px;
+  padding:20px;
+}
+
+.deposit-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.deposit-currency{
+  font-size:18px;
+  font-weight:700;
+  color:#ccc;
+}
+
+.deposit-amount{
+  display:flex;
+  gap:10px;
+  align-items:center;
 }
 </style>
 </head>
 <body>
 <div class="app">
-<div class="bg-pattern"></div>
-<div class="cyber-grid"></div>
+<div class="animated-bg"></div>
+<div class="scan-lines"></div>
 
 <div class="content">
 <div class="header">
-  <div class="logo">Beron</div>
+  <div class="logo">BERON</div>
 </div>
 
 <!-- MAIN TAB -->
 <div class="tab-content active" id="mainTab">
   <div class="stats-box">
     <div class="coins" id="coins">$0</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px">
-      <div class="tokens" id="tokens">BER Token: 0</div>
-      <div class="tokens" id="stars">BER Stars: 0</div>
+    <div class="currency-grid">
+      <div class="currency-item">
+        <div class="currency-label">BER Token</div>
+        <div class="currency-value" id="tokens">0</div>
+      </div>
+      <div class="currency-item">
+        <div class="currency-label">BER Stars</div>
+        <div class="currency-value" id="stars">0</div>
+      </div>
+      <div class="currency-item">
+        <div class="currency-label">BER Tons</div>
+        <div class="currency-value" id="bertons">0</div>
+      </div>
+      <div class="currency-item">
+        <div class="currency-label">Level</div>
+        <div class="currency-value" id="level">1</div>
+      </div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:5px;margin-bottom:8px">
-      <div class="tokens" id="bertons">BerTons: 0</div>
-      <div class="tokens" style="text-align:right" id="rank">Bronze</div>
-    </div>
+    <div class="rank-badge" id="rank">Bronze</div>
     <div class="energy-bar">
       <div class="energy-fill" id="energyBar" style="width:100%"></div>
     </div>
-    <div style="font-size:12px;color:#0088ff;margin-top:5px;text-align:center">Energy: <span id="energyText">1000/1000</span></div>
+    <div style="font-size:13px;color:#ccc;margin-top:8px;text-align:center;font-weight:600">Energy: <span id="energyText">1000/1000</span></div>
   </div>
 
   <div class="tap-section">
@@ -592,40 +1062,36 @@ body{
   </div>
 
   <div class="quick-actions">
-    <button class="action-btn" onclick="exchange()">💎 Exchange</button>
-    <button class="action-btn" onclick="showWithdraw()">💰 Withdraw</button>
+    <button class="action-btn" onclick="showExchange()">💎 Exchange</button>
+    <button class="action-btn" onclick="showDeposit()">💰 Deposit</button>
+    <button class="action-btn" onclick="showWithdraw()">🏦 Withdraw</button>
+    <button class="action-btn" onclick="exchangeAllTokens()">⚡ All→BER</button>
   </div>
 
-  <div class="games-section">
-    <div class="section-title">🎮 Mini Games</div>
-    <div class="games-grid">
-      <div class="game-card" onclick="startDropGame()">
-        <div class="game-icon">⭐</div>
-        <div class="game-name">Drop Game</div>
-        <div class="game-reward">Stars +$10, Bombs -$30!</div>
-      </div>
-      <div class="game-card" onclick="startSnakeGame()">
-        <div class="game-icon">🐍</div>
-        <div class="game-name">Snake</div>
-        <div class="game-reward">Eat & grow!</div>
-      </div>
-      <div class="game-card" onclick="startFlappyGame()">
-        <div class="game-icon">🦅</div>
-        <div class="game-name">Cyber Bird</div>
-        <div class="game-reward">Fly high!</div>
-      </div>
-      <div class="game-card" onclick="startMemoryGame()">
-        <div class="game-icon">🧠</div>
-        <div class="game-name">Memory</div>
-        <div class="game-reward">Match cards!</div>
-      </div>
+  <div class="section-title">🎮 MINI GAMES</div>
+  <div class="games-grid">
+    <div class="game-card" onclick="startDropGame()">
+      <div class="game-icon">⭐</div>
+      <div class="game-name">Drop Game</div>
+    </div>
+    <div class="game-card" onclick="startSnakeGame()">
+      <div class="game-icon">🐍</div>
+      <div class="game-name">Snake</div>
+    </div>
+    <div class="game-card" onclick="showMinesGame()">
+      <div class="game-icon">💣</div>
+      <div class="game-name">Minesweeper</div>
+    </div>
+    <div class="game-card" onclick="showCoinFlip()">
+      <div class="game-icon">🪙</div>
+      <div class="game-name">Coin Flip</div>
     </div>
   </div>
 </div>
 
 <!-- CASES TAB -->
 <div class="tab-content" id="casesTab">
-  <div class="section-title" style="margin-top:20px">🎰 Cases</div>
+  <div class="section-title" style="margin-top:20px">🎰 CASES</div>
   <div class="cases-grid">
     <div class="case-card daily" onclick="openDailyCase()">
       <div class="case-card-content">
@@ -636,32 +1102,79 @@ body{
       </div>
     </div>
     
-    <div class="case-card bronze" onclick="openCase('bronze')">
+    <div class="case-card bronze" onclick="showCaseOptions('bronze')">
       <div class="case-card-content">
         <div class="case-icon">📦</div>
         <div class="case-name">Bronze Case</div>
-        <div class="case-price">💰 $1,000</div>
+        <div class="case-price-options">
+          <div class="price-option">💰 $1,000</div>
+          <div class="price-option">⭐ 100</div>
+        </div>
         <div class="case-rewards">Win: $500 - $5,000</div>
       </div>
     </div>
     
-    <div class="case-card silver" onclick="openCase('silver')">
+    <div class="case-card silver" onclick="showCaseOptions('silver')">
       <div class="case-card-content">
         <div class="case-icon">🎁</div>
         <div class="case-name">Silver Case</div>
-        <div class="case-price">💰 $5,000</div>
+        <div class="case-price-options">
+          <div class="price-option">💰 $5,000</div>
+          <div class="price-option">⭐ 500</div>
+          <div class="price-option">🔥 50</div>
+        </div>
         <div class="case-rewards">Win: $3,000 - $20,000</div>
       </div>
     </div>
     
-    <div class="case-card gold" onclick="openCase('gold')">
+    <div class="case-card gold" onclick="showCaseOptions('gold')">
       <div class="case-card-content">
         <div class="case-icon">💎</div>
         <div class="case-name">Gold Case</div>
-        <div class="case-price">💰 $20,000</div>
+        <div class="case-price-options">
+          <div class="price-option">💰 $20,000</div>
+          <div class="price-option">⭐ 2,000</div>
+          <div class="price-option">🔥 200</div>
+        </div>
         <div class="case-rewards">Win: $15,000 - $100,000</div>
       </div>
     </div>
+
+    <div class="case-card diamond" onclick="showCaseOptions('diamond')">
+      <div class="case-card-content">
+        <div class="case-icon">💍</div>
+        <div class="case-name">Diamond Case</div>
+        <div class="case-price-options">
+          <div class="price-option">💰 $100,000</div>
+          <div class="price-option">⭐ 10,000</div>
+          <div class="price-option">🔥 1,000</div>
+        </div>
+        <div class="case-rewards">Win: $50,000 - $500,000</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TASKS TAB -->
+<div class="tab-content" id="tasksTab">
+  <div class="section-title" style="margin-top:20px">📋 TASKS</div>
+  <div class="task-list" id="taskList"></div>
+</div>
+
+<!-- LEADERBOARD TAB -->
+<div class="tab-content" id="leaderboardTab">
+  <div class="section-title" style="margin-top:20px">🏆 LEADERBOARD</div>
+  <div style="text-align:center;margin:15px 0;font-size:16px;color:#fff">Your Rank: <span id="userRank">#999</span></div>
+  <div class="leaderboard-list" id="leaderboardList"></div>
+</div>
+
+<!-- PVP TAB -->
+<div class="tab-content" id="pvpTab">
+  <div class="section-title" style="margin-top:20px">⚔️ PVP ARENA</div>
+  <div style="text-align:center;padding:40px 20px">
+    <div style="font-size:80px;margin-bottom:20px">⚔️</div>
+    <div style="font-size:24px;color:#ccc;margin-bottom:15px;font-weight:700">PVP Coming Soon!</div>
+    <div style="font-size:16px;color:#999">Challenge other players and win big!</div>
   </div>
 </div>
 
@@ -671,15 +1184,70 @@ body{
 <div class="nav-menu">
   <div class="nav-item active" onclick="switchTab('main')">🏠 Main</div>
   <div class="nav-item" onclick="switchTab('cases')">🎰 Cases</div>
+  <div class="nav-item" onclick="switchTab('tasks')">📋 Tasks</div>
+  <div class="nav-item" onclick="switchTab('leaderboard')">🏆 Top</div>
+  <div class="nav-item" onclick="switchTab('pvp')">⚔️ PVP</div>
 </div>
+</div>
+
+<!-- Case Selection Popup -->
+<div class="popup" id="caseSelectionPopup">
+  <div class="popup-content">
+    <div class="popup-title" id="caseSelectionTitle">Select Payment</div>
+    <div style="display:flex;flex-direction:column;gap:15px;margin:20px 0" id="casePaymentOptions"></div>
+    <button class="popup-btn" onclick="closeCaseSelection()">Cancel</button>
+  </div>
 </div>
 
 <!-- Case Opening Popup -->
 <div class="popup" id="casePopup">
   <div class="popup-content">
     <div class="popup-title" id="caseTitle">🎰 Opening Case</div>
-    <div class="popup-reward" id="caseReward">0</div>
-    <button class="popup-btn" onclick="closeCase()">Claim!</button>
+    <div class="case-reel">
+      <div class="case-reel-items" id="caseReelItems"></div>
+      <div class="case-reel-pointer"></div>
+    </div>
+    <div class="popup-reward" id="caseReward" style="display:none">0</div>
+    <button class="popup-btn" id="caseClaimBtn" onclick="closeCase()" style="display:none">Claim!</button>
+  </div>
+</div>
+
+<!-- Exchange Popup -->
+<div class="popup" id="exchangePopup">
+  <div class="popup-content">
+    <div class="popup-title">💎 Exchange</div>
+    <div style="font-size:16px;color:#ccc;margin-bottom:20px">Convert your coins to BER Tokens</div>
+    <div style="font-size:18px;margin:20px 0">$1,000 = 10 BER Token</div>
+    <button class="popup-btn" onclick="exchange()">Exchange $1,000</button>
+    <button class="popup-btn" onclick="closeExchange()">Cancel</button>
+  </div>
+</div>
+
+<!-- Deposit Popup -->
+<div class="popup" id="depositPopup">
+  <div class="popup-content">
+    <div class="popup-title">💰 Deposit</div>
+    <div class="deposit-options">
+      <div class="deposit-option">
+        <div class="deposit-header">
+          <div class="deposit-currency">⭐ BER Stars</div>
+        </div>
+        <div class="deposit-amount">
+          <input type="number" class="bet-input" id="depositStars" placeholder="Amount" style="max-width:150px;padding:10px;font-size:16px">
+          <button class="popup-btn" onclick="depositStars()">Deposit</button>
+        </div>
+      </div>
+      <div class="deposit-option">
+        <div class="deposit-header">
+          <div class="deposit-currency">🔥 BER Tons</div>
+        </div>
+        <div class="deposit-amount">
+          <input type="number" class="bet-input" id="depositTons" placeholder="Amount" style="max-width:150px;padding:10px;font-size:16px">
+          <button class="popup-btn" onclick="depositTons()">Deposit</button>
+        </div>
+      </div>
+    </div>
+    <button class="popup-btn" onclick="closeDeposit()" style="margin-top:20px">Close</button>
   </div>
 </div>
 
@@ -687,27 +1255,95 @@ body{
 <div class="popup" id="withdrawPopup">
   <div class="popup-content">
     <div class="popup-title">💰 Withdraw</div>
-    <div style="font-size:48px;margin:30px 0;color:#ff0066;font-weight:bold;font-family:'Orbitron',sans-serif;text-shadow:0 0 30px rgba(255,0,102,0.8)">SOON!!!</div>
-    <div style="font-size:16px;color:#00aaff;margin-bottom:20px">Feature coming soon...</div>
+    <div style="font-size:56px;margin:30px 0;color:#fff;font-weight:bold;font-family:'Poppins',sans-serif;text-shadow:0 0 40px rgba(255,255,255,1)">SOON!</div>
+    <div style="font-size:18px;color:#ccc;margin-bottom:20px">Feature coming soon...</div>
     <button class="popup-btn" onclick="closeWithdraw()">OK</button>
+  </div>
+</div>
+
+<!-- Mines Game Popup -->
+<div class="popup" id="minesPopup">
+  <div class="popup-content" style="max-width:400px">
+    <div class="popup-title">💎 Mines Game</div>
+    <div style="font-size:16px;color:#ccc;margin-bottom:15px">Find gems, avoid bombs!</div>
+    <div class="bet-input-group">
+      <input type="number" class="bet-input" id="minesBet" placeholder="Enter bet amount">
+      <div class="bet-presets">
+        <div class="bet-preset" onclick="setMinesBet(100)">$100</div>
+        <div class="bet-preset" onclick="setMinesBet(500)">$500</div>
+        <div class="bet-preset" onclick="setMinesBet(1000)">$1,000</div>
+        <div class="bet-preset" onclick="setMinesBet(5000)">$5,000</div>
+      </div>
+    </div>
+    <button class="popup-btn" onclick="startMinesGame()" id="minesStartBtn">Start Game</button>
+    <div id="minesGameArea" style="display:none">
+      <div style="font-size:18px;color:#fff;margin:15px 0;font-weight:700">Current: $<span id="minesCurrentWin">0</span></div>
+      <div class="mines-grid" id="minesGrid"></div>
+      <button class="popup-btn" onclick="cashoutMines()" id="minesCashoutBtn">Cash Out</button>
+      <button class="popup-btn" onclick="closeMinesGame()">Exit</button>
+    </div>
+    <button class="popup-btn" onclick="closeMinesGame()" id="minesCloseBtn">Close</button>
+  </div>
+</div>
+
+<!-- Coin Flip Popup -->
+<div class="popup" id="coinFlipPopup">
+  <div class="popup-content" style="max-width:400px">
+    <div class="popup-title">🪙 Coin Flip</div>
+    <div style="font-size:16px;color:#ccc;margin-bottom:15px">Choose heads or tails! x1.95 payout</div>
+    <div class="bet-input-group">
+      <input type="number" class="bet-input" id="coinBet" placeholder="Enter bet amount">
+      <div class="bet-presets">
+        <div class="bet-preset" onclick="setCoinBet(100)">$100</div>
+        <div class="bet-preset" onclick="setCoinBet(500)">$500</div>
+        <div class="bet-preset" onclick="setCoinBet(1000)">$1,000</div>
+        <div class="bet-preset" onclick="setCoinBet(5000)">$5,000</div>
+      </div>
+    </div>
+    <div class="choice-buttons" id="coinChoices">
+      <button class="choice-btn heads" onclick="selectCoinSide('heads')">🔴 HEADS</button>
+      <button class="choice-btn tails" onclick="selectCoinSide('tails')">🟢 TAILS</button>
+    </div>
+    <button class="popup-btn" onclick="flipCoin()" id="coinFlipBtn" style="display:none">Flip Coin!</button>
+    <div class="coin-container" id="coinContainer" style="display:none">
+      <div class="coin" id="coin">
+        <div class="coin-side coin-heads">🔴</div>
+        <div class="coin-side coin-tails">🟢</div>
+      </div>
+    </div>
+    <div id="coinResult" style="font-size:24px;color:#fff;margin:20px 0;font-weight:700;display:none"></div>
+    <button class="popup-btn" onclick="closeCoinFlip()">Close</button>
   </div>
 </div>
 
 <!-- Drop Game -->
 <div class="popup" id="dropGamePopup">
   <div class="popup-content" style="max-width:400px">
-    <div class="popup-title">⭐ Star Tap Game</div>
-    <div class="game-canvas" id="dropCanvas">
-      <div style="position:absolute;top:10px;left:10px;font-size:24px;color:#ffd700;font-weight:bold;text-shadow:0 0 10px rgba(255,215,0,0.8);font-family:'Orbitron',sans-serif;z-index:10;" id="dropTimer">00:30</div>
-      <div class="game-score" id="dropScore">$0</div>
-      <canvas id="dropGameCanvas" width="350" height="500"></canvas>
-      <div class="game-over" id="dropGameOver">
-        <div class="game-over-text">TIME'S UP!</div>
-        <div style="font-size:24px;color:#ffd700;margin-bottom:20px">Earned: $<span id="dropEarned">0</span> 💰</div>
-        <button class="popup-btn" onclick="restartDropGame()">Play Again</button>
-        <button class="popup-btn" onclick="closeDropGame()">Exit</button>
+    <div class="popup-title">⭐ Drop Game</div>
+    <div style="font-size:16px;color:#ccc;margin-bottom:10px">Set your bet to play!</div>
+    <div class="bet-input-group" id="dropBetArea">
+      <input type="number" class="bet-input" id="dropBet" placeholder="Enter bet amount">
+      <div class="bet-presets">
+        <div class="bet-preset" onclick="setDropBet(100)">$100</div>
+        <div class="bet-preset" onclick="setDropBet(500)">$500</div>
+        <div class="bet-preset" onclick="setDropBet(1000)">$1,000</div>
+      </div>
+      <button class="popup-btn" onclick="startDropGameWithBet()" style="margin-top:10px">Start Game</button>
+    </div>
+    <div id="dropGameArea" style="display:none">
+      <div style="position:relative;width:100%;max-width:350px;height:500px;background:rgba(0,0,0,0.8);border:3px solid rgba(200,200,200,0.5);border-radius:15px;margin:20px auto">
+        <div style="position:absolute;top:10px;left:10px;font-size:20px;color:#fff;font-weight:bold;text-shadow:0 0 10px rgba(255,215,0,0.8);font-family:'Poppins',sans-serif;z-index:10;" id="dropTimer">00:30</div>
+        <div style="position:absolute;top:10px;right:10px;font-size:20px;color:#fff;font-weight:bold;text-shadow:0 0 10px rgba(255,215,0,0.8);font-family:'Poppins',sans-serif;z-index:10;" id="dropScore">$0</div>
+        <canvas id="dropGameCanvas" width="350" height="500"></canvas>
+        <div id="dropGameOver" style="position:absolute;inset:0;display:none;justify-content:center;align-items:center;flex-direction:column;background:rgba(0,0,0,0.9);border-radius:15px;z-index:20">
+          <div style="font-size:36px;color:#fff;margin-bottom:20px;font-family:'Poppins',sans-serif;text-shadow:0 0 20px rgba(255,255,255,0.8)">TIME'S UP!</div>
+          <div style="font-size:24px;color:#fff;margin-bottom:20px">Result: $<span id="dropEarned">0</span></div>
+          <button class="popup-btn" onclick="restartDropGame()">Play Again</button>
+          <button class="popup-btn" onclick="closeDropGame()">Exit</button>
+        </div>
       </div>
     </div>
+    <button class="popup-btn" onclick="closeDropGame()" id="dropCloseBtn">Close</button>
   </div>
 </div>
 
@@ -715,49 +1351,33 @@ body{
 <div class="popup" id="snakeGamePopup">
   <div class="popup-content" style="max-width:400px">
     <div class="popup-title">🐍 Snake Game</div>
-    <div class="game-canvas" id="snakeCanvas">
-      <div class="game-score" id="snakeScore">$0</div>
-      <canvas id="snakeGameCanvas" width="350" height="500"></canvas>
-      <div class="game-over" id="snakeGameOver">
-        <div class="game-over-text">GAME OVER</div>
-        <div style="font-size:24px;color:#ffd700;margin-bottom:20px">Earned: $<span id="snakeEarned">0</span> 💰</div>
-        <button class="popup-btn" onclick="restartSnakeGame()">Play Again</button>
-        <button class="popup-btn" onclick="closeSnakeGame()">Exit</button>
+    <div style="font-size:16px;color:#ccc;margin-bottom:10px">Set your bet to play!</div>
+    <div class="bet-input-group" id="snakeBetArea">
+      <input type="number" class="bet-input" id="snakeBet" placeholder="Enter bet amount">
+      <div class="bet-presets">
+        <div class="bet-preset" onclick="setSnakeBet(100)">$100</div>
+        <div class="bet-preset" onclick="setSnakeBet(500)">$500</div>
+        <div class="bet-preset" onclick="setSnakeBet(1000)">$1,000</div>
+      </div>
+      <button class="popup-btn" onclick="startSnakeGameWithBet()" style="margin-top:10px">Start Game</button>
+    </div>
+    <div id="snakeGameArea" style="display:none">
+      <div style="position:relative;width:100%;max-width:350px;height:500px;background:rgba(0,0,0,0.8);border:3px solid rgba(200,200,200,0.5);border-radius:15px;margin:20px auto">
+        <div style="position:absolute;top:10px;right:10px;font-size:20px;color:#fff;font-weight:bold;text-shadow:0 0 10px rgba(255,215,0,0.8);font-family:'Poppins',sans-serif;z-index:10;" id="snakeScore">Score: 0</div>
+        <canvas id="snakeGameCanvas" width="350" height="500"></canvas>
+        <div id="snakeGameOver" style="position:absolute;inset:0;display:none;justify-content:center;align-items:center;flex-direction:column;background:rgba(0,0,0,0.9);border-radius:15px;z-index:20">
+          <div style="font-size:36px;color:#fff;margin-bottom:20px;font-family:'Poppins',sans-serif;text-shadow:0 0 20px rgba(255,255,255,0.8)">GAME OVER</div>
+          <div style="font-size:24px;color:#fff;margin-bottom:20px">Result: $<span id="snakeEarned">0</span></div>
+          <button class="popup-btn" onclick="restartSnakeGame()">Play Again</button>
+          <button class="popup-btn" onclick="closeSnakeGame()">Exit</button>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- Flappy Game -->
-<div class="popup" id="flappyGamePopup">
-  <div class="popup-content" style="max-width:400px">
-    <div class="popup-title">🦅 Cyber Bird</div>
-    <div class="game-canvas" id="flappyCanvas">
-      <div class="game-score" id="flappyScore">$0</div>
-      <canvas id="flappyGameCanvas" width="350" height="500"></canvas>
-      <div class="game-over" id="flappyGameOver">
-        <div class="game-over-text">GAME OVER</div>
-        <div style="font-size:24px;color:#ffd700;margin-bottom:20px">Earned: $<span id="flappyEarned">0</span> 💰</div>
-        <button class="popup-btn" onclick="restartFlappyGame()">Play Again</button>
-        <button class="popup-btn" onclick="closeFlappyGame()">Exit</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Memory Game -->
-<div class="popup" id="memoryGamePopup">
-  <div class="popup-content" style="max-width:400px">
-    <div class="popup-title">🧠 Memory Game</div>
-    <div style="font-size:18px;color:#0088ff;margin-bottom:15px">Find all pairs!</div>
-    <div class="game-score" style="position:static;margin-bottom:15px">Score: $<span id="memoryScore">0</span></div>
-    <div id="memoryGrid" style="display:grid;grid-template-columns:repeat(4,70px);gap:10px;justify-content:center;margin:20px auto"></div>
-    <button class="popup-btn" onclick="closeMemoryGame()" style="margin-top:20px">Exit</button>
+    <button class="popup-btn" onclick="closeSnakeGame()" id="snakeCloseBtn">Close</button>
   </div>
 </div>
 
 <script>
-// Disable only specific touch behaviors
 document.addEventListener('contextmenu', e => e.preventDefault());
 
 // Game state
@@ -768,6 +1388,8 @@ let bertons = parseInt(localStorage.getItem('bertons')) || 0;
 let lastDailyCase = parseInt(localStorage.getItem('lastDailyCase')) || 0;
 let energy = parseInt(localStorage.getItem('energy')) || 1000;
 let lastEnergyUpdate = parseInt(localStorage.getItem('lastEnergyUpdate')) || Date.now();
+let level = parseInt(localStorage.getItem('level')) || 1;
+let completedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
 
 function save() {
   localStorage.setItem('coins', coins);
@@ -777,19 +1399,23 @@ function save() {
   localStorage.setItem('lastDailyCase', lastDailyCase);
   localStorage.setItem('energy', energy);
   localStorage.setItem('lastEnergyUpdate', lastEnergyUpdate);
+  localStorage.setItem('level', level);
+  localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
 }
 
 function updateUI() {
   document.getElementById('coins').innerText = '$' + coins.toLocaleString();
-  document.getElementById('tokens').innerText = 'BER Token: ' + tokens.toLocaleString();
-  document.getElementById('stars').innerText = 'BER Stars: ' + stars.toLocaleString();
-  document.getElementById('bertons').innerText = 'BerTons: ' + bertons.toLocaleString();
+  document.getElementById('tokens').innerText = tokens.toLocaleString();
+  document.getElementById('stars').innerText = stars.toLocaleString();
+  document.getElementById('bertons').innerText = bertons.toLocaleString();
+  document.getElementById('level').innerText = level;
   
   let rank = 'Bronze';
-  if (coins > 1000000) rank = 'Diamond';
-  else if (coins > 500000) rank = 'Platinum';
-  else if (coins > 100000) rank = 'Gold';
-  else if (coins > 10000) rank = 'Silver';
+  if (coins > 1000000) rank = 'Diamond 💎';
+  else if (coins > 500000) rank = 'Platinum ⚪';
+  else if (coins > 100000) rank = 'Gold 🥇';
+  else if (coins > 10000) rank = 'Silver 🥈';
+  else rank = 'Bronze 🥉';
   document.getElementById('rank').innerText = rank;
   
   const energyPercent = Math.min(100, (energy / 1000) * 100);
@@ -802,12 +1428,20 @@ function switchTab(tab) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   
-  if (tab === 'main') {
-    document.getElementById('mainTab').classList.add('active');
-    document.querySelectorAll('.nav-item')[0].classList.add('active');
-  } else if (tab === 'cases') {
-    document.getElementById('casesTab').classList.add('active');
-    document.querySelectorAll('.nav-item')[1].classList.add('active');
+  const tabs = {
+    main: [document.getElementById('mainTab'), 0],
+    cases: [document.getElementById('casesTab'), 1],
+    tasks: [document.getElementById('tasksTab'), 2],
+    leaderboard: [document.getElementById('leaderboardTab'), 3],
+    pvp: [document.getElementById('pvpTab'), 4]
+  };
+  
+  if (tabs[tab]) {
+    tabs[tab][0].classList.add('active');
+    document.querySelectorAll('.nav-item')[tabs[tab][1]].classList.add('active');
+    
+    if (tab === 'tasks') loadTasks();
+    if (tab === 'leaderboard') loadLeaderboard();
   }
 }
 
@@ -854,7 +1488,6 @@ function handleTap(e) {
   lastTap = now;
   energy = Math.max(0, energy - 1);
   
-  // Calculate reward
   let crit = Math.random();
   let gain = 1;
   let critText = '';
@@ -870,7 +1503,6 @@ function handleTap(e) {
     critText = ' ✨CRIT!';
   }
   
-  // Combo system
   clearTimeout(comboTimer);
   tapCombo++;
   comboTimer = setTimeout(() => tapCombo = 0, 2000);
@@ -879,10 +1511,17 @@ function handleTap(e) {
   if (tapCombo > 20) gain *= 3;
   
   coins += gain;
+  
+  // Level up system
+  const newLevel = Math.floor(coins / 10000) + 1;
+  if (newLevel > level) {
+    level = newLevel;
+    showFloatingText('LEVEL UP! ' + level, window.innerWidth/2, window.innerHeight/2);
+  }
+  
   save();
   updateUI();
   
-  // Visual feedback
   const x = e.touches?.[0]?.clientX || e.clientX;
   const y = e.touches?.[0]?.clientY || e.clientY;
   showFloatingText('+' + gain + critText, x, y);
@@ -895,7 +1534,7 @@ function showFloatingText(text, x, y) {
   el.style.left = x + 'px';
   el.style.top = y + 'px';
   document.body.appendChild(el);
-  setTimeout(() => el.remove(), 1000);
+  setTimeout(() => el.remove(), 1200);
 }
 
 // DAILY CASE
@@ -913,64 +1552,145 @@ function openDailyCase() {
   save();
   
   const rewards = [10000, 5000, 3000, 1000, 500, 300, 100];
-  openCaseAnimation('🎁 Daily Case', rewards);
+  openCaseAnimation('🎁 Daily Case', rewards, 'coins');
 }
 
-// BRONZE, SILVER, GOLD CASES
-function openCase(type) {
-  let cost = 0;
-  let rewards = [];
-  let title = '';
+// CASE OPTIONS
+let currentCaseType = '';
+
+function showCaseOptions(type) {
+  currentCaseType = type;
+  const popup = document.getElementById('caseSelectionPopup');
+  const title = document.getElementById('caseSelectionTitle');
+  const options = document.getElementById('casePaymentOptions');
   
-  if (type === 'bronze') {
-    cost = 1000;
-    rewards = [5000, 3000, 2000, 1500, 1000, 800, 500];
-    title = '📦 Bronze Case';
-  } else if (type === 'silver') {
-    cost = 5000;
-    rewards = [20000, 15000, 10000, 8000, 5000, 4000, 3000];
-    title = '🎁 Silver Case';
-  } else if (type === 'gold') {
-    cost = 20000;
-    rewards = [100000, 75000, 50000, 40000, 30000, 25000, 15000];
-    title = '💎 Gold Case';
-  }
+  const caseConfigs = {
+    bronze: {
+      name: '📦 Bronze Case',
+      payments: [
+        {type: 'coins', amount: 1000, label: '💰 $1,000'},
+        {type: 'stars', amount: 100, label: '⭐ 100 Stars'}
+      ],
+      rewards: [5000, 3000, 2000, 1500, 1000, 800, 500]
+    },
+    silver: {
+      name: '🎁 Silver Case',
+      payments: [
+        {type: 'coins', amount: 5000, label: '💰 $5,000'},
+        {type: 'stars', amount: 500, label: '⭐ 500 Stars'},
+        {type: 'bertons', amount: 50, label: '🔥 50 Tons'}
+      ],
+      rewards: [20000, 15000, 10000, 8000, 5000, 4000, 3000]
+    },
+    gold: {
+      name: '💎 Gold Case',
+      payments: [
+        {type: 'coins', amount: 20000, label: '💰 $20,000'},
+        {type: 'stars', amount: 2000, label: '⭐ 2,000 Stars'},
+        {type: 'bertons', amount: 200, label: '🔥 200 Tons'}
+      ],
+      rewards: [100000, 75000, 50000, 40000, 30000, 25000, 15000]
+    },
+    diamond: {
+      name: '💍 Diamond Case',
+      payments: [
+        {type: 'coins', amount: 100000, label: '💰 $100,000'},
+        {type: 'stars', amount: 10000, label: '⭐ 10,000 Stars'},
+        {type: 'bertons', amount: 1000, label: '🔥 1,000 Tons'}
+      ],
+      rewards: [500000, 400000, 300000, 200000, 150000, 100000, 50000]
+    }
+  };
   
-  if (coins < cost) {
-    alert(`❌ Not enough money! Need $${cost.toLocaleString()}`);
+  const config = caseConfigs[type];
+  title.innerText = config.name;
+  
+  options.innerHTML = '';
+  config.payments.forEach(payment => {
+    const btn = document.createElement('button');
+    btn.className = 'popup-btn';
+    btn.innerText = payment.label;
+    btn.onclick = () => openCaseWithPayment(config.name, config.rewards, payment);
+    options.appendChild(btn);
+  });
+  
+  popup.classList.add('active');
+}
+
+function openCaseWithPayment(name, rewards, payment) {
+  const currencies = {coins, stars, bertons};
+  
+  if (currencies[payment.type] < payment.amount) {
+    alert(`❌ Not enough! Need ${payment.label}`);
     return;
   }
   
-  coins -= cost;
+  if (payment.type === 'coins') coins -= payment.amount;
+  else if (payment.type === 'stars') stars -= payment.amount;
+  else if (payment.type === 'bertons') bertons -= payment.amount;
+  
   save();
   updateUI();
+  closeCaseSelection();
   
-  openCaseAnimation(title, rewards);
+  openCaseAnimation(name, rewards, 'coins');
 }
 
-function openCaseAnimation(title, rewards) {
+function closeCaseSelection() {
+  document.getElementById('caseSelectionPopup').classList.remove('active');
+}
+
+// ENHANCED CASE OPENING ANIMATION
+function openCaseAnimation(title, rewards, rewardType = 'coins') {
   const popup = document.getElementById('casePopup');
   const titleEl = document.getElementById('caseTitle');
+  const reelItems = document.getElementById('caseReelItems');
   const rewardEl = document.getElementById('caseReward');
+  const claimBtn = document.getElementById('caseClaimBtn');
   
   titleEl.innerText = title;
+  rewardEl.style.display = 'none';
+  claimBtn.style.display = 'none';
   popup.classList.add('active');
   
-  let spins = 25;
-  let i = 0;
+  // Generate reel items
+  const items = [];
+  for (let i = 0; i < 50; i++) {
+    items.push(rewards[Math.floor(Math.random() * rewards.length)]);
+  }
   
-  const spinInterval = setInterval(() => {
-    rewardEl.innerText = rewards[Math.floor(Math.random() * rewards.length)];
-    i++;
-    if (i > spins) {
-      clearInterval(spinInterval);
-      const win = rewards[Math.floor(Math.random() * rewards.length)];
-      rewardEl.innerText = win.toLocaleString() + ' 💰';
-      coins += win;
-      save();
-      updateUI();
-    }
+  // Add winning item at specific position
+  const winIndex = 42;
+  const winAmount = rewards[Math.floor(Math.random() * rewards.length)];
+  items[winIndex] = winAmount;
+  
+  reelItems.innerHTML = '';
+  items.forEach(amount => {
+    const item = document.createElement('div');
+    item.className = 'case-reel-item';
+    item.innerText = '$' + amount.toLocaleString();
+    reelItems.appendChild(item);
+  });
+  
+  // Animate
+  setTimeout(() => {
+    const targetPos = -(winIndex * 100 - 125);
+    reelItems.style.left = targetPos + 'px';
   }, 100);
+  
+  // Show result
+  setTimeout(() => {
+    rewardEl.innerText = '$' + winAmount.toLocaleString() + ' 💰';
+    rewardEl.style.display = 'block';
+    claimBtn.style.display = 'inline-block';
+    
+    if (rewardType === 'coins') coins += winAmount;
+    else if (rewardType === 'stars') stars += winAmount;
+    else if (rewardType === 'bertons') bertons += winAmount;
+    
+    save();
+    updateUI();
+  }, 3500);
 }
 
 function closeCase() {
@@ -978,6 +1698,14 @@ function closeCase() {
 }
 
 // EXCHANGE
+function showExchange() {
+  document.getElementById('exchangePopup').classList.add('active');
+}
+
+function closeExchange() {
+  document.getElementById('exchangePopup').classList.remove('active');
+}
+
 function exchange() {
   if (coins >= 1000) {
     coins -= 1000;
@@ -986,7 +1714,52 @@ function exchange() {
     updateUI();
     alert('✅ Exchanged! +10 BER Token');
   } else {
-    alert('❌ Not enough money (need $1000)');
+    alert('❌ Not enough money (need $1,000)');
+  }
+}
+
+function exchangeAllTokens() {
+  if (coins < 1000) {
+    alert('❌ Not enough money (need at least $1,000)');
+    return;
+  }
+  
+  const amount = Math.floor(coins / 1000);
+  coins -= amount * 1000;
+  tokens += amount * 10;
+  save();
+  updateUI();
+  alert(`✅ Exchanged $${(amount * 1000).toLocaleString()} for ${amount * 10} BER Tokens!`);
+}
+
+// DEPOSIT
+function showDeposit() {
+  document.getElementById('depositPopup').classList.add('active');
+}
+
+function closeDeposit() {
+  document.getElementById('depositPopup').classList.remove('active');
+}
+
+function depositStars() {
+  const amount = parseInt(document.getElementById('depositStars').value) || 0;
+  if (amount > 0) {
+    stars += amount;
+    save();
+    updateUI();
+    document.getElementById('depositStars').value = '';
+    alert(`✅ Deposited ${amount} BER Stars!`);
+  }
+}
+
+function depositTons() {
+  const amount = parseInt(document.getElementById('depositTons').value) || 0;
+  if (amount > 0) {
+    bertons += amount;
+    save();
+    updateUI();
+    document.getElementById('depositTons').value = '';
+    alert(`✅ Deposited ${amount} BER Tons!`);
   }
 }
 
@@ -999,18 +1772,236 @@ function closeWithdraw() {
   document.getElementById('withdrawPopup').classList.remove('active');
 }
 
-// === STAR TAP GAME ===
+// === MINES GAME ===
+let minesGame = null;
+
+function showMinesGame() {
+  document.getElementById('minesPopup').classList.add('active');
+  document.getElementById('minesGameArea').style.display = 'none';
+  document.getElementById('minesStartBtn').style.display = 'inline-block';
+  document.getElementById('minesCloseBtn').style.display = 'inline-block';
+}
+
+function setMinesBet(amount) {
+  document.getElementById('minesBet').value = amount;
+}
+
+function startMinesGame() {
+  const bet = parseInt(document.getElementById('minesBet').value) || 0;
+  if (bet <= 0) {
+    alert('❌ Enter a valid bet amount!');
+    return;
+  }
+  if (coins < bet) {
+    alert('❌ Not enough money!');
+    return;
+  }
+  
+  coins -= bet;
+  save();
+  updateUI();
+  
+  document.getElementById('minesGameArea').style.display = 'block';
+  document.getElementById('minesStartBtn').style.display = 'none';
+  document.getElementById('minesCloseBtn').style.display = 'none';
+  
+  // Create mines grid (25 cells, 7 bombs = 28% mines, so ~30% fail rate)
+  const grid = document.getElementById('minesGrid');
+  grid.innerHTML = '';
+  
+  const positions = Array.from({length: 25}, (_, i) => i);
+  const bombPositions = [];
+  for (let i = 0; i < 7; i++) {
+    const idx = Math.floor(Math.random() * positions.length);
+    bombPositions.push(positions.splice(idx, 1)[0]);
+  }
+  
+  minesGame = {
+    bet,
+    revealed: 0,
+    bombPositions,
+    currentWin: bet,
+    active: true
+  };
+  
+  document.getElementById('minesCurrentWin').innerText = bet;
+  
+  for (let i = 0; i < 25; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'mine-cell';
+    cell.dataset.index = i;
+    cell.onclick = () => revealMineCell(i);
+    grid.appendChild(cell);
+  }
+}
+
+function revealMineCell(index) {
+  if (!minesGame || !minesGame.active) return;
+  
+  const cells = document.querySelectorAll('.mine-cell');
+  const cell = cells[index];
+  
+  if (cell.classList.contains('revealed')) return;
+  
+  cell.classList.add('revealed');
+  
+  if (minesGame.bombPositions.includes(index)) {
+    cell.classList.add('bomb');
+    cell.innerText = '💣';
+    minesGame.active = false;
+    
+    setTimeout(() => {
+      alert('💥 BOOM! You lost $' + minesGame.bet);
+      closeMinesGame();
+    }, 500);
+  } else {
+    cell.classList.add('gem');
+    cell.innerText = '💎';
+    minesGame.revealed++;
+    minesGame.currentWin = Math.floor(minesGame.bet * (1 + minesGame.revealed * 0.15));
+    document.getElementById('minesCurrentWin').innerText = minesGame.currentWin;
+  }
+}
+
+function cashoutMines() {
+  if (!minesGame || !minesGame.active) return;
+  
+  coins += minesGame.currentWin;
+  save();
+  updateUI();
+  
+  alert('✅ Cashed out $' + minesGame.currentWin + '!');
+  closeMinesGame();
+}
+
+function closeMinesGame() {
+  minesGame = null;
+  document.getElementById('minesPopup').classList.remove('active');
+}
+
+// === COIN FLIP ===
+let coinFlipGame = null;
+
+function showCoinFlip() {
+  document.getElementById('coinFlipPopup').classList.add('active');
+  document.getElementById('coinContainer').style.display = 'none';
+  document.getElementById('coinResult').style.display = 'none';
+  document.getElementById('coinFlipBtn').style.display = 'none';
+  coinFlipGame = {choice: null, bet: 0};
+}
+
+function setCoinBet(amount) {
+  document.getElementById('coinBet').value = amount;
+}
+
+function selectCoinSide(side) {
+  coinFlipGame.choice = side;
+  document.querySelectorAll('.choice-btn').forEach(btn => btn.classList.remove('selected'));
+  document.querySelector('.choice-btn.' + side).classList.add('selected');
+  document.getElementById('coinFlipBtn').style.display = 'inline-block';
+}
+
+function flipCoin() {
+  const bet = parseInt(document.getElementById('coinBet').value) || 0;
+  if (bet <= 0) {
+    alert('❌ Enter a valid bet amount!');
+    return;
+  }
+  if (!coinFlipGame.choice) {
+    alert('❌ Select heads or tails!');
+    return;
+  }
+  if (coins < bet) {
+    alert('❌ Not enough money!');
+    return;
+  }
+  
+  coins -= bet;
+  save();
+  updateUI();
+  
+  coinFlipGame.bet = bet;
+  
+  document.getElementById('coinChoices').style.display = 'none';
+  document.getElementById('coinFlipBtn').style.display = 'none';
+  document.getElementById('coinContainer').style.display = 'block';
+  
+  const coin = document.getElementById('coin');
+  coin.classList.remove('flipping');
+  void coin.offsetWidth; // Force reflow
+  coin.classList.add('flipping');
+  
+  // 30% win rate
+  const playerWins = Math.random() < 0.01;
+  const result = playerWins ? coinFlipGame.choice : (coinFlipGame.choice === 'heads' ? 'tails' : 'heads');
+  
+  setTimeout(() => {
+    coin.style.transform = result === 'heads' ? 'rotateY(0deg)' : 'rotateY(180deg)';
+    
+    setTimeout(() => {
+      const resultDiv = document.getElementById('coinResult');
+      if (playerWins) {
+        const winAmount = Math.floor(bet * 1.95);
+        coins += winAmount;
+        save();
+        updateUI();
+        resultDiv.innerText = `🎉 YOU WIN $${winAmount}!`;
+        resultDiv.style.color = '#ccc';
+      } else {
+        resultDiv.innerText = `😢 YOU LOST $${bet}`;
+        resultDiv.style.color = '#fff';
+      }
+      resultDiv.style.display = 'block';
+    }, 500);
+  }, 2000);
+}
+
+function closeCoinFlip() {
+  document.getElementById('coinFlipPopup').classList.remove('active');
+  document.getElementById('coinChoices').style.display = 'flex';
+  coinFlipGame = null;
+}
+
+// === DROP GAME WITH BET ===
 let dropGame = null;
 
 function startDropGame() {
   document.getElementById('dropGamePopup').classList.add('active');
-  document.getElementById('dropGameOver').classList.remove('active');
+  document.getElementById('dropBetArea').style.display = 'block';
+  document.getElementById('dropGameArea').style.display = 'none';
+  document.getElementById('dropCloseBtn').style.display = 'inline-block';
+}
+
+function setDropBet(amount) {
+  document.getElementById('dropBet').value = amount;
+}
+
+function startDropGameWithBet() {
+  const bet = parseInt(document.getElementById('dropBet').value) || 0;
+  if (bet <= 0) {
+    alert('❌ Enter a valid bet amount!');
+    return;
+  }
+  if (coins < bet) {
+    alert('❌ Not enough money!');
+    return;
+  }
+  
+  coins -= bet;
+  save();
+  updateUI();
+  
+  document.getElementById('dropBetArea').style.display = 'none';
+  document.getElementById('dropGameArea').style.display = 'block';
+  document.getElementById('dropCloseBtn').style.display = 'none';
+  document.getElementById('dropGameOver').style.display = 'none';
   
   const canvas = document.getElementById('dropGameCanvas');
   const ctx = canvas.getContext('2d');
   
   dropGame = {
-    bp: 0,
+    bet,
+    score: 0,
     drops: [],
     gameOver: false,
     frame: 0,
@@ -1075,7 +2066,7 @@ function startDropGame() {
       return drop.y < canvas.height;
     });
     
-    document.getElementById('dropScore').innerText = '$' + dropGame.bp;
+    document.getElementById('dropScore').innerText = '$' + dropGame.score;
     
     requestAnimationFrame(gameLoop);
   }
@@ -1104,9 +2095,9 @@ function startDropGame() {
         drop.clicked = true;
         
         if (drop.type === 'star') {
-          dropGame.bp += 10;
+          dropGame.score += 10;
         } else {
-          dropGame.bp = Math.max(0, dropGame.bp - 30);
+          dropGame.score = Math.max(0, dropGame.score - 30);
         }
         
         break;
@@ -1123,12 +2114,13 @@ function startDropGame() {
 
 function endDropGame() {
   dropGame.gameOver = true;
-  const earned = dropGame.bp;
-  coins += earned;
+  const finalScore = dropGame.score;
+  const result = dropGame.bet + finalScore;
+  coins += result;
   save();
   updateUI();
-  document.getElementById('dropEarned').innerText = earned;
-  document.getElementById('dropGameOver').classList.add('active');
+  document.getElementById('dropEarned').innerText = result;
+  document.getElementById('dropGameOver').style.display = 'flex';
 }
 
 function restartDropGame() {
@@ -1140,18 +2132,46 @@ function closeDropGame() {
   document.getElementById('dropGamePopup').classList.remove('active');
 }
 
-// === SNAKE GAME ===
+// === SNAKE GAME WITH BET ===
 let snakeGame = null;
 
 function startSnakeGame() {
   document.getElementById('snakeGamePopup').classList.add('active');
-  document.getElementById('snakeGameOver').classList.remove('active');
+  document.getElementById('snakeBetArea').style.display = 'block';
+  document.getElementById('snakeGameArea').style.display = 'none';
+  document.getElementById('snakeCloseBtn').style.display = 'inline-block';
+}
+
+function setSnakeBet(amount) {
+  document.getElementById('snakeBet').value = amount;
+}
+
+function startSnakeGameWithBet() {
+  const bet = parseInt(document.getElementById('snakeBet').value) || 0;
+  if (bet <= 0) {
+    alert('❌ Enter a valid bet amount!');
+    return;
+  }
+  if (coins < bet) {
+    alert('❌ Not enough money!');
+    return;
+  }
+  
+  coins -= bet;
+  save();
+  updateUI();
+  
+  document.getElementById('snakeBetArea').style.display = 'none';
+  document.getElementById('snakeGameArea').style.display = 'block';
+  document.getElementById('snakeCloseBtn').style.display = 'none';
+  document.getElementById('snakeGameOver').style.display = 'none';
   
   const canvas = document.getElementById('snakeGameCanvas');
   const ctx = canvas.getContext('2d');
   const gridSize = 20;
   
   snakeGame = {
+    bet,
     snake: [{x: 10, y: 10}],
     direction: {x: 1, y: 0},
     nextDirection: {x: 1, y: 0},
@@ -1162,7 +2182,7 @@ function startSnakeGame() {
     lastUpdate: Date.now()
   };
   
-  document.getElementById('snakeScore').innerText = '$0';
+  document.getElementById('snakeScore').innerText = 'Score: 0';
   
   function placeFood() {
     snakeGame.food = {
@@ -1194,7 +2214,7 @@ function startSnakeGame() {
     
     if (head.x === snakeGame.food.x && head.y === snakeGame.food.y) {
       snakeGame.score += 10;
-      document.getElementById('snakeScore').innerText = '$' + (snakeGame.score * 3);
+      document.getElementById('snakeScore').innerText = 'Score: ' + snakeGame.score;
       placeFood();
     } else {
       snakeGame.snake.pop();
@@ -1217,13 +2237,13 @@ function startSnakeGame() {
       ctx.stroke();
     }
     
-    ctx.fillStyle = '#00ff88';
+    ctx.fillStyle = '#aaa';
     snakeGame.snake.forEach((seg, i) => {
       ctx.fillRect(seg.x * gridSize + 1, seg.y * gridSize + 1, gridSize - 2, gridSize - 2);
       if (i === 0) {
-        ctx.fillStyle = '#00ffff';
+        ctx.fillStyle = '#ccc';
         ctx.fillRect(seg.x * gridSize + 1, seg.y * gridSize + 1, gridSize - 2, gridSize - 2);
-        ctx.fillStyle = '#00ff88';
+        ctx.fillStyle = '#aaa';
       }
     });
     
@@ -1269,12 +2289,13 @@ function startSnakeGame() {
 
 function endSnakeGame() {
   snakeGame.gameOver = true;
-  const earned = snakeGame.score * 3;
-  coins += earned;
+  const multiplier = Math.floor(snakeGame.score / 10) * 0.1;
+  const result = Math.floor(snakeGame.bet * (1 + multiplier));
+  coins += result;
   save();
   updateUI();
-  document.getElementById('snakeEarned').innerText = earned;
-  document.getElementById('snakeGameOver').classList.add('active');
+  document.getElementById('snakeEarned').innerText = result;
+  document.getElementById('snakeGameOver').style.display = 'flex';
 }
 
 function restartSnakeGame() {
@@ -1286,211 +2307,94 @@ function closeSnakeGame() {
   document.getElementById('snakeGamePopup').classList.remove('active');
 }
 
-// === FLAPPY GAME ===
-let flappyGame = null;
+// === TASKS ===
+const tasks = [
+  {id: 1, title: '📢 Subscribe to our Telegram', reward: 10000, link: 'https://t.me/beron_official'},
+  {id: 2, title: '🐦 Follow us on Twitter', reward: 5000, link: 'https://twitter.com/beron'},
+  {id: 3, title: '📺 Subscribe to YouTube', reward: 7500, link: 'https://youtube.com/beron'},
+  {id: 4, title: '💬 Join Discord Server', reward: 8000, link: 'https://discord.gg/beron'},
+  {id: 5, title: '📸 Follow on Instagram', reward: 5000, link: 'https://instagram.com/beron'}
+];
 
-function startFlappyGame() {
-  document.getElementById('flappyGamePopup').classList.add('active');
-  document.getElementById('flappyGameOver').classList.remove('active');
+function loadTasks() {
+  const list = document.getElementById('taskList');
+  list.innerHTML = '';
   
-  const canvas = document.getElementById('flappyGameCanvas');
-  const ctx = canvas.getContext('2d');
-  
-  flappyGame = {
-    birdY: 250,
-    birdVelocity: 0,
-    gravity: 0.5,
-    jumpPower: -10,
-    pipes: [],
-    score: 0,
-    gameOver: false,
-    frame: 0
-  };
-  
-  document.getElementById('flappyScore').innerText = '$0';
-  
-  function gameLoop() {
-    if (flappyGame.gameOver) return;
+  tasks.forEach(task => {
+    const item = document.createElement('div');
+    item.className = 'task-item';
     
-    ctx.fillStyle = '#001122';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const isCompleted = completedTasks.includes(task.id);
     
-    flappyGame.birdVelocity += flappyGame.gravity;
-    flappyGame.birdY += flappyGame.birdVelocity;
-    
-    if (flappyGame.birdY < 0 || flappyGame.birdY > canvas.height - 30) {
-      endFlappyGame();
-      return;
-    }
-    
-    flappyGame.frame++;
-    if (flappyGame.frame % 90 === 0) {
-      const gap = 160;
-      const pipeHeight = 100 + Math.random() * 180;
-      flappyGame.pipes.push({
-        x: canvas.width,
-        topHeight: pipeHeight,
-        bottomY: pipeHeight + gap,
-        scored: false
-      });
-    }
-    
-    flappyGame.pipes = flappyGame.pipes.filter(pipe => {
-      pipe.x -= 4;
-      
-      ctx.fillStyle = '#00ff88';
-      ctx.fillRect(pipe.x, 0, 50, pipe.topHeight);
-      ctx.fillRect(pipe.x, pipe.bottomY, 50, canvas.height - pipe.bottomY);
-      
-      if (pipe.x < 80 && pipe.x > 0) {
-        if (flappyGame.birdY < pipe.topHeight || flappyGame.birdY + 30 > pipe.bottomY) {
-          endFlappyGame();
-          return false;
-        }
-      }
-      
-      if (!pipe.scored && pipe.x + 50 < 50) {
-        pipe.scored = true;
-        flappyGame.score++;
-        document.getElementById('flappyScore').innerText = '$' + (flappyGame.score * 20);
-      }
-      
-      return pipe.x > -50;
-    });
-    
-    ctx.fillStyle = '#00ffff';
-    ctx.fillRect(50, flappyGame.birdY, 30, 30);
-    ctx.fillStyle = '#fff';
-    ctx.font = 'bold 24px Arial';
-    ctx.fillText('🦅', 52, flappyGame.birdY + 24);
-    
-    requestAnimationFrame(gameLoop);
-  }
-  
-  gameLoop();
-  
-  const jump = (e) => {
-    if (e && e.preventDefault) {
-      e.preventDefault();
-    }
-    if (!flappyGame.gameOver) {
-      flappyGame.birdVelocity = flappyGame.jumpPower;
-    }
-  };
-  
-  canvas.addEventListener('touchstart', jump, {passive: false});
-  canvas.addEventListener('click', jump);
-}
-
-function endFlappyGame() {
-  flappyGame.gameOver = true;
-  const earned = flappyGame.score * 20;
-  coins += earned;
-  save();
-  updateUI();
-  document.getElementById('flappyEarned').innerText = earned;
-  document.getElementById('flappyGameOver').classList.add('active');
-}
-
-function restartFlappyGame() {
-  startFlappyGame();
-}
-
-function closeFlappyGame() {
-  flappyGame = null;
-  document.getElementById('flappyGamePopup').classList.remove('active');
-}
-
-// === MEMORY GAME ===
-const memoryEmojis = ['💎', '🔥', '⚡', '🌟', '💰', '🎮', '🚀', '👑'];
-let memoryGame = null;
-
-function startMemoryGame() {
-  document.getElementById('memoryGamePopup').classList.add('active');
-  
-  const cards = [...memoryEmojis, ...memoryEmojis].sort(() => Math.random() - 0.5);
-  
-  memoryGame = {
-    cards: cards,
-    flipped: [],
-    matched: [],
-    score: 0,
-    moves: 0
-  };
-  
-  const grid = document.getElementById('memoryGrid');
-  grid.innerHTML = '';
-  
-  cards.forEach((emoji, index) => {
-    const card = document.createElement('div');
-    card.style.cssText = `
-      width:70px;height:70px;background:linear-gradient(135deg,#0066ff,#0088ff);
-      border-radius:10px;display:flex;align-items:center;justify-content:center;
-      font-size:32px;cursor:pointer;transition:all 0.3s;
-      border:2px solid rgba(0,136,255,0.5);
+    item.innerHTML = `
+      <div class="task-info">
+        <div class="task-title">${task.title}</div>
+        <div class="task-reward">Reward: $${task.reward.toLocaleString()}</div>
+      </div>
+      <button class="task-btn ${isCompleted ? 'completed' : ''}" onclick="completeTask(${task.id}, '${task.link}')">
+        ${isCompleted ? '✓ Done' : 'Start'}
+      </button>
     `;
-    card.dataset.index = index;
-    card.dataset.emoji = emoji;
-    card.innerText = '?';
     
-    card.onclick = () => flipCard(card, index);
-    
-    grid.appendChild(card);
+    list.appendChild(item);
   });
-  
-  document.getElementById('memoryScore').innerText = '0';
 }
 
-function flipCard(card, index) {
-  if (memoryGame.flipped.length >= 2 || 
-      memoryGame.flipped.includes(index) || 
-      memoryGame.matched.includes(index)) return;
+function completeTask(taskId, link) {
+  if (completedTasks.includes(taskId)) return;
   
-  card.innerText = card.dataset.emoji;
-  card.style.background = 'linear-gradient(135deg,#00aaff,#0066ff)';
-  memoryGame.flipped.push(index);
+  window.open(link, '_blank');
   
-  if (memoryGame.flipped.length === 2) {
-    memoryGame.moves++;
-    const [idx1, idx2] = memoryGame.flipped;
-    const card1 = document.querySelector(`[data-index="${idx1}"]`);
-    const card2 = document.querySelector(`[data-index="${idx2}"]`);
-    
-    if (card1.dataset.emoji === card2.dataset.emoji) {
-      memoryGame.matched.push(idx1, idx2);
-      memoryGame.score += 100;
-      document.getElementById('memoryScore').innerText = memoryGame.score;
-      memoryGame.flipped = [];
-      
-      if (memoryGame.matched.length === memoryGame.cards.length) {
-        setTimeout(() => {
-          coins += memoryGame.score * 2;
-          save();
-          updateUI();
-          alert(`🎉 Victory! +$${memoryGame.score * 2}!`);
-          startMemoryGame();
-        }, 500);
-      }
-    } else {
-      setTimeout(() => {
-        card1.innerText = '?';
-        card2.innerText = '?';
-        card1.style.background = 'linear-gradient(135deg,#0066ff,#0088ff)';
-        card2.style.background = 'linear-gradient(135deg,#0066ff,#0088ff)';
-        memoryGame.flipped = [];
-      }, 600);
-    }
-  }
-}
-
-function closeMemoryGame() {
-  if (memoryGame && memoryGame.matched.length > 0) {
-    coins += memoryGame.score;
+  setTimeout(() => {
+    const task = tasks.find(t => t.id === taskId);
+    coins += task.reward;
+    completedTasks.push(taskId);
     save();
     updateUI();
-  }
-  memoryGame = null;
-  document.getElementById('memoryGamePopup').classList.remove('active');
+    loadTasks();
+    alert(`✅ Task completed! +$${task.reward.toLocaleString()}`);
+  }, 3000);
+}
+
+// === LEADERBOARD ===
+function loadLeaderboard() {
+  const list = document.getElementById('leaderboardList');
+  
+  // Generate mock leaderboard
+  const leaders = [
+    {name: 'CryptoKing👑', score: 5000000},
+    {name: 'DiamondHands💎', score: 3500000},
+    {name: 'MoonShot🚀', score: 2800000},
+    {name: 'WhaleWatch🐋', score: 2200000},
+    {name: 'BeronMaster⭐', score: 1900000},
+    {name: 'LuckyPlayer🍀', score: 1600000},
+    {name: 'ProGamer🎮', score: 1300000},
+    {name: 'You', score: coins}
+  ];
+  
+  leaders.sort((a, b) => b.score - a.score);
+  
+  const userIndex = leaders.findIndex(l => l.name === 'You');
+  document.getElementById('userRank').innerText = '#' + (userIndex + 1);
+  
+  list.innerHTML = '';
+  leaders.slice(0, 10).forEach((leader, i) => {
+    const item = document.createElement('div');
+    item.className = 'leaderboard-item' + (leader.name === 'You' ? ' current' : '');
+    
+    const medals = ['🥇', '🥈', '🥉'];
+    const rankDisplay = i < 3 ? medals[i] : `#${i + 1}`;
+    
+    item.innerHTML = `
+      <div class="leaderboard-rank">${rankDisplay}</div>
+      <div class="leaderboard-info">
+        <div class="leaderboard-name">${leader.name}</div>
+        <div class="leaderboard-score">$${leader.score.toLocaleString()}</div>
+      </div>
+    `;
+    
+    list.appendChild(item);
+  });
 }
 </script>
 </body>
