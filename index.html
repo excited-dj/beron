@@ -476,7 +476,7 @@ body{
   <div class="energy-bar">
     <div class="energy-fill" id="energyBar" style="width:100%"></div>
   </div>
-  <div style="font-size:12px;color:#0088ff;margin-top:5px;text-align:center">Energy: <span id="energyText">100/100</span></div>
+  <div style="font-size:12px;color:#0088ff;margin-top:5px;text-align:center">Energy: <span id="energyText">1000/1000</span></div>
 </div>
 
 <div class="tap-section">
@@ -494,7 +494,7 @@ body{
     <div class="game-card" onclick="startDropGame()">
       <div class="game-icon">⭐</div>
       <div class="game-name">Drop Game</div>
-      <div class="game-reward">Tap & Earn</div>
+      <div class="game-reward">Stars +10 BP, Bombs -30 BP!</div>
     </div>
     <div class="game-card" onclick="startSnakeGame()">
       <div class="game-icon">🐍</div>
@@ -611,7 +611,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 let coins = parseInt(localStorage.getItem('coins')) || 0;
 let tokens = parseInt(localStorage.getItem('tokens')) || 0;
 let lastCase = parseInt(localStorage.getItem('lastCase')) || 0;
-let energy = parseInt(localStorage.getItem('energy')) || 100;
+let energy = parseInt(localStorage.getItem('energy')) || 1000;
 let lastEnergyUpdate = parseInt(localStorage.getItem('lastEnergyUpdate')) || Date.now();
 
 function save() {
@@ -633,9 +633,9 @@ function updateUI() {
   else if (coins > 10000) rank = 'Silver';
   document.getElementById('rank').innerText = 'Rank: ' + rank;
   
-  const energyPercent = Math.min(100, (energy / 100) * 100);
+  const energyPercent = Math.min(100, (energy / 1000) * 100);
   document.getElementById('energyBar').style.width = energyPercent + '%';
-  document.getElementById('energyText').innerText = energy + '/100';
+  document.getElementById('energyText').innerText = energy + '/1000';
 }
 
 // Energy regeneration
@@ -644,8 +644,8 @@ setInterval(() => {
   const elapsed = now - lastEnergyUpdate;
   const regenAmount = Math.floor(elapsed / 1000);
   
-  if (regenAmount > 0 && energy < 100) {
-    energy = Math.min(100, energy + regenAmount);
+  if (regenAmount > 0 && energy < 1000) {
+    energy = Math.min(1000, energy + regenAmount);
     lastEnergyUpdate = now;
     save();
     updateUI();
@@ -843,7 +843,7 @@ function startDropGame() {
       if (drop.type === 'star') {
         // Green glowing star
         ctx.shadowBlur = 15;
-        ctx.shadowColor = '#00ff00';
+        ctx.shadowColor = '#ffffff';
         ctx.fillStyle = '#00ff00';
         ctx.font = 'bold 35px Arial';
         ctx.fillText('✱', drop.x + 5, drop.y + 32);
