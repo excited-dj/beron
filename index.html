@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -40,9 +40,9 @@ body{
   position:fixed;
   inset:0;
   background:
-    radial-gradient(circle at 20% 50%, rgba(0,255,255,0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255,0,255,0.05) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, rgba(0,100,255,0.05) 0%, transparent 50%);
+    radial-gradient(circle at 20% 50%, rgba(0,102,255,0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0,136,255,0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(0,170,255,0.05) 0%, transparent 50%);
   pointer-events:none;
   z-index:0;
 }
@@ -51,8 +51,8 @@ body{
   position:fixed;
   inset:0;
   background-image:
-    linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(0,102,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,102,255,0.03) 1px, transparent 1px);
   background-size:50px 50px;
   pointer-events:none;
   z-index:0;
@@ -85,12 +85,12 @@ body{
   font-family:'Orbitron',sans-serif;
   font-size:42px;
   font-weight:900;
-  background:linear-gradient(45deg,#00ffff,#ff00ff,#00ffff);
+  background:linear-gradient(45deg,#0066ff,#00aaff,#0066ff);
   background-size:200%;
   -webkit-background-clip:text;
   background-clip:text;
   -webkit-text-fill-color:transparent;
-  text-shadow:0 0 40px rgba(0,255,255,0.5);
+  text-shadow:0 0 40px rgba(0,102,255,0.5);
   animation:gradientShift 3s ease infinite;
   letter-spacing:3px;
 }
@@ -105,8 +105,8 @@ body{
   border-radius:20px;
   padding:20px;
   margin-bottom:25px;
-  border:2px solid rgba(0,255,255,0.2);
-  box-shadow:0 8px 32px rgba(0,255,255,0.1);
+  border:2px solid rgba(0,102,255,0.4);
+  box-shadow:0 8px 32px rgba(0,102,255,0.2);
   backdrop-filter:blur(10px);
   animation:fadeIn 0.8s ease-out 0.2s both;
 }
@@ -127,9 +127,9 @@ body{
 
 .tokens,.rank{
   font-size:16px;
-  color:#00ffff;
+  color:#0088ff;
   margin:5px 0;
-  text-shadow:0 0 10px rgba(0,255,255,0.5);
+  text-shadow:0 0 10px rgba(0,136,255,0.5);
 }
 
 .energy-bar{
@@ -139,15 +139,15 @@ body{
   border-radius:10px;
   margin-top:12px;
   overflow:hidden;
-  border:1px solid rgba(0,255,255,0.3);
+  border:1px solid rgba(0,102,255,0.3);
 }
 
 .energy-fill{
   height:100%;
-  background:linear-gradient(90deg,#00ff88,#00ffff);
+  background:linear-gradient(90deg,#0066ff,#00aaff);
   border-radius:10px;
   transition:width 0.3s;
-  box-shadow:0 0 10px rgba(0,255,255,0.6);
+  box-shadow:0 0 10px rgba(0,136,255,0.6);
 }
 
 .tap-section{
@@ -161,15 +161,15 @@ body{
   height:200px;
   border-radius:50%;
   border:none;
-  background:linear-gradient(135deg,#00ffff 0%,#0088ff 50%,#ff00ff 100%);
-  color:#000;
+  background:linear-gradient(135deg,#0066ff 0%,#0088ff 50%,#00aaff 100%);
+  color:#fff;
   font-size:32px;
   font-weight:900;
   font-family:'Orbitron',sans-serif;
   cursor:pointer;
   box-shadow:
-    0 0 40px rgba(0,255,255,0.6),
-    0 0 80px rgba(0,255,255,0.3),
+    0 0 40px rgba(0,102,255,0.6),
+    0 0 80px rgba(0,102,255,0.3),
     inset 0 0 20px rgba(255,255,255,0.2);
   transition:all 0.15s;
   position:relative;
@@ -193,7 +193,7 @@ body{
 .tap-btn:active{
   transform:scale(0.92);
   box-shadow:
-    0 0 20px rgba(0,255,255,0.8),
+    0 0 20px rgba(0,102,255,0.8),
     inset 0 0 30px rgba(0,0,0,0.3);
 }
 
@@ -234,9 +234,9 @@ body{
 }
 
 .action-btn{
-  background:linear-gradient(135deg,rgba(0,255,255,0.2),rgba(0,100,255,0.2));
-  border:2px solid rgba(0,255,255,0.4);
-  color:#00ffff;
+  background:linear-gradient(135deg,rgba(0,102,255,0.2),rgba(0,136,255,0.2));
+  border:2px solid rgba(0,102,255,0.4);
+  color:#0088ff;
   padding:14px;
   border-radius:15px;
   font-size:15px;
@@ -244,13 +244,13 @@ body{
   cursor:pointer;
   transition:all 0.3s;
   backdrop-filter:blur(10px);
-  text-shadow:0 0 5px rgba(0,255,255,0.5);
+  text-shadow:0 0 5px rgba(0,136,255,0.5);
 }
 
 .action-btn:hover{
-  background:linear-gradient(135deg,rgba(0,255,255,0.3),rgba(0,100,255,0.3));
+  background:linear-gradient(135deg,rgba(0,102,255,0.3),rgba(0,136,255,0.3));
   transform:translateY(-2px);
-  box-shadow:0 5px 20px rgba(0,255,255,0.3);
+  box-shadow:0 5px 20px rgba(0,102,255,0.3);
 }
 
 .action-btn:active{
@@ -265,9 +265,9 @@ body{
 .section-title{
   font-family:'Orbitron',sans-serif;
   font-size:24px;
-  color:#00ffff;
+  color:#0088ff;
   margin-bottom:15px;
-  text-shadow:0 0 10px rgba(0,255,255,0.6);
+  text-shadow:0 0 10px rgba(0,136,255,0.6);
   text-align:center;
 }
 
@@ -278,8 +278,8 @@ body{
 }
 
 .game-card{
-  background:linear-gradient(135deg,rgba(20,20,40,0.8),rgba(40,20,60,0.8));
-  border:2px solid rgba(255,0,255,0.3);
+  background:linear-gradient(135deg,rgba(20,40,80,0.8),rgba(20,60,100,0.8));
+  border:2px solid rgba(0,136,255,0.3);
   border-radius:15px;
   padding:20px;
   text-align:center;
@@ -290,26 +290,26 @@ body{
 
 .game-card:hover{
   transform:translateY(-5px) scale(1.02);
-  border-color:rgba(255,0,255,0.6);
-  box-shadow:0 10px 30px rgba(255,0,255,0.3);
+  border-color:rgba(0,136,255,0.6);
+  box-shadow:0 10px 30px rgba(0,136,255,0.3);
 }
 
 .game-icon{
   font-size:40px;
   margin-bottom:10px;
-  filter:drop-shadow(0 0 10px rgba(255,0,255,0.6));
+  filter:drop-shadow(0 0 10px rgba(0,136,255,0.6));
 }
 
 .game-name{
   font-size:16px;
   font-weight:600;
-  color:#ff00ff;
-  text-shadow:0 0 5px rgba(255,0,255,0.5);
+  color:#0088ff;
+  text-shadow:0 0 5px rgba(0,136,255,0.5);
 }
 
 .game-reward{
   font-size:12px;
-  color:#00ffff;
+  color:#00aaff;
   margin-top:5px;
 }
 
@@ -320,7 +320,7 @@ body{
   right:0;
   background:rgba(10,10,30,0.95);
   backdrop-filter:blur(20px);
-  border-top:2px solid rgba(0,255,255,0.3);
+  border-top:2px solid rgba(0,102,255,0.3);
   padding:10px;
   z-index:100;
   display:flex;
@@ -331,9 +331,9 @@ body{
 }
 
 .nav-item{
-  background:rgba(0,255,255,0.1);
-  border:1px solid rgba(0,255,255,0.3);
-  color:#00ffff;
+  background:rgba(0,102,255,0.1);
+  border:1px solid rgba(0,102,255,0.3);
+  color:#0088ff;
   padding:8px 12px;
   border-radius:10px;
   font-size:11px;
@@ -344,7 +344,7 @@ body{
 }
 
 .nav-item:active{
-  background:rgba(0,255,255,0.2);
+  background:rgba(0,102,255,0.2);
   transform:scale(0.95);
 }
 
@@ -364,8 +364,8 @@ body{
 .popup.active{display:flex}
 
 .popup-content{
-  background:linear-gradient(135deg,rgba(20,20,60,0.9),rgba(60,20,80,0.9));
-  border:3px solid rgba(0,255,255,0.5);
+  background:linear-gradient(135deg,rgba(20,40,80,0.9),rgba(20,60,100,0.9));
+  border:3px solid rgba(0,102,255,0.5);
   border-radius:25px;
   padding:30px;
   text-align:center;
@@ -380,10 +380,10 @@ body{
 
 .popup-title{
   font-size:28px;
-  color:#00ffff;
+  color:#0088ff;
   margin-bottom:20px;
   font-family:'Orbitron',sans-serif;
-  text-shadow:0 0 20px rgba(0,255,255,0.6);
+  text-shadow:0 0 20px rgba(0,136,255,0.6);
 }
 
 .popup-reward{
@@ -396,8 +396,8 @@ body{
 }
 
 .popup-btn{
-  background:linear-gradient(135deg,#00ffff,#0088ff);
-  color:#000;
+  background:linear-gradient(135deg,#0066ff,#0088ff);
+  color:#fff;
   border:none;
   padding:12px 30px;
   border-radius:15px;
@@ -405,7 +405,7 @@ body{
   font-weight:bold;
   cursor:pointer;
   margin:8px;
-  box-shadow:0 5px 20px rgba(0,255,255,0.4);
+  box-shadow:0 5px 20px rgba(0,102,255,0.4);
   transition:all 0.3s;
 }
 
@@ -418,7 +418,7 @@ body{
   max-width:350px;
   height:500px;
   background:rgba(0,0,0,0.8);
-  border:3px solid rgba(0,255,255,0.5);
+  border:3px solid rgba(0,102,255,0.5);
   border-radius:15px;
   margin:20px auto;
   position:relative;
@@ -476,7 +476,7 @@ body{
   <div class="energy-bar">
     <div class="energy-fill" id="energyBar" style="width:100%"></div>
   </div>
-  <div style="font-size:12px;color:#00ffff;margin-top:5px;text-align:center">Energy: <span id="energyText">100/100</span></div>
+  <div style="font-size:12px;color:#0088ff;margin-top:5px;text-align:center">Energy: <span id="energyText">100/100</span></div>
 </div>
 
 <div class="tap-section">
@@ -492,9 +492,9 @@ body{
   <div class="section-title">🎮 Mini Games</div>
   <div class="games-grid">
     <div class="game-card" onclick="startDropGame()">
-      <div class="game-icon">💎</div>
+      <div class="game-icon">⭐</div>
       <div class="game-name">Drop Game</div>
-      <div class="game-reward">Catch coins!</div>
+      <div class="game-reward">Tap & Earn</div>
     </div>
     <div class="game-card" onclick="startSnakeGame()">
       <div class="game-icon">🐍</div>
@@ -536,22 +536,23 @@ body{
   <div class="popup-content">
     <div class="popup-title">🎰 Daily Case</div>
     <div class="popup-reward" id="caseReward">0</div>
-    <button class="popup-btn" onclick="closeCase()">Забрать!</button>
+    <button class="popup-btn" onclick="closeCase()">Claim!</button>
   </div>
 </div>
 
 <!-- Drop Game -->
 <div class="popup" id="dropGamePopup">
   <div class="popup-content" style="max-width:400px">
-    <div class="popup-title">💎 Drop Game</div>
+    <div class="popup-title">⭐ Star Tap Game</div>
     <div class="game-canvas" id="dropCanvas">
-      <div class="game-score" id="dropScore">0</div>
+      <div style="position:absolute;top:10px;left:10px;font-size:24px;color:#ffd700;font-weight:bold;text-shadow:0 0 10px rgba(255,215,0,0.8);font-family:'Orbitron',sans-serif;z-index:10;" id="dropTimer">00:30</div>
+      <div class="game-score" id="dropScore">BP: 0</div>
       <canvas id="dropGameCanvas" width="350" height="500"></canvas>
       <div class="game-over" id="dropGameOver">
-        <div class="game-over-text">GAME OVER</div>
-        <div style="font-size:24px;color:#ffd700;margin-bottom:20px">Заработано: <span id="dropEarned">0</span> 💰</div>
-        <button class="popup-btn" onclick="restartDropGame()">Играть еще</button>
-        <button class="popup-btn" onclick="closeDropGame()">Выход</button>
+        <div class="game-over-text">TIME'S UP!</div>
+        <div style="font-size:24px;color:#ffd700;margin-bottom:20px">BP Earned: <span id="dropEarned">0</span> 💰</div>
+        <button class="popup-btn" onclick="restartDropGame()">Play Again</button>
+        <button class="popup-btn" onclick="closeDropGame()">Exit</button>
       </div>
     </div>
   </div>
@@ -566,9 +567,9 @@ body{
       <canvas id="snakeGameCanvas" width="350" height="500"></canvas>
       <div class="game-over" id="snakeGameOver">
         <div class="game-over-text">GAME OVER</div>
-        <div style="font-size:24px;color:#ffd700;margin-bottom:20px">Заработано: <span id="snakeEarned">0</span> 💰</div>
-        <button class="popup-btn" onclick="restartSnakeGame()">Играть еще</button>
-        <button class="popup-btn" onclick="closeSnakeGame()">Выход</button>
+        <div style="font-size:24px;color:#ffd700;margin-bottom:20px">Earned: <span id="snakeEarned">0</span> 💰</div>
+        <button class="popup-btn" onclick="restartSnakeGame()">Play Again</button>
+        <button class="popup-btn" onclick="closeSnakeGame()">Exit</button>
       </div>
     </div>
   </div>
@@ -583,9 +584,9 @@ body{
       <canvas id="flappyGameCanvas" width="350" height="500"></canvas>
       <div class="game-over" id="flappyGameOver">
         <div class="game-over-text">GAME OVER</div>
-        <div style="font-size:24px;color:#ffd700;margin-bottom:20px">Заработано: <span id="flappyEarned">0</span> 💰</div>
-        <button class="popup-btn" onclick="restartFlappyGame()">Играть еще</button>
-        <button class="popup-btn" onclick="closeFlappyGame()">Выход</button>
+        <div style="font-size:24px;color:#ffd700;margin-bottom:20px">Earned: <span id="flappyEarned">0</span> 💰</div>
+        <button class="popup-btn" onclick="restartFlappyGame()">Play Again</button>
+        <button class="popup-btn" onclick="closeFlappyGame()">Exit</button>
       </div>
     </div>
   </div>
@@ -595,10 +596,10 @@ body{
 <div class="popup" id="memoryGamePopup">
   <div class="popup-content" style="max-width:400px">
     <div class="popup-title">🧠 Memory Game</div>
-    <div style="font-size:18px;color:#00ffff;margin-bottom:15px">Найди все пары!</div>
-    <div class="game-score" style="position:static;margin-bottom:15px">Счет: <span id="memoryScore">0</span></div>
+    <div style="font-size:18px;color:#0088ff;margin-bottom:15px">Find all pairs!</div>
+    <div class="game-score" style="position:static;margin-bottom:15px">Score: <span id="memoryScore">0</span></div>
     <div id="memoryGrid" style="display:grid;grid-template-columns:repeat(4,70px);gap:10px;justify-content:center;margin:20px auto"></div>
-    <button class="popup-btn" onclick="closeMemoryGame()" style="margin-top:20px">Выход</button>
+    <button class="popup-btn" onclick="closeMemoryGame()" style="margin-top:20px">Exit</button>
   </div>
 </div>
 
@@ -611,67 +612,69 @@ let coins = parseInt(localStorage.getItem('coins')) || 0;
 let tokens = parseInt(localStorage.getItem('tokens')) || 0;
 let lastCase = parseInt(localStorage.getItem('lastCase')) || 0;
 let energy = parseInt(localStorage.getItem('energy')) || 100;
-let lastEnergyRegen = Date.now();
-
-// Anti-autoclicker
-let lastTap = 0;
-const MIN_TAP_DELAY = 100; // 100ms minimum between taps
-let tapCombo = 0;
-let comboTimer = null;
+let lastEnergyUpdate = parseInt(localStorage.getItem('lastEnergyUpdate')) || Date.now();
 
 function save() {
   localStorage.setItem('coins', coins);
   localStorage.setItem('tokens', tokens);
+  localStorage.setItem('lastCase', lastCase);
   localStorage.setItem('energy', energy);
+  localStorage.setItem('lastEnergyUpdate', lastEnergyUpdate);
 }
 
 function updateUI() {
   document.getElementById('coins').innerText = coins.toLocaleString();
-  document.getElementById('tokens').innerText = 'BER: ' + tokens.toLocaleString();
+  document.getElementById('tokens').innerText = 'BER: ' + tokens;
   
   let rank = 'Bronze';
-  if (coins > 50000) rank = 'Silver';
-  if (coins > 200000) rank = 'Gold';
   if (coins > 1000000) rank = 'Diamond';
-  if (coins > 5000000) rank = 'Master';
-  if (coins > 10000000) rank = 'Legend';
-  
+  else if (coins > 500000) rank = 'Platinum';
+  else if (coins > 100000) rank = 'Gold';
+  else if (coins > 10000) rank = 'Silver';
   document.getElementById('rank').innerText = 'Rank: ' + rank;
-  document.getElementById('energyBar').style.width = energy + '%';
+  
+  const energyPercent = Math.min(100, (energy / 100) * 100);
+  document.getElementById('energyBar').style.width = energyPercent + '%';
   document.getElementById('energyText').innerText = energy + '/100';
 }
 
 // Energy regeneration
 setInterval(() => {
-  if (energy < 100) {
-    energy = Math.min(100, energy + 1);
+  const now = Date.now();
+  const elapsed = now - lastEnergyUpdate;
+  const regenAmount = Math.floor(elapsed / 1000);
+  
+  if (regenAmount > 0 && energy < 100) {
+    energy = Math.min(100, energy + regenAmount);
+    lastEnergyUpdate = now;
     save();
     updateUI();
   }
-}, 3000);
+}, 1000);
 
 updateUI();
 
-// TAP with anti-autoclicker
+// TAP SYSTEM
 const tapBtn = document.getElementById('tapBtn');
-tapBtn.addEventListener('touchstart', (e) => {
-  e.preventDefault();
-  handleTap(e);
-}, {passive: false});
+let lastTap = 0;
+let tapCombo = 0;
+let comboTimer;
+
+tapBtn.addEventListener('touchstart', handleTap);
 tapBtn.addEventListener('click', handleTap);
 
 function handleTap(e) {
-  const now = Date.now();
+  e.preventDefault();
   
-  // Anti-autoclicker check
-  if (now - lastTap < MIN_TAP_DELAY) {
+  const now = Date.now();
+  if (now - lastTap < 50) {
     tapBtn.classList.add('cooldown');
     setTimeout(() => tapBtn.classList.remove('cooldown'), 200);
     return;
   }
   
   if (energy <= 0) {
-    showFloatingText('Нет энергии!', e.touches?.[0]?.clientX || e.clientX, e.touches?.[0]?.clientY || e.clientY);
+    showFloatingText('No energy!', e.touches?.[0]?.clientX || e.clientX, e.touches?.[0]?.clientY || e.clientY);
     return;
   }
   
@@ -729,7 +732,7 @@ function openCase() {
     const timeLeft = 86400000 - (now - lastCase);
     const hours = Math.floor(timeLeft / 3600000);
     const mins = Math.floor((timeLeft % 3600000) / 60000);
-    alert(`Кейс доступен через ${hours}ч ${mins}м`);
+    alert(`Case available in ${hours}h ${mins}m`);
     return;
   }
   
@@ -769,13 +772,13 @@ function exchange() {
     tokens += 10;
     save();
     updateUI();
-    alert('✅ Обменяно! +10 BER');
+    alert('✅ Exchanged! +10 BER');
   } else {
-    alert('❌ Недостаточно монет (нужно 1000)');
+    alert('❌ Not enough coins (need 1000)');
   }
 }
 
-// === DROP GAME ===
+// === STAR TAP GAME ===
 let dropGame = null;
 
 function startDropGame() {
@@ -786,107 +789,134 @@ function startDropGame() {
   const ctx = canvas.getContext('2d');
   
   dropGame = {
-    score: 0,
-    lives: 3,
-    playerX: 175,
-    playerWidth: 60,
+    bp: 0,
     drops: [],
     gameOver: false,
-    frame: 0
+    frame: 0,
+    timeLeft: 30,
+    startTime: Date.now()
   };
   
-  document.getElementById('dropScore').innerText = '0 | ❤️'.repeat(dropGame.lives);
+  document.getElementById('dropScore').innerText = 'BP: 0';
+  document.getElementById('dropTimer').innerText = '00:30';
   
   function gameLoop() {
     if (dropGame.gameOver) return;
+    
+    // Update timer
+    const elapsed = Math.floor((Date.now() - dropGame.startTime) / 1000);
+    dropGame.timeLeft = Math.max(0, 30 - elapsed);
+    
+    // Format timer display
+    const mins = Math.floor(dropGame.timeLeft / 60);
+    const secs = dropGame.timeLeft % 60;
+    document.getElementById('dropTimer').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    
+    if (dropGame.timeLeft <= 0) {
+      endDropGame();
+      return;
+    }
     
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
     // Spawn drops
     dropGame.frame++;
-    if (dropGame.frame % 30 === 0) {
+    if (dropGame.frame % 20 === 0) {
       dropGame.drops.push({
-        x: Math.random() * (canvas.width - 30),
-        y: -30,
-        type: Math.random() > 0.2 ? 'coin' : 'bomb',
-        speed: 3 + Math.random() * 4
+        x: Math.random() * (canvas.width - 50),
+        y: -50,
+        type: Math.random() > 0.3 ? 'star' : 'bomb',
+        speed: 2 + Math.random() * 2.5,
+        size: 40,
+        clicked: false
       });
     }
     
     // Update and draw drops
     dropGame.drops = dropGame.drops.filter(drop => {
+      if (drop.clicked) return false;
+      
       drop.y += drop.speed;
       
-      // Draw drop
-      if (drop.type === 'coin') {
-        ctx.fillStyle = '#ffd700';
-        ctx.beginPath();
-        ctx.arc(drop.x + 15, drop.y + 15, 12, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = '#000';
-        ctx.font = 'bold 16px Arial';
-        ctx.fillText('💰', drop.x + 4, drop.y + 22);
+      // Draw drop - green stars like in image
+      if (drop.type === 'star') {
+        // Green glowing star
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = '#00ff00';
+        ctx.fillStyle = '#00ff00';
+        ctx.font = 'bold 35px Arial';
+        ctx.fillText('✱', drop.x + 5, drop.y + 32);
+        ctx.shadowBlur = 0;
       } else {
+        // Bomb
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#ff0000';
         ctx.fillStyle = '#ff0000';
-        ctx.beginPath();
-        ctx.arc(drop.x + 15, drop.y + 15, 12, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = '#000';
-        ctx.font = 'bold 16px Arial';
-        ctx.fillText('💣', drop.x + 4, drop.y + 22);
-      }
-      
-      // Collision detection
-      if (drop.y + 30 > canvas.height - 40 && 
-          drop.x + 30 > dropGame.playerX && 
-          drop.x < dropGame.playerX + dropGame.playerWidth) {
-        if (drop.type === 'coin') {
-          dropGame.score += 10;
-          document.getElementById('dropScore').innerText = dropGame.score + ' | ❤️'.repeat(dropGame.lives);
-        } else {
-          dropGame.lives--;
-          document.getElementById('dropScore').innerText = dropGame.score + ' | ❤️'.repeat(dropGame.lives);
-          if (dropGame.lives <= 0) {
-            endDropGame();
-          }
-        }
-        return false;
+        ctx.font = 'bold 30px Arial';
+        ctx.fillText('💣', drop.x + 5, drop.y + 30);
+        ctx.shadowBlur = 0;
       }
       
       return drop.y < canvas.height;
     });
     
-    // Draw player
-    ctx.fillStyle = '#00ffff';
-    ctx.fillRect(dropGame.playerX, canvas.height - 40, dropGame.playerWidth, 15);
-    ctx.fillStyle = '#fff';
-    ctx.font = 'bold 20px Arial';
-    ctx.fillText('🛸', dropGame.playerX + 15, canvas.height - 22);
+    // Update score display
+    document.getElementById('dropScore').innerText = 'BP: ' + dropGame.bp;
     
     requestAnimationFrame(gameLoop);
   }
   
   gameLoop();
   
-  // Touch controls
-  canvas.addEventListener('touchmove', (e) => {
-    e.preventDefault();
+  // Click/Touch handling
+  function handleClick(e) {
+    if (dropGame.gameOver) return;
+    
     const rect = canvas.getBoundingClientRect();
-    const touchX = e.touches[0].clientX - rect.left;
-    dropGame.playerX = Math.max(0, Math.min(canvas.width - dropGame.playerWidth, touchX - dropGame.playerWidth / 2));
-  }, {passive: false});
+    const clickX = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+    const clickY = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+    
+    // Check if clicked on any drop
+    for (let i = dropGame.drops.length - 1; i >= 0; i--) {
+      const drop = dropGame.drops[i];
+      if (drop.clicked) continue;
+      
+      // Center of the visual element (adjusted for text rendering)
+      const centerX = drop.x + 20;
+      const centerY = drop.y + 20;
+      
+      const dx = clickX - centerX;
+      const dy = clickY - centerY;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      // Larger hitbox for easier tapping (radius 30 instead of size/2)
+      if (distance < 30) {
+        drop.clicked = true;
+        
+        if (drop.type === 'star') {
+          // Clicked on star - gain 10 BP
+          dropGame.bp += 10;
+        } else {
+          // Clicked on bomb - lose 30 BP
+          dropGame.bp = Math.max(0, dropGame.bp - 30);
+        }
+        
+        break;
+      }
+    }
+  }
   
-  canvas.addEventListener('mousemove', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    dropGame.playerX = Math.max(0, Math.min(canvas.width - dropGame.playerWidth, mouseX - dropGame.playerWidth / 2));
-  });
+  canvas.addEventListener('click', handleClick);
+  canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    handleClick(e);
+  }, {passive: false});
 }
 
 function endDropGame() {
   dropGame.gameOver = true;
-  const earned = dropGame.score * 5;
+  const earned = dropGame.bp;
   coins += earned;
   save();
   updateUI();
@@ -938,13 +968,11 @@ function startSnakeGame() {
     if (snakeGame.gameOver) return;
     
     const now = Date.now();
-    if (now - snakeGame.lastUpdate < snakeGame.speed) {
-      requestAnimationFrame(gameLoop);
-      return;
-    }
+    // REMOVED DELAY - instant response
+    
     snakeGame.lastUpdate = now;
     
-    // Update direction
+    // Update direction - INSTANT
     snakeGame.direction = snakeGame.nextDirection;
     
     // Move snake
@@ -1006,12 +1034,13 @@ function startSnakeGame() {
     ctx.fillStyle = '#ffd700';
     ctx.fillRect(snakeGame.food.x * gridSize + 1, snakeGame.food.y * gridSize + 1, gridSize - 2, gridSize - 2);
     
-    requestAnimationFrame(gameLoop);
+    // Add delay here for snake movement speed
+    setTimeout(() => requestAnimationFrame(gameLoop), snakeGame.speed);
   }
   
   gameLoop();
   
-  // Touch controls
+  // Touch controls - INSTANT RESPONSE
   let touchStartX = 0;
   let touchStartY = 0;
   
@@ -1026,6 +1055,7 @@ function startSnakeGame() {
     const dx = touchEndX - touchStartX;
     const dy = touchEndY - touchStartY;
     
+    // INSTANT direction change
     if (Math.abs(dx) > Math.abs(dy)) {
       if (dx > 0 && snakeGame.direction.x === 0) snakeGame.nextDirection = {x: 1, y: 0};
       if (dx < 0 && snakeGame.direction.x === 0) snakeGame.nextDirection = {x: -1, y: 0};
@@ -1035,7 +1065,7 @@ function startSnakeGame() {
     }
   });
   
-  // Keyboard controls
+  // Keyboard controls - INSTANT RESPONSE
   document.addEventListener('keydown', (e) => {
     if (!snakeGame || snakeGame.gameOver) return;
     if (e.key === 'ArrowUp' && snakeGame.direction.y === 0) snakeGame.nextDirection = {x: 0, y: -1};
@@ -1208,10 +1238,10 @@ function startMemoryGame() {
   cards.forEach((emoji, index) => {
     const card = document.createElement('div');
     card.style.cssText = `
-      width:70px;height:70px;background:linear-gradient(135deg,#0088ff,#00ffff);
+      width:70px;height:70px;background:linear-gradient(135deg,#0066ff,#0088ff);
       border-radius:10px;display:flex;align-items:center;justify-content:center;
       font-size:32px;cursor:pointer;transition:all 0.3s;
-      border:2px solid rgba(0,255,255,0.5);
+      border:2px solid rgba(0,136,255,0.5);
     `;
     card.dataset.index = index;
     card.dataset.emoji = emoji;
@@ -1231,7 +1261,7 @@ function flipCard(card, index) {
       memoryGame.matched.includes(index)) return;
   
   card.innerText = card.dataset.emoji;
-  card.style.background = 'linear-gradient(135deg,#ff00ff,#00ffff)';
+  card.style.background = 'linear-gradient(135deg,#00aaff,#0066ff)';
   memoryGame.flipped.push(index);
   
   if (memoryGame.flipped.length === 2) {
@@ -1251,7 +1281,7 @@ function flipCard(card, index) {
           coins += memoryGame.score * 2;
           save();
           updateUI();
-          alert(`🎉 Победа! +${memoryGame.score * 2} монет!`);
+          alert(`🎉 Victory! +${memoryGame.score * 2} coins!`);
           startMemoryGame();
         }, 500);
       }
@@ -1259,8 +1289,8 @@ function flipCard(card, index) {
       setTimeout(() => {
         card1.innerText = '?';
         card2.innerText = '?';
-        card1.style.background = 'linear-gradient(135deg,#0088ff,#00ffff)';
-        card2.style.background = 'linear-gradient(135deg,#0088ff,#00ffff)';
+        card1.style.background = 'linear-gradient(135deg,#0066ff,#0088ff)';
+        card2.style.background = 'linear-gradient(135deg,#0066ff,#0088ff)';
         memoryGame.flipped = [];
       }, 600);
     }
