@@ -70,6 +70,14 @@ body{
   padding:20px;
 }
 
+.tab-content{
+  display:none;
+}
+
+.tab-content.active{
+  display:block;
+}
+
 .header{
   text-align:center;
   margin-bottom:30px;
@@ -313,6 +321,91 @@ body{
   margin-top:5px;
 }
 
+.cases-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:15px;
+  margin-top:20px;
+}
+
+.case-card{
+  background:linear-gradient(135deg,rgba(20,40,80,0.8),rgba(20,60,100,0.8));
+  border:2px solid rgba(0,136,255,0.3);
+  border-radius:20px;
+  padding:25px;
+  text-align:center;
+  cursor:pointer;
+  transition:all 0.3s;
+  backdrop-filter:blur(10px);
+  position:relative;
+  overflow:hidden;
+}
+
+.case-card::before{
+  content:'';
+  position:absolute;
+  inset:-2px;
+  background:linear-gradient(45deg,transparent,rgba(0,136,255,0.2),transparent);
+  animation:shine 3s linear infinite;
+  z-index:0;
+}
+
+.case-card-content{
+  position:relative;
+  z-index:1;
+}
+
+.case-card.bronze{
+  border-color:rgba(205,127,50,0.5);
+  box-shadow:0 5px 20px rgba(205,127,50,0.2);
+}
+
+.case-card.silver{
+  border-color:rgba(192,192,192,0.5);
+  box-shadow:0 5px 20px rgba(192,192,192,0.2);
+}
+
+.case-card.gold{
+  border-color:rgba(255,215,0,0.5);
+  box-shadow:0 5px 20px rgba(255,215,0,0.3);
+}
+
+.case-card.daily{
+  border-color:rgba(0,136,255,0.5);
+  box-shadow:0 5px 20px rgba(0,136,255,0.3);
+}
+
+.case-card:hover{
+  transform:translateY(-5px);
+}
+
+.case-icon{
+  font-size:60px;
+  margin-bottom:15px;
+  filter:drop-shadow(0 0 15px rgba(0,136,255,0.6));
+}
+
+.case-name{
+  font-size:24px;
+  font-weight:700;
+  margin-bottom:10px;
+  font-family:'Orbitron',sans-serif;
+  text-shadow:0 0 10px rgba(0,136,255,0.6);
+}
+
+.case-price{
+  font-size:18px;
+  color:#ffd700;
+  margin:10px 0;
+  font-weight:600;
+}
+
+.case-rewards{
+  font-size:14px;
+  color:#00aaff;
+  margin-top:10px;
+}
+
 .nav-menu{
   position:fixed;
   bottom:0;
@@ -325,6 +418,7 @@ body{
   z-index:100;
   display:flex;
   gap:8px;
+  justify-content:center;
   overflow-x:auto;
   overflow-y:hidden;
   -webkit-overflow-scrolling:touch;
@@ -341,6 +435,12 @@ body{
   cursor:pointer;
   transition:all 0.3s;
   flex-shrink:0;
+}
+
+.nav-item.active{
+  background:rgba(0,102,255,0.3);
+  border-color:rgba(0,136,255,0.6);
+  color:#00ffff;
 }
 
 .nav-item:active{
@@ -469,47 +569,92 @@ body{
   <div class="logo">Beron</div>
 </div>
 
-<div class="stats-box">
-  <div class="coins" id="coins">0</div>
-  <div class="tokens" id="tokens">BER: 0</div>
-  <div class="rank" id="rank">Rank: Bronze</div>
-  <div class="energy-bar">
-    <div class="energy-fill" id="energyBar" style="width:100%"></div>
+<!-- MAIN TAB -->
+<div class="tab-content active" id="mainTab">
+  <div class="stats-box">
+    <div class="coins" id="coins">0</div>
+    <div class="tokens" id="tokens">BER: 0</div>
+    <div class="rank" id="rank">Rank: Bronze</div>
+    <div class="energy-bar">
+      <div class="energy-fill" id="energyBar" style="width:100%"></div>
+    </div>
+    <div style="font-size:12px;color:#0088ff;margin-top:5px;text-align:center">Energy: <span id="energyText">1000/1000</span></div>
   </div>
-  <div style="font-size:12px;color:#0088ff;margin-top:5px;text-align:center">Energy: <span id="energyText">1000/1000</span></div>
+
+  <div class="tap-section">
+    <button class="tap-btn" id="tapBtn">TAP</button>
+  </div>
+
+  <div class="quick-actions">
+    <button class="action-btn" onclick="exchange()">💎 Exchange</button>
+    <button class="action-btn" onclick="showWithdraw()">💰 Withdraw</button>
+  </div>
+
+  <div class="games-section">
+    <div class="section-title">🎮 Mini Games</div>
+    <div class="games-grid">
+      <div class="game-card" onclick="startDropGame()">
+        <div class="game-icon">⭐</div>
+        <div class="game-name">Drop Game</div>
+        <div class="game-reward">Stars +10 BP, Bombs -30 BP!</div>
+      </div>
+      <div class="game-card" onclick="startSnakeGame()">
+        <div class="game-icon">🐍</div>
+        <div class="game-name">Snake</div>
+        <div class="game-reward">Eat & grow!</div>
+      </div>
+      <div class="game-card" onclick="startFlappyGame()">
+        <div class="game-icon">🦅</div>
+        <div class="game-name">Cyber Bird</div>
+        <div class="game-reward">Fly high!</div>
+      </div>
+      <div class="game-card" onclick="startMemoryGame()">
+        <div class="game-icon">🧠</div>
+        <div class="game-name">Memory</div>
+        <div class="game-reward">Match cards!</div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="tap-section">
-  <button class="tap-btn" id="tapBtn">TAP</button>
-</div>
-
-<div class="quick-actions">
-  <button class="action-btn" onclick="openCase()">🎰 Daily Case</button>
-  <button class="action-btn" onclick="exchange()">💎 Exchange</button>
-</div>
-
-<div class="games-section">
-  <div class="section-title">🎮 Mini Games</div>
-  <div class="games-grid">
-    <div class="game-card" onclick="startDropGame()">
-      <div class="game-icon">⭐</div>
-      <div class="game-name">Drop Game</div>
-      <div class="game-reward">Stars +10 BP, Bombs -30 BP!</div>
+<!-- CASES TAB -->
+<div class="tab-content" id="casesTab">
+  <div class="section-title" style="margin-top:20px">🎰 Cases</div>
+  <div class="cases-grid">
+    <div class="case-card daily" onclick="openDailyCase()">
+      <div class="case-card-content">
+        <div class="case-icon">🎁</div>
+        <div class="case-name">Daily Case</div>
+        <div class="case-price">FREE (24h)</div>
+        <div class="case-rewards">Win: 100 - 10,000 BP</div>
+      </div>
     </div>
-    <div class="game-card" onclick="startSnakeGame()">
-      <div class="game-icon">🐍</div>
-      <div class="game-name">Snake</div>
-      <div class="game-reward">Eat & grow!</div>
+    
+    <div class="case-card bronze" onclick="openCase('bronze')">
+      <div class="case-card-content">
+        <div class="case-icon">📦</div>
+        <div class="case-name">Bronze Case</div>
+        <div class="case-price">💰 1,000 BP</div>
+        <div class="case-rewards">Win: 500 - 5,000 BP</div>
+      </div>
     </div>
-    <div class="game-card" onclick="startFlappyGame()">
-      <div class="game-icon">🦅</div>
-      <div class="game-name">Cyber Bird</div>
-      <div class="game-reward">Fly high!</div>
+    
+    <div class="case-card silver" onclick="openCase('silver')">
+      <div class="case-card-content">
+        <div class="case-icon">🎁</div>
+        <div class="case-name">Silver Case</div>
+        <div class="case-price">💰 5,000 BP</div>
+        <div class="case-rewards">Win: 3,000 - 20,000 BP</div>
+      </div>
     </div>
-    <div class="game-card" onclick="startMemoryGame()">
-      <div class="game-icon">🧠</div>
-      <div class="game-name">Memory</div>
-      <div class="game-reward">Match cards!</div>
+    
+    <div class="case-card gold" onclick="openCase('gold')">
+      <div class="case-card-content">
+        <div class="case-icon">💎</div>
+        <div class="case-name">Gold Case</div>
+        <div class="case-price">💰 20,000 BP</div>
+        <div class="case-rewards">Win: 15,000 - 100,000 BP</div>
+      </div>
     </div>
   </div>
 </div>
@@ -518,25 +663,27 @@ body{
 </div>
 
 <div class="nav-menu">
-  <div class="nav-item">⚡️ Mine</div>
-  <div class="nav-item">🎰 Cases</div>
-  <div class="nav-item">📈 Market</div>
-  <div class="nav-item">🌟 Skills</div>
-  <div class="nav-item">🎟 Pass</div>
-  <div class="nav-item">👥 Clans</div>
-  <div class="nav-item">⚔️ PvP</div>
-  <div class="nav-item">🔥 Rebirth</div>
-  <div class="nav-item">🏆 Leaderboard</div>
-  <div class="nav-item">💎 Withdraw</div>
+  <div class="nav-item active" onclick="switchTab('main')">🏠 Main</div>
+  <div class="nav-item" onclick="switchTab('cases')">🎰 Cases</div>
 </div>
 </div>
 
-<!-- Case Popup -->
+<!-- Case Opening Popup -->
 <div class="popup" id="casePopup">
   <div class="popup-content">
-    <div class="popup-title">🎰 Daily Case</div>
+    <div class="popup-title" id="caseTitle">🎰 Opening Case</div>
     <div class="popup-reward" id="caseReward">0</div>
     <button class="popup-btn" onclick="closeCase()">Claim!</button>
+  </div>
+</div>
+
+<!-- Withdraw Popup -->
+<div class="popup" id="withdrawPopup">
+  <div class="popup-content">
+    <div class="popup-title">💰 Withdraw</div>
+    <div style="font-size:48px;margin:30px 0;color:#ff0066;font-weight:bold;font-family:'Orbitron',sans-serif;text-shadow:0 0 30px rgba(255,0,102,0.8)">SOON!!!</div>
+    <div style="font-size:16px;color:#00aaff;margin-bottom:20px">Feature coming soon...</div>
+    <button class="popup-btn" onclick="closeWithdraw()">OK</button>
   </div>
 </div>
 
@@ -610,14 +757,14 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 // Game state
 let coins = parseInt(localStorage.getItem('coins')) || 0;
 let tokens = parseInt(localStorage.getItem('tokens')) || 0;
-let lastCase = parseInt(localStorage.getItem('lastCase')) || 0;
+let lastDailyCase = parseInt(localStorage.getItem('lastDailyCase')) || 0;
 let energy = parseInt(localStorage.getItem('energy')) || 1000;
 let lastEnergyUpdate = parseInt(localStorage.getItem('lastEnergyUpdate')) || Date.now();
 
 function save() {
   localStorage.setItem('coins', coins);
   localStorage.setItem('tokens', tokens);
-  localStorage.setItem('lastCase', lastCase);
+  localStorage.setItem('lastDailyCase', lastDailyCase);
   localStorage.setItem('energy', energy);
   localStorage.setItem('lastEnergyUpdate', lastEnergyUpdate);
 }
@@ -636,6 +783,20 @@ function updateUI() {
   const energyPercent = Math.min(100, (energy / 1000) * 100);
   document.getElementById('energyBar').style.width = energyPercent + '%';
   document.getElementById('energyText').innerText = energy + '/1000';
+}
+
+// TAB SWITCHING
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  
+  if (tab === 'main') {
+    document.getElementById('mainTab').classList.add('active');
+    document.querySelectorAll('.nav-item')[0].classList.add('active');
+  } else if (tab === 'cases') {
+    document.getElementById('casesTab').classList.add('active');
+    document.querySelectorAll('.nav-item')[1].classList.add('active');
+  }
 }
 
 // Energy regeneration
@@ -726,24 +887,63 @@ function showFloatingText(text, x, y) {
 }
 
 // DAILY CASE
-function openCase() {
+function openDailyCase() {
   const now = Date.now();
-  if (now - lastCase < 86400000) {
-    const timeLeft = 86400000 - (now - lastCase);
+  if (now - lastDailyCase < 86400000) {
+    const timeLeft = 86400000 - (now - lastDailyCase);
     const hours = Math.floor(timeLeft / 3600000);
     const mins = Math.floor((timeLeft % 3600000) / 60000);
-    alert(`Case available in ${hours}h ${mins}m`);
+    alert(`Daily Case available in ${hours}h ${mins}m`);
     return;
   }
   
-  lastCase = now;
-  localStorage.setItem('lastCase', lastCase);
-  
-  const popup = document.getElementById('casePopup');
-  const rewardEl = document.getElementById('caseReward');
-  popup.classList.add('active');
+  lastDailyCase = now;
+  save();
   
   const rewards = [10000, 5000, 3000, 1000, 500, 300, 100];
+  openCaseAnimation('🎁 Daily Case', rewards);
+}
+
+// BRONZE, SILVER, GOLD CASES
+function openCase(type) {
+  let cost = 0;
+  let rewards = [];
+  let title = '';
+  
+  if (type === 'bronze') {
+    cost = 1000;
+    rewards = [5000, 3000, 2000, 1500, 1000, 800, 500];
+    title = '📦 Bronze Case';
+  } else if (type === 'silver') {
+    cost = 5000;
+    rewards = [20000, 15000, 10000, 8000, 5000, 4000, 3000];
+    title = '🎁 Silver Case';
+  } else if (type === 'gold') {
+    cost = 20000;
+    rewards = [100000, 75000, 50000, 40000, 30000, 25000, 15000];
+    title = '💎 Gold Case';
+  }
+  
+  if (coins < cost) {
+    alert(`❌ Not enough BP! Need ${cost.toLocaleString()} BP`);
+    return;
+  }
+  
+  coins -= cost;
+  save();
+  updateUI();
+  
+  openCaseAnimation(title, rewards);
+}
+
+function openCaseAnimation(title, rewards) {
+  const popup = document.getElementById('casePopup');
+  const titleEl = document.getElementById('caseTitle');
+  const rewardEl = document.getElementById('caseReward');
+  
+  titleEl.innerText = title;
+  popup.classList.add('active');
+  
   let spins = 25;
   let i = 0;
   
@@ -753,7 +953,7 @@ function openCase() {
     if (i > spins) {
       clearInterval(spinInterval);
       const win = rewards[Math.floor(Math.random() * rewards.length)];
-      rewardEl.innerText = win + ' 💰';
+      rewardEl.innerText = win.toLocaleString() + ' 💰';
       coins += win;
       save();
       updateUI();
@@ -774,8 +974,17 @@ function exchange() {
     updateUI();
     alert('✅ Exchanged! +10 BER');
   } else {
-    alert('❌ Not enough coins (need 1000)');
+    alert('❌ Not enough BP (need 1000)');
   }
+}
+
+// WITHDRAW
+function showWithdraw() {
+  document.getElementById('withdrawPopup').classList.add('active');
+}
+
+function closeWithdraw() {
+  document.getElementById('withdrawPopup').classList.remove('active');
 }
 
 // === STAR TAP GAME ===
@@ -803,11 +1012,9 @@ function startDropGame() {
   function gameLoop() {
     if (dropGame.gameOver) return;
     
-    // Update timer
     const elapsed = Math.floor((Date.now() - dropGame.startTime) / 1000);
     dropGame.timeLeft = Math.max(0, 30 - elapsed);
     
-    // Format timer display
     const mins = Math.floor(dropGame.timeLeft / 60);
     const secs = dropGame.timeLeft % 60;
     document.getElementById('dropTimer').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
@@ -820,7 +1027,6 @@ function startDropGame() {
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    // Spawn drops
     dropGame.frame++;
     if (dropGame.frame % 20 === 0) {
       dropGame.drops.push({
@@ -833,15 +1039,12 @@ function startDropGame() {
       });
     }
     
-    // Update and draw drops
     dropGame.drops = dropGame.drops.filter(drop => {
       if (drop.clicked) return false;
       
       drop.y += drop.speed;
       
-      // Draw drop - green stars like in image
       if (drop.type === 'star') {
-        // Green glowing star
         ctx.shadowBlur = 15;
         ctx.shadowColor = '#ffffff';
         ctx.fillStyle = '#00ff00';
@@ -849,7 +1052,6 @@ function startDropGame() {
         ctx.fillText('✱', drop.x + 5, drop.y + 32);
         ctx.shadowBlur = 0;
       } else {
-        // Bomb
         ctx.shadowBlur = 10;
         ctx.shadowColor = '#ff0000';
         ctx.fillStyle = '#ff0000';
@@ -861,7 +1063,6 @@ function startDropGame() {
       return drop.y < canvas.height;
     });
     
-    // Update score display
     document.getElementById('dropScore').innerText = 'BP: ' + dropGame.bp;
     
     requestAnimationFrame(gameLoop);
@@ -869,7 +1070,6 @@ function startDropGame() {
   
   gameLoop();
   
-  // Click/Touch handling
   function handleClick(e) {
     if (dropGame.gameOver) return;
     
@@ -877,12 +1077,10 @@ function startDropGame() {
     const clickX = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
     const clickY = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
     
-    // Check if clicked on any drop
     for (let i = dropGame.drops.length - 1; i >= 0; i--) {
       const drop = dropGame.drops[i];
       if (drop.clicked) continue;
       
-      // Center of the visual element (adjusted for text rendering)
       const centerX = drop.x + 20;
       const centerY = drop.y + 20;
       
@@ -890,15 +1088,12 @@ function startDropGame() {
       const dy = clickY - centerY;
       const distance = Math.sqrt(dx * dx + dy * dy);
       
-      // Larger hitbox for easier tapping (radius 30 instead of size/2)
       if (distance < 30) {
         drop.clicked = true;
         
         if (drop.type === 'star') {
-          // Clicked on star - gain 10 BP
           dropGame.bp += 10;
         } else {
-          // Clicked on bomb - lose 30 BP
           dropGame.bp = Math.max(0, dropGame.bp - 30);
         }
         
@@ -968,20 +1163,14 @@ function startSnakeGame() {
     if (snakeGame.gameOver) return;
     
     const now = Date.now();
-    // REMOVED DELAY - instant response
-    
     snakeGame.lastUpdate = now;
-    
-    // Update direction - INSTANT
     snakeGame.direction = snakeGame.nextDirection;
     
-    // Move snake
     const head = {
       x: snakeGame.snake[0].x + snakeGame.direction.x,
       y: snakeGame.snake[0].y + snakeGame.direction.y
     };
     
-    // Check collisions
     if (head.x < 0 || head.x >= canvas.width / gridSize ||
         head.y < 0 || head.y >= canvas.height / gridSize ||
         snakeGame.snake.some(seg => seg.x === head.x && seg.y === head.y)) {
@@ -991,7 +1180,6 @@ function startSnakeGame() {
     
     snakeGame.snake.unshift(head);
     
-    // Check food
     if (head.x === snakeGame.food.x && head.y === snakeGame.food.y) {
       snakeGame.score += 10;
       document.getElementById('snakeScore').innerText = snakeGame.score;
@@ -1000,11 +1188,9 @@ function startSnakeGame() {
       snakeGame.snake.pop();
     }
     
-    // Draw
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    // Grid
     ctx.strokeStyle = '#111';
     for (let i = 0; i < canvas.width; i += gridSize) {
       ctx.beginPath();
@@ -1019,7 +1205,6 @@ function startSnakeGame() {
       ctx.stroke();
     }
     
-    // Snake
     ctx.fillStyle = '#00ff88';
     snakeGame.snake.forEach((seg, i) => {
       ctx.fillRect(seg.x * gridSize + 1, seg.y * gridSize + 1, gridSize - 2, gridSize - 2);
@@ -1030,17 +1215,14 @@ function startSnakeGame() {
       }
     });
     
-    // Food
     ctx.fillStyle = '#ffd700';
     ctx.fillRect(snakeGame.food.x * gridSize + 1, snakeGame.food.y * gridSize + 1, gridSize - 2, gridSize - 2);
     
-    // Add delay here for snake movement speed
     setTimeout(() => requestAnimationFrame(gameLoop), snakeGame.speed);
   }
   
   gameLoop();
   
-  // Touch controls - INSTANT RESPONSE
   let touchStartX = 0;
   let touchStartY = 0;
   
@@ -1055,7 +1237,6 @@ function startSnakeGame() {
     const dx = touchEndX - touchStartX;
     const dy = touchEndY - touchStartY;
     
-    // INSTANT direction change
     if (Math.abs(dx) > Math.abs(dy)) {
       if (dx > 0 && snakeGame.direction.x === 0) snakeGame.nextDirection = {x: 1, y: 0};
       if (dx < 0 && snakeGame.direction.x === 0) snakeGame.nextDirection = {x: -1, y: 0};
@@ -1065,7 +1246,6 @@ function startSnakeGame() {
     }
   });
   
-  // Keyboard controls - INSTANT RESPONSE
   document.addEventListener('keydown', (e) => {
     if (!snakeGame || snakeGame.gameOver) return;
     if (e.key === 'ArrowUp' && snakeGame.direction.y === 0) snakeGame.nextDirection = {x: 0, y: -1};
@@ -1123,17 +1303,14 @@ function startFlappyGame() {
     ctx.fillStyle = '#001122';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    // Update bird
     flappyGame.birdVelocity += flappyGame.gravity;
     flappyGame.birdY += flappyGame.birdVelocity;
     
-    // Check bounds
     if (flappyGame.birdY < 0 || flappyGame.birdY > canvas.height - 30) {
       endFlappyGame();
       return;
     }
     
-    // Spawn pipes
     flappyGame.frame++;
     if (flappyGame.frame % 80 === 0) {
       const gap = 150;
@@ -1146,16 +1323,13 @@ function startFlappyGame() {
       });
     }
     
-    // Update and draw pipes
     flappyGame.pipes = flappyGame.pipes.filter(pipe => {
       pipe.x -= 4;
       
-      // Draw pipes
       ctx.fillStyle = '#00ff88';
       ctx.fillRect(pipe.x, 0, 50, pipe.topHeight);
       ctx.fillRect(pipe.x, pipe.bottomY, 50, canvas.height - pipe.bottomY);
       
-      // Collision
       if (pipe.x < 80 && pipe.x > 0) {
         if (flappyGame.birdY < pipe.topHeight || flappyGame.birdY + 30 > pipe.bottomY) {
           endFlappyGame();
@@ -1163,7 +1337,6 @@ function startFlappyGame() {
         }
       }
       
-      // Score
       if (!pipe.scored && pipe.x + 50 < 50) {
         pipe.scored = true;
         flappyGame.score++;
@@ -1173,7 +1346,6 @@ function startFlappyGame() {
       return pipe.x > -50;
     });
     
-    // Draw bird
     ctx.fillStyle = '#00ffff';
     ctx.fillRect(50, flappyGame.birdY, 30, 30);
     ctx.fillStyle = '#fff';
@@ -1185,7 +1357,6 @@ function startFlappyGame() {
   
   gameLoop();
   
-  // Controls
   const jump = () => {
     if (!flappyGame.gameOver) {
       flappyGame.birdVelocity = flappyGame.jumpPower;
