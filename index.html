@@ -125,18 +125,18 @@ body{
 }
 
 .coins{
-  font-size:38px;
+  font-size:32px;
   font-weight:bold;
   color:#ffd700;
   text-shadow:0 0 20px rgba(255,215,0,0.6);
-  margin-bottom:8px;
+  margin-bottom:5px;
   font-family:'Orbitron',sans-serif;
 }
 
 .tokens,.rank{
-  font-size:16px;
+  font-size:13px;
   color:#0088ff;
-  margin:5px 0;
+  margin:2px 0;
   text-shadow:0 0 10px rgba(0,136,255,0.5);
 }
 
@@ -572,9 +572,15 @@ body{
 <!-- MAIN TAB -->
 <div class="tab-content active" id="mainTab">
   <div class="stats-box">
-    <div class="coins" id="coins">0</div>
-    <div class="tokens" id="tokens">BER: 0</div>
-    <div class="rank" id="rank">Rank: Bronze</div>
+    <div class="coins" id="coins">$0</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px">
+      <div class="tokens" id="tokens">BER Token: 0</div>
+      <div class="tokens" id="stars">BER Stars: 0</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:5px;margin-bottom:8px">
+      <div class="tokens" id="bertons">BerTons: 0</div>
+      <div class="tokens" style="text-align:right" id="rank">Bronze</div>
+    </div>
     <div class="energy-bar">
       <div class="energy-fill" id="energyBar" style="width:100%"></div>
     </div>
@@ -596,7 +602,7 @@ body{
       <div class="game-card" onclick="startDropGame()">
         <div class="game-icon">⭐</div>
         <div class="game-name">Drop Game</div>
-        <div class="game-reward">Stars +10 BP, Bombs -30 BP!</div>
+        <div class="game-reward">Stars +$10, Bombs -$30!</div>
       </div>
       <div class="game-card" onclick="startSnakeGame()">
         <div class="game-icon">🐍</div>
@@ -626,7 +632,7 @@ body{
         <div class="case-icon">🎁</div>
         <div class="case-name">Daily Case</div>
         <div class="case-price">FREE (24h)</div>
-        <div class="case-rewards">Win: 100 - 10,000 BP</div>
+        <div class="case-rewards">Win: $100 - $10,000</div>
       </div>
     </div>
     
@@ -634,8 +640,8 @@ body{
       <div class="case-card-content">
         <div class="case-icon">📦</div>
         <div class="case-name">Bronze Case</div>
-        <div class="case-price">💰 1,000 BP</div>
-        <div class="case-rewards">Win: 500 - 5,000 BP</div>
+        <div class="case-price">💰 $1,000</div>
+        <div class="case-rewards">Win: $500 - $5,000</div>
       </div>
     </div>
     
@@ -643,8 +649,8 @@ body{
       <div class="case-card-content">
         <div class="case-icon">🎁</div>
         <div class="case-name">Silver Case</div>
-        <div class="case-price">💰 5,000 BP</div>
-        <div class="case-rewards">Win: 3,000 - 20,000 BP</div>
+        <div class="case-price">💰 $5,000</div>
+        <div class="case-rewards">Win: $3,000 - $20,000</div>
       </div>
     </div>
     
@@ -652,8 +658,8 @@ body{
       <div class="case-card-content">
         <div class="case-icon">💎</div>
         <div class="case-name">Gold Case</div>
-        <div class="case-price">💰 20,000 BP</div>
-        <div class="case-rewards">Win: 15,000 - 100,000 BP</div>
+        <div class="case-price">💰 $20,000</div>
+        <div class="case-rewards">Win: $15,000 - $100,000</div>
       </div>
     </div>
   </div>
@@ -693,11 +699,11 @@ body{
     <div class="popup-title">⭐ Star Tap Game</div>
     <div class="game-canvas" id="dropCanvas">
       <div style="position:absolute;top:10px;left:10px;font-size:24px;color:#ffd700;font-weight:bold;text-shadow:0 0 10px rgba(255,215,0,0.8);font-family:'Orbitron',sans-serif;z-index:10;" id="dropTimer">00:30</div>
-      <div class="game-score" id="dropScore">BP: 0</div>
+      <div class="game-score" id="dropScore">$0</div>
       <canvas id="dropGameCanvas" width="350" height="500"></canvas>
       <div class="game-over" id="dropGameOver">
         <div class="game-over-text">TIME'S UP!</div>
-        <div style="font-size:24px;color:#ffd700;margin-bottom:20px">BP Earned: <span id="dropEarned">0</span> 💰</div>
+        <div style="font-size:24px;color:#ffd700;margin-bottom:20px">Earned: $<span id="dropEarned">0</span> 💰</div>
         <button class="popup-btn" onclick="restartDropGame()">Play Again</button>
         <button class="popup-btn" onclick="closeDropGame()">Exit</button>
       </div>
@@ -710,11 +716,11 @@ body{
   <div class="popup-content" style="max-width:400px">
     <div class="popup-title">🐍 Snake Game</div>
     <div class="game-canvas" id="snakeCanvas">
-      <div class="game-score" id="snakeScore">0</div>
+      <div class="game-score" id="snakeScore">$0</div>
       <canvas id="snakeGameCanvas" width="350" height="500"></canvas>
       <div class="game-over" id="snakeGameOver">
         <div class="game-over-text">GAME OVER</div>
-        <div style="font-size:24px;color:#ffd700;margin-bottom:20px">Earned: <span id="snakeEarned">0</span> 💰</div>
+        <div style="font-size:24px;color:#ffd700;margin-bottom:20px">Earned: $<span id="snakeEarned">0</span> 💰</div>
         <button class="popup-btn" onclick="restartSnakeGame()">Play Again</button>
         <button class="popup-btn" onclick="closeSnakeGame()">Exit</button>
       </div>
@@ -727,11 +733,11 @@ body{
   <div class="popup-content" style="max-width:400px">
     <div class="popup-title">🦅 Cyber Bird</div>
     <div class="game-canvas" id="flappyCanvas">
-      <div class="game-score" id="flappyScore">0</div>
+      <div class="game-score" id="flappyScore">$0</div>
       <canvas id="flappyGameCanvas" width="350" height="500"></canvas>
       <div class="game-over" id="flappyGameOver">
         <div class="game-over-text">GAME OVER</div>
-        <div style="font-size:24px;color:#ffd700;margin-bottom:20px">Earned: <span id="flappyEarned">0</span> 💰</div>
+        <div style="font-size:24px;color:#ffd700;margin-bottom:20px">Earned: $<span id="flappyEarned">0</span> 💰</div>
         <button class="popup-btn" onclick="restartFlappyGame()">Play Again</button>
         <button class="popup-btn" onclick="closeFlappyGame()">Exit</button>
       </div>
@@ -744,7 +750,7 @@ body{
   <div class="popup-content" style="max-width:400px">
     <div class="popup-title">🧠 Memory Game</div>
     <div style="font-size:18px;color:#0088ff;margin-bottom:15px">Find all pairs!</div>
-    <div class="game-score" style="position:static;margin-bottom:15px">Score: <span id="memoryScore">0</span></div>
+    <div class="game-score" style="position:static;margin-bottom:15px">Score: $<span id="memoryScore">0</span></div>
     <div id="memoryGrid" style="display:grid;grid-template-columns:repeat(4,70px);gap:10px;justify-content:center;margin:20px auto"></div>
     <button class="popup-btn" onclick="closeMemoryGame()" style="margin-top:20px">Exit</button>
   </div>
@@ -757,6 +763,8 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 // Game state
 let coins = parseInt(localStorage.getItem('coins')) || 0;
 let tokens = parseInt(localStorage.getItem('tokens')) || 0;
+let stars = parseInt(localStorage.getItem('stars')) || 0;
+let bertons = parseInt(localStorage.getItem('bertons')) || 0;
 let lastDailyCase = parseInt(localStorage.getItem('lastDailyCase')) || 0;
 let energy = parseInt(localStorage.getItem('energy')) || 1000;
 let lastEnergyUpdate = parseInt(localStorage.getItem('lastEnergyUpdate')) || Date.now();
@@ -764,21 +772,25 @@ let lastEnergyUpdate = parseInt(localStorage.getItem('lastEnergyUpdate')) || Dat
 function save() {
   localStorage.setItem('coins', coins);
   localStorage.setItem('tokens', tokens);
+  localStorage.setItem('stars', stars);
+  localStorage.setItem('bertons', bertons);
   localStorage.setItem('lastDailyCase', lastDailyCase);
   localStorage.setItem('energy', energy);
   localStorage.setItem('lastEnergyUpdate', lastEnergyUpdate);
 }
 
 function updateUI() {
-  document.getElementById('coins').innerText = coins.toLocaleString();
-  document.getElementById('tokens').innerText = 'BER: ' + tokens;
+  document.getElementById('coins').innerText = '$' + coins.toLocaleString();
+  document.getElementById('tokens').innerText = 'BER Token: ' + tokens.toLocaleString();
+  document.getElementById('stars').innerText = 'BER Stars: ' + stars.toLocaleString();
+  document.getElementById('bertons').innerText = 'BerTons: ' + bertons.toLocaleString();
   
   let rank = 'Bronze';
   if (coins > 1000000) rank = 'Diamond';
   else if (coins > 500000) rank = 'Platinum';
   else if (coins > 100000) rank = 'Gold';
   else if (coins > 10000) rank = 'Silver';
-  document.getElementById('rank').innerText = 'Rank: ' + rank;
+  document.getElementById('rank').innerText = rank;
   
   const energyPercent = Math.min(100, (energy / 1000) * 100);
   document.getElementById('energyBar').style.width = energyPercent + '%';
@@ -925,7 +937,7 @@ function openCase(type) {
   }
   
   if (coins < cost) {
-    alert(`❌ Not enough BP! Need ${cost.toLocaleString()} BP`);
+    alert(`❌ Not enough money! Need $${cost.toLocaleString()}`);
     return;
   }
   
@@ -972,9 +984,9 @@ function exchange() {
     tokens += 10;
     save();
     updateUI();
-    alert('✅ Exchanged! +10 BER');
+    alert('✅ Exchanged! +10 BER Token');
   } else {
-    alert('❌ Not enough BP (need 1000)');
+    alert('❌ Not enough money (need $1000)');
   }
 }
 
@@ -1006,7 +1018,7 @@ function startDropGame() {
     startTime: Date.now()
   };
   
-  document.getElementById('dropScore').innerText = 'BP: 0';
+  document.getElementById('dropScore').innerText = '$0';
   document.getElementById('dropTimer').innerText = '00:30';
   
   function gameLoop() {
@@ -1047,7 +1059,7 @@ function startDropGame() {
       if (drop.type === 'star') {
         ctx.shadowBlur = 15;
         ctx.shadowColor = '#ffffff';
-        ctx.fillStyle = '#00ff00';
+        ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 35px Arial';
         ctx.fillText('✱', drop.x + 5, drop.y + 32);
         ctx.shadowBlur = 0;
@@ -1063,7 +1075,7 @@ function startDropGame() {
       return drop.y < canvas.height;
     });
     
-    document.getElementById('dropScore').innerText = 'BP: ' + dropGame.bp;
+    document.getElementById('dropScore').innerText = '$' + dropGame.bp;
     
     requestAnimationFrame(gameLoop);
   }
@@ -1150,7 +1162,7 @@ function startSnakeGame() {
     lastUpdate: Date.now()
   };
   
-  document.getElementById('snakeScore').innerText = '0';
+  document.getElementById('snakeScore').innerText = '$0';
   
   function placeFood() {
     snakeGame.food = {
@@ -1182,7 +1194,7 @@ function startSnakeGame() {
     
     if (head.x === snakeGame.food.x && head.y === snakeGame.food.y) {
       snakeGame.score += 10;
-      document.getElementById('snakeScore').innerText = snakeGame.score;
+      document.getElementById('snakeScore').innerText = '$' + (snakeGame.score * 3);
       placeFood();
     } else {
       snakeGame.snake.pop();
@@ -1287,15 +1299,15 @@ function startFlappyGame() {
   flappyGame = {
     birdY: 250,
     birdVelocity: 0,
-    gravity: 0.6,
-    jumpPower: -9,
+    gravity: 0.5,
+    jumpPower: -10,
     pipes: [],
     score: 0,
     gameOver: false,
     frame: 0
   };
   
-  document.getElementById('flappyScore').innerText = '0';
+  document.getElementById('flappyScore').innerText = '$0';
   
   function gameLoop() {
     if (flappyGame.gameOver) return;
@@ -1312,9 +1324,9 @@ function startFlappyGame() {
     }
     
     flappyGame.frame++;
-    if (flappyGame.frame % 80 === 0) {
-      const gap = 150;
-      const pipeHeight = 100 + Math.random() * 200;
+    if (flappyGame.frame % 90 === 0) {
+      const gap = 160;
+      const pipeHeight = 100 + Math.random() * 180;
       flappyGame.pipes.push({
         x: canvas.width,
         topHeight: pipeHeight,
@@ -1340,7 +1352,7 @@ function startFlappyGame() {
       if (!pipe.scored && pipe.x + 50 < 50) {
         pipe.scored = true;
         flappyGame.score++;
-        document.getElementById('flappyScore').innerText = flappyGame.score;
+        document.getElementById('flappyScore').innerText = '$' + (flappyGame.score * 20);
       }
       
       return pipe.x > -50;
@@ -1357,13 +1369,16 @@ function startFlappyGame() {
   
   gameLoop();
   
-  const jump = () => {
+  const jump = (e) => {
+    if (e && e.preventDefault) {
+      e.preventDefault();
+    }
     if (!flappyGame.gameOver) {
       flappyGame.birdVelocity = flappyGame.jumpPower;
     }
   };
   
-  canvas.addEventListener('touchstart', jump);
+  canvas.addEventListener('touchstart', jump, {passive: false});
   canvas.addEventListener('click', jump);
 }
 
@@ -1452,7 +1467,7 @@ function flipCard(card, index) {
           coins += memoryGame.score * 2;
           save();
           updateUI();
-          alert(`🎉 Victory! +${memoryGame.score * 2} coins!`);
+          alert(`🎉 Victory! +$${memoryGame.score * 2}!`);
           startMemoryGame();
         }, 500);
       }
