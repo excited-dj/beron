@@ -102,7 +102,7 @@ body{
   font-family:'Poppins',sans-serif;
   font-size:48px;
   font-weight:900;
-  background:linear-gradient(135deg,#fff 0%,#ccc 50%,#fff 100%);
+  background:linear-gradient(135deg,#fff 0%,#e0e0e0 50%,#fff 100%);
   background-size:200%;
   -webkit-background-clip:text;
   background-clip:text;
@@ -119,7 +119,7 @@ body{
 }
 
 .stats-box{
-  background:rgba(20,20,30,0.8);
+  background:rgba(30,30,40,0.8);
   border-radius:20px;
   padding:20px;
   margin-bottom:20px;
@@ -163,6 +163,14 @@ body{
   z-index:1;
 }
 
+.passive-income{
+  font-size:14px;
+  color:#4ade80;
+  text-shadow:0 0 10px rgba(74,222,128,0.5);
+  margin-top:5px;
+  font-weight:600;
+}
+
 .currency-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -200,16 +208,17 @@ body{
 }
 
 .rank-badge{
-  background:linear-gradient(135deg,#fff,#fff);
+  background:linear-gradient(135deg,#f5f5f5,#e0e0e0);
   padding:8px 16px;
   border-radius:20px;
   font-weight:700;
   font-size:14px;
   text-align:center;
   margin-top:10px;
-  box-shadow:0 5px 20px rgba(255,255,255,0.4);
+  box-shadow:0 5px 20px rgba(255,255,255,0.3);
   position:relative;
   z-index:1;
+  color:#333;
 }
 
 .energy-bar{
@@ -243,27 +252,30 @@ body{
   height:180px;
   border-radius:50%;
   border:none;
-  background:linear-gradient(135deg,#888 0%,#666 100%);
+  background:linear-gradient(135deg,#b8b8b8 0%,#888 100%);
   color:#fff;
   font-size:36px;
   font-weight:900;
   font-family:'Poppins',sans-serif;
   cursor:pointer;
   box-shadow:
-    0 0 40px rgba(120,120,120,0.5),
-    0 0 60px rgba(100,100,100,0.3),
-    inset 0 0 20px rgba(150,150,150,0.2);
+    0 0 40px rgba(180,180,180,0.5),
+    0 0 60px rgba(150,150,150,0.3),
+    inset 0 0 20px rgba(200,200,200,0.2);
   transition:all 0.15s;
   position:relative;
   overflow:hidden;
   touch-action:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .tap-btn::before{
   content:'';
   position:absolute;
   inset:-20px;
-  background:conic-gradient(from 0deg,transparent,rgba(150,150,150,0.3),transparent);
+  background:conic-gradient(from 0deg,transparent,rgba(200,200,200,0.3),transparent);
   animation:rotate 2s linear infinite;
 }
 
@@ -272,10 +284,29 @@ body{
   100%{transform:rotate(360deg)}
 }
 
+.tap-btn-content{
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:5px;
+}
+
+.tap-btn-skin{
+  font-size:60px;
+  filter:drop-shadow(0 0 10px rgba(255,255,255,0.5));
+}
+
+.tap-btn-text{
+  font-size:18px;
+  font-weight:700;
+}
+
 .tap-btn:active{
   transform:scale(0.9);
   box-shadow:
-    0 0 30px rgba(120,120,120,0.6),
+    0 0 30px rgba(180,180,180,0.6),
     inset 0 0 30px rgba(0,0,0,0.4);
 }
 
@@ -317,9 +348,9 @@ body{
 }
 
 .action-btn{
-  background:linear-gradient(135deg,rgba(80,80,80,0.3),rgba(60,60,60,0.3));
-  border:2px solid rgba(120,120,120,0.4);
-  color:#999;
+  background:linear-gradient(135deg,rgba(160,160,160,0.4),rgba(120,120,120,0.4));
+  border:2px solid rgba(200,200,200,0.5);
+  color:#e0e0e0;
   padding:15px;
   border-radius:15px;
   font-size:15px;
@@ -327,13 +358,13 @@ body{
   cursor:pointer;
   transition:all 0.3s;
   backdrop-filter:blur(10px);
-  text-shadow:0 0 10px rgba(100,100,100,0.5);
+  text-shadow:0 0 10px rgba(200,200,200,0.5);
 }
 
 .action-btn:hover{
-  background:linear-gradient(135deg,rgba(100,100,100,0.4),rgba(80,80,80,0.4));
+  background:linear-gradient(135deg,rgba(180,180,180,0.5),rgba(140,140,140,0.5));
   transform:translateY(-3px);
-  box-shadow:0 8px 25px rgba(120,120,120,0.4);
+  box-shadow:0 8px 25px rgba(180,180,180,0.4);
 }
 
 .action-btn:active{
@@ -343,9 +374,9 @@ body{
 .section-title{
   font-family:'Poppins',sans-serif;
   font-size:24px;
-  color:#ccc;
+  color:#e0e0e0;
   margin:25px 0 15px 0;
-  text-shadow:0 0 20px rgba(200,200,200,0.8);
+  text-shadow:0 0 20px rgba(224,224,224,0.8);
   text-align:center;
   letter-spacing:2px;
 }
@@ -357,7 +388,7 @@ body{
 }
 
 .game-card{
-  background:linear-gradient(135deg,rgba(40,20,60,0.8),rgba(20,40,60,0.8));
+  background:linear-gradient(135deg,rgba(60,40,80,0.8),rgba(40,60,80,0.8));
   border:2px solid rgba(200,200,200,0.3);
   border-radius:15px;
   padding:18px;
@@ -397,15 +428,9 @@ body{
 .game-name{
   font-size:16px;
   font-weight:700;
-  color:#ccc;
-  text-shadow:0 0 10px rgba(200,200,200,0.5);
+  color:#e0e0e0;
+  text-shadow:0 0 10px rgba(224,224,224,0.5);
   margin-bottom:5px;
-}
-
-.game-reward{
-  font-size:11px;
-  color:#fff;
-  margin-top:5px;
 }
 
 .cases-grid{
@@ -416,7 +441,7 @@ body{
 }
 
 .case-card{
-  background:linear-gradient(135deg,rgba(40,20,60,0.9),rgba(20,40,60,0.9));
+  background:linear-gradient(135deg,rgba(60,40,80,0.9),rgba(40,60,80,0.9));
   border:3px solid;
   border-radius:20px;
   padding:25px;
@@ -448,8 +473,8 @@ body{
 }
 
 .case-card.daily{
-  border-color:#ccc;
-  box-shadow:0 10px 40px rgba(200,200,200,0.4);
+  border-color:#e0e0e0;
+  box-shadow:0 10px 40px rgba(224,224,224,0.4);
 }
 
 .case-card.bronze{
@@ -463,7 +488,7 @@ body{
 }
 
 .case-card.gold{
-  border-color:#fff;
+  border-color:#ffd700;
   box-shadow:0 10px 40px rgba(255,215,0,0.5);
 }
 
@@ -488,6 +513,7 @@ body{
   margin-bottom:12px;
   font-family:'Poppins',sans-serif;
   text-shadow:0 0 15px currentColor;
+  color:#e0e0e0;
 }
 
 .case-price{
@@ -523,7 +549,7 @@ body{
   bottom:0;
   left:0;
   right:0;
-  background:rgba(10,10,20,0.95);
+  background:rgba(20,20,30,0.95);
   backdrop-filter:blur(20px);
   border-top:2px solid rgba(200,200,200,0.3);
   padding:8px;
@@ -536,9 +562,9 @@ body{
 }
 
 .nav-item{
-  background:rgba(200,200,200,0.1);
-  border:2px solid rgba(200,200,200,0.3);
-  color:#ccc;
+  background:rgba(200,200,200,0.15);
+  border:2px solid rgba(200,200,200,0.4);
+  color:#d0d0d0;
   padding:10px 14px;
   border-radius:12px;
   font-size:12px;
@@ -550,10 +576,10 @@ body{
 }
 
 .nav-item.active{
-  background:linear-gradient(135deg,rgba(255,255,255,0.3),rgba(200,200,200,0.3));
-  border-color:#ccc;
+  background:linear-gradient(135deg,rgba(255,255,255,0.3),rgba(220,220,220,0.3));
+  border-color:#e0e0e0;
   color:#fff;
-  box-shadow:0 5px 20px rgba(200,200,200,0.5);
+  box-shadow:0 5px 20px rgba(224,224,224,0.5);
 }
 
 .nav-item:active{
@@ -577,7 +603,7 @@ body{
 .popup.active{display:flex}
 
 .popup-content{
-  background:linear-gradient(135deg,rgba(40,20,60,0.95),rgba(20,40,60,0.95));
+  background:linear-gradient(135deg,rgba(60,40,80,0.95),rgba(40,60,80,0.95));
   border:3px solid rgba(200,200,200,0.5);
   border-radius:25px;
   padding:30px;
@@ -585,6 +611,8 @@ body{
   max-width:90%;
   animation:popIn 0.5s cubic-bezier(0.68,-0.55,0.265,1.55);
   box-shadow:0 20px 60px rgba(200,200,200,0.3);
+  max-height:90vh;
+  overflow-y:auto;
 }
 
 @keyframes popIn{
@@ -594,10 +622,10 @@ body{
 
 .popup-title{
   font-size:32px;
-  color:#ccc;
+  color:#e0e0e0;
   margin-bottom:20px;
   font-family:'Poppins',sans-serif;
-  text-shadow:0 0 30px rgba(200,200,200,0.8);
+  text-shadow:0 0 30px rgba(224,224,224,0.8);
   letter-spacing:2px;
 }
 
@@ -617,7 +645,7 @@ body{
 }
 
 .popup-btn{
-  background:linear-gradient(135deg,#888,#666);
+  background:linear-gradient(135deg,#b8b8b8,#888);
   color:#fff;
   border:none;
   padding:14px 32px;
@@ -626,7 +654,7 @@ body{
   font-weight:bold;
   cursor:pointer;
   margin:8px;
-  box-shadow:0 8px 25px rgba(120,120,120,0.4);
+  box-shadow:0 8px 25px rgba(180,180,180,0.4);
   transition:all 0.3s;
   font-family:'Poppins',sans-serif;
 }
@@ -636,10 +664,9 @@ body{
 }
 
 .popup-btn:hover{
-  box-shadow:0 12px 35px rgba(120,120,120,0.6);
+  box-shadow:0 12px 35px rgba(180,180,180,0.6);
 }
 
-/* CASE OPENING ANIMATION */
 .case-reel{
   width:100%;
   max-width:350px;
@@ -683,7 +710,6 @@ body{
   z-index:10;
 }
 
-/* MINES GAME */
 .mines-grid{
   display:grid;
   grid-template-columns:repeat(5,1fr);
@@ -733,7 +759,6 @@ body{
   100%{transform:scale(1)}
 }
 
-/* COIN FLIP */
 .coin-container{
   perspective:1000px;
   margin:30px auto;
@@ -823,7 +848,6 @@ body{
   color:#000;
 }
 
-/* BET INPUT */
 .bet-input-group{
   margin:20px 0;
 }
@@ -860,10 +884,10 @@ body{
 
 .bet-preset{
   padding:8px 16px;
-  background:rgba(200,200,200,0.1);
-  border:2px solid rgba(200,200,200,0.3);
+  background:rgba(200,200,200,0.15);
+  border:2px solid rgba(200,200,200,0.4);
   border-radius:10px;
-  color:#ccc;
+  color:#d0d0d0;
   cursor:pointer;
   transition:all 0.3s;
   font-weight:700;
@@ -874,7 +898,6 @@ body{
   transform:scale(1.05);
 }
 
-/* TASKS */
 .task-list{
   display:flex;
   flex-direction:column;
@@ -883,7 +906,7 @@ body{
 }
 
 .task-item{
-  background:linear-gradient(135deg,rgba(40,20,60,0.8),rgba(20,40,60,0.8));
+  background:linear-gradient(135deg,rgba(60,40,80,0.8),rgba(40,60,80,0.8));
   border:2px solid rgba(200,200,200,0.3);
   border-radius:15px;
   padding:18px;
@@ -905,7 +928,7 @@ body{
 .task-title{
   font-size:16px;
   font-weight:700;
-  color:#ccc;
+  color:#e0e0e0;
   margin-bottom:5px;
 }
 
@@ -916,7 +939,7 @@ body{
 
 .task-btn{
   padding:10px 20px;
-  background:linear-gradient(135deg,#888,#666);
+  background:linear-gradient(135deg,#b8b8b8,#888);
   border:none;
   border-radius:10px;
   color:#fff;
@@ -927,7 +950,7 @@ body{
 
 .task-btn:hover{
   transform:scale(1.05);
-  box-shadow:0 5px 20px rgba(120,120,120,0.4);
+  box-shadow:0 5px 20px rgba(180,180,180,0.4);
 }
 
 .task-btn.completed{
@@ -936,7 +959,6 @@ body{
   cursor:default;
 }
 
-/* LEADERBOARD */
 .leaderboard-list{
   display:flex;
   flex-direction:column;
@@ -945,7 +967,7 @@ body{
 }
 
 .leaderboard-item{
-  background:rgba(20,20,30,0.8);
+  background:rgba(30,30,40,0.8);
   border:2px solid rgba(200,200,200,0.2);
   border-radius:12px;
   padding:15px;
@@ -978,12 +1000,11 @@ body{
 }
 
 .leaderboard-item.current{
-  border-color:#fff;
-  background:rgba(255,255,255,0.1);
-  box-shadow:0 5px 20px rgba(255,255,255,0.3);
+  border-color:#e0e0e0;
+  background:rgba(224,224,224,0.1);
+  box-shadow:0 5px 20px rgba(224,224,224,0.3);
 }
 
-/* DEPOSIT */
 .deposit-options{
   display:flex;
   flex-direction:column;
@@ -992,7 +1013,7 @@ body{
 }
 
 .deposit-option{
-  background:rgba(20,20,30,0.8);
+  background:rgba(30,30,40,0.8);
   border:2px solid rgba(200,200,200,0.3);
   border-radius:15px;
   padding:20px;
@@ -1008,17 +1029,175 @@ body{
 .deposit-currency{
   font-size:18px;
   font-weight:700;
-  color:#ccc;
+  color:#e0e0e0;
 }
 
-.deposit-amount{
+.deposit-address{
+  background:rgba(0,0,0,0.6);
+  border:2px solid rgba(200,200,200,0.3);
+  border-radius:10px;
+  padding:10px;
+  margin-top:10px;
+  font-size:12px;
+  color:#ccc;
+  word-break:break-all;
+  font-family:monospace;
+}
+
+.copy-btn{
+  background:linear-gradient(135deg,#b8b8b8,#888);
+  border:none;
+  padding:8px 16px;
+  border-radius:8px;
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+  margin-top:8px;
+  font-size:12px;
+}
+
+.shop-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:15px;
+  margin-top:20px;
+}
+
+.shop-item{
+  background:linear-gradient(135deg,rgba(60,40,80,0.8),rgba(40,60,80,0.8));
+  border:2px solid rgba(200,200,200,0.3);
+  border-radius:15px;
+  padding:20px;
   display:flex;
-  gap:10px;
+  justify-content:space-between;
   align-items:center;
+}
+
+.shop-info{
+  flex:1;
+}
+
+.shop-title{
+  font-size:18px;
+  font-weight:700;
+  color:#e0e0e0;
+  margin-bottom:5px;
+}
+
+.shop-description{
+  font-size:14px;
+  color:#ccc;
+  margin-bottom:8px;
+}
+
+.shop-price{
+  font-size:16px;
+  color:#4ade80;
+  font-weight:700;
+}
+
+.shop-btn{
+  padding:12px 24px;
+  background:linear-gradient(135deg,#b8b8b8,#888);
+  border:none;
+  border-radius:10px;
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+  transition:all 0.3s;
+}
+
+.shop-btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 5px 20px rgba(180,180,180,0.4);
+}
+
+.shop-btn.owned{
+  background:#4ade80;
+  cursor:default;
+}
+
+.shop-btn.equipped{
+  background:#333;
+  color:#4ade80;
+  cursor:default;
+}
+
+.welcome-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.98);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:10000;
+  backdrop-filter:blur(10px);
+}
+
+.welcome-content{
+  max-width:400px;
+  padding:40px;
+  text-align:center;
+  animation:fadeIn 1s ease-out;
+}
+
+.welcome-logo{
+  font-size:64px;
+  font-weight:900;
+  background:linear-gradient(135deg,#fff 0%,#e0e0e0 50%,#fff 100%);
+  background-size:200%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:logoGlow 3s ease infinite;
+  letter-spacing:8px;
+  margin-bottom:30px;
+}
+
+.welcome-text{
+  font-size:18px;
+  color:#e0e0e0;
+  line-height:1.6;
+  margin-bottom:30px;
+}
+
+.welcome-btn{
+  background:linear-gradient(135deg,#b8b8b8,#888);
+  color:#fff;
+  border:none;
+  padding:16px 40px;
+  border-radius:20px;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(180,180,180,0.5);
+  transition:all 0.3s;
+  font-family:'Poppins',sans-serif;
+}
+
+.welcome-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 15px 40px rgba(180,180,180,0.6);
 }
 </style>
 </head>
 <body>
+
+<!-- Welcome Screen -->
+<div class="welcome-overlay" id="welcomeScreen">
+  <div class="welcome-content">
+    <div class="welcome-logo">BERON</div>
+    <div class="welcome-text">
+      Welcome to Beron - the ultimate crypto clicker game!
+      <br><br>
+      Tap to earn coins, complete tasks, open cases, and climb the leaderboard.
+      <br><br>
+      Build your empire and compete with players worldwide!
+    </div>
+    <button class="welcome-btn" onclick="closeWelcome()">START PLAYING</button>
+  </div>
+</div>
+
 <div class="app">
 <div class="animated-bg"></div>
 <div class="scan-lines"></div>
@@ -1032,6 +1211,7 @@ body{
 <div class="tab-content active" id="mainTab">
   <div class="stats-box">
     <div class="coins" id="coins">$0</div>
+    <div class="passive-income" id="passiveIncome">+0/sec</div>
     <div class="currency-grid">
       <div class="currency-item">
         <div class="currency-label">BER Token</div>
@@ -1058,7 +1238,12 @@ body{
   </div>
 
   <div class="tap-section">
-    <button class="tap-btn" id="tapBtn">TAP</button>
+    <button class="tap-btn" id="tapBtn">
+      <div class="tap-btn-content">
+        <div class="tap-btn-skin" id="tapSkin">👆</div>
+        <div class="tap-btn-text">TAP</div>
+      </div>
+    </button>
   </div>
 
   <div class="quick-actions">
@@ -1161,10 +1346,21 @@ body{
   <div class="task-list" id="taskList"></div>
 </div>
 
+<!-- SHOP TAB -->
+<div class="tab-content" id="shopTab">
+  <div class="section-title" style="margin-top:20px">🏪 SHOP</div>
+  
+  <h3 style="color:#e0e0e0;margin:20px 0 10px 10px;font-size:20px">💎 Tap Skins</h3>
+  <div class="shop-grid" id="skinShop"></div>
+  
+  <h3 style="color:#e0e0e0;margin:30px 0 10px 10px;font-size:20px">⚡ Upgrades</h3>
+  <div class="shop-grid" id="upgradeShop"></div>
+</div>
+
 <!-- LEADERBOARD TAB -->
 <div class="tab-content" id="leaderboardTab">
   <div class="section-title" style="margin-top:20px">🏆 LEADERBOARD</div>
-  <div style="text-align:center;margin:15px 0;font-size:16px;color:#fff">Your Rank: <span id="userRank">#999</span></div>
+  <div style="text-align:center;margin:15px 0;font-size:16px;color:#fff">Your Rank: <span id="userRank">#...</span></div>
   <div class="leaderboard-list" id="leaderboardList"></div>
 </div>
 
@@ -1173,7 +1369,7 @@ body{
   <div class="section-title" style="margin-top:20px">⚔️ PVP ARENA</div>
   <div style="text-align:center;padding:40px 20px">
     <div style="font-size:80px;margin-bottom:20px">⚔️</div>
-    <div style="font-size:24px;color:#ccc;margin-bottom:15px;font-weight:700">PVP Coming Soon!</div>
+    <div style="font-size:24px;color:#e0e0e0;margin-bottom:15px;font-weight:700">PVP Coming Soon!</div>
     <div style="font-size:16px;color:#999">Challenge other players and win big!</div>
   </div>
 </div>
@@ -1185,12 +1381,13 @@ body{
   <div class="nav-item active" onclick="switchTab('main')">🏠 Main</div>
   <div class="nav-item" onclick="switchTab('cases')">🎰 Cases</div>
   <div class="nav-item" onclick="switchTab('tasks')">📋 Tasks</div>
+  <div class="nav-item" onclick="switchTab('shop')">🏪 Shop</div>
   <div class="nav-item" onclick="switchTab('leaderboard')">🏆 Top</div>
   <div class="nav-item" onclick="switchTab('pvp')">⚔️ PVP</div>
 </div>
 </div>
 
-<!-- Case Selection Popup -->
+<!-- Popups (same as before, keeping only the HTML structure) -->
 <div class="popup" id="caseSelectionPopup">
   <div class="popup-content">
     <div class="popup-title" id="caseSelectionTitle">Select Payment</div>
@@ -1199,7 +1396,6 @@ body{
   </div>
 </div>
 
-<!-- Case Opening Popup -->
 <div class="popup" id="casePopup">
   <div class="popup-content">
     <div class="popup-title" id="caseTitle">🎰 Opening Case</div>
@@ -1212,7 +1408,6 @@ body{
   </div>
 </div>
 
-<!-- Exchange Popup -->
 <div class="popup" id="exchangePopup">
   <div class="popup-content">
     <div class="popup-title">💎 Exchange</div>
@@ -1223,35 +1418,31 @@ body{
   </div>
 </div>
 
-<!-- Deposit Popup -->
 <div class="popup" id="depositPopup">
   <div class="popup-content">
     <div class="popup-title">💰 Deposit</div>
+    <div style="font-size:14px;color:#ccc;margin-bottom:15px">Send crypto to the addresses below</div>
     <div class="deposit-options">
       <div class="deposit-option">
         <div class="deposit-header">
-          <div class="deposit-currency">⭐ BER Stars</div>
+          <div class="deposit-currency">⭐ BER Stars (TON)</div>
         </div>
-        <div class="deposit-amount">
-          <input type="number" class="bet-input" id="depositStars" placeholder="Amount" style="max-width:150px;padding:10px;font-size:16px">
-          <button class="popup-btn" onclick="depositStars()">Deposit</button>
-        </div>
+        <div class="deposit-address" id="tonAddress">UQBeron_Stars_TON_Wallet_Address_Here</div>
+        <button class="copy-btn" onclick="copyAddress('ton')">📋 Copy Address</button>
       </div>
       <div class="deposit-option">
         <div class="deposit-header">
-          <div class="deposit-currency">🔥 BER Tons</div>
+          <div class="deposit-currency">🔥 BER Tons (TON)</div>
         </div>
-        <div class="deposit-amount">
-          <input type="number" class="bet-input" id="depositTons" placeholder="Amount" style="max-width:150px;padding:10px;font-size:16px">
-          <button class="popup-btn" onclick="depositTons()">Deposit</button>
-        </div>
+        <div class="deposit-address" id="tonsAddress">UQBeron_Tons_TON_Wallet_Address_Here</div>
+        <button class="copy-btn" onclick="copyAddress('tons')">📋 Copy Address</button>
       </div>
     </div>
+    <div style="font-size:12px;color:#999;margin-top:15px;text-align:center">Deposits are credited automatically after confirmation</div>
     <button class="popup-btn" onclick="closeDeposit()" style="margin-top:20px">Close</button>
   </div>
 </div>
 
-<!-- Withdraw Popup -->
 <div class="popup" id="withdrawPopup">
   <div class="popup-content">
     <div class="popup-title">💰 Withdraw</div>
@@ -1261,7 +1452,6 @@ body{
   </div>
 </div>
 
-<!-- Mines Game Popup -->
 <div class="popup" id="minesPopup">
   <div class="popup-content" style="max-width:400px">
     <div class="popup-title">💎 Mines Game</div>
@@ -1286,7 +1476,6 @@ body{
   </div>
 </div>
 
-<!-- Coin Flip Popup -->
 <div class="popup" id="coinFlipPopup">
   <div class="popup-content" style="max-width:400px">
     <div class="popup-title">🪙 Coin Flip</div>
@@ -1316,7 +1505,6 @@ body{
   </div>
 </div>
 
-<!-- Drop Game -->
 <div class="popup" id="dropGamePopup">
   <div class="popup-content" style="max-width:400px">
     <div class="popup-title">⭐ Drop Game</div>
@@ -1347,7 +1535,6 @@ body{
   </div>
 </div>
 
-<!-- Snake Game -->
 <div class="popup" id="snakeGamePopup">
   <div class="popup-content" style="max-width:400px">
     <div class="popup-title">🐍 Snake Game</div>
@@ -1387,9 +1574,57 @@ let stars = parseInt(localStorage.getItem('stars')) || 0;
 let bertons = parseInt(localStorage.getItem('bertons')) || 0;
 let lastDailyCase = parseInt(localStorage.getItem('lastDailyCase')) || 0;
 let energy = parseInt(localStorage.getItem('energy')) || 1000;
+let maxEnergy = parseInt(localStorage.getItem('maxEnergy')) || 1000;
 let lastEnergyUpdate = parseInt(localStorage.getItem('lastEnergyUpdate')) || Date.now();
 let level = parseInt(localStorage.getItem('level')) || 1;
 let completedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
+let tapPower = parseInt(localStorage.getItem('tapPower')) || 1;
+let passiveIncome = parseInt(localStorage.getItem('passiveIncome')) || 0;
+let lastPassiveUpdate = parseInt(localStorage.getItem('lastPassiveUpdate')) || Date.now();
+let currentSkin = localStorage.getItem('currentSkin') || 'default';
+let ownedSkins = JSON.parse(localStorage.getItem('ownedSkins')) || ['default'];
+let playerName = localStorage.getItem('playerName') || 'Player' + Math.floor(Math.random() * 10000);
+let hasSeenWelcome = localStorage.getItem('hasSeenWelcome') === 'true';
+
+// Skin definitions
+const skins = {
+  default: {emoji: '👆', name: 'Default', price: 0},
+  bronze: {emoji: '🥉', name: 'Bronze Finger', price: 10000},
+  silver: {emoji: '🥈', name: 'Silver Finger', price: 50000},
+  gold: {emoji: '🥇', name: 'Gold Finger', price: 200000},
+  diamond: {emoji: '💎', name: 'Diamond Hand', price: 1000000},
+  rocket: {emoji: '🚀', name: 'Rocket', price: 500000},
+  fire: {emoji: '🔥', name: 'Fire Touch', price: 750000},
+  lightning: {emoji: '⚡', name: 'Lightning', price: 1500000}
+};
+
+// Upgrade definitions
+const upgrades = {
+  tapPower: [
+    {level: 1, price: 5000, value: 2},
+    {level: 2, price: 25000, value: 5},
+    {level: 3, price: 100000, value: 10},
+    {level: 4, price: 500000, value: 25},
+    {level: 5, price: 2000000, value: 50}
+  ],
+  passiveIncome: [
+    {level: 1, price: 10000, value: 1},
+    {level: 2, price: 50000, value: 5},
+    {level: 3, price: 200000, value: 15},
+    {level: 4, price: 1000000, value: 50},
+    {level: 5, price: 5000000, value: 150}
+  ],
+  maxEnergy: [
+    {level: 1, price: 15000, value: 1500},
+    {level: 2, price: 75000, value: 2000},
+    {level: 3, price: 300000, value: 3000},
+    {level: 4, price: 1500000, value: 5000}
+  ]
+};
+
+let tapPowerLevel = parseInt(localStorage.getItem('tapPowerLevel')) || 0;
+let passiveIncomeLevel = parseInt(localStorage.getItem('passiveIncomeLevel')) || 0;
+let maxEnergyLevel = parseInt(localStorage.getItem('maxEnergyLevel')) || 0;
 
 function save() {
   localStorage.setItem('coins', coins);
@@ -1398,9 +1633,20 @@ function save() {
   localStorage.setItem('bertons', bertons);
   localStorage.setItem('lastDailyCase', lastDailyCase);
   localStorage.setItem('energy', energy);
+  localStorage.setItem('maxEnergy', maxEnergy);
   localStorage.setItem('lastEnergyUpdate', lastEnergyUpdate);
   localStorage.setItem('level', level);
   localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
+  localStorage.setItem('tapPower', tapPower);
+  localStorage.setItem('passiveIncome', passiveIncome);
+  localStorage.setItem('lastPassiveUpdate', lastPassiveUpdate);
+  localStorage.setItem('currentSkin', currentSkin);
+  localStorage.setItem('ownedSkins', JSON.stringify(ownedSkins));
+  localStorage.setItem('playerName', playerName);
+  localStorage.setItem('tapPowerLevel', tapPowerLevel);
+  localStorage.setItem('passiveIncomeLevel', passiveIncomeLevel);
+  localStorage.setItem('maxEnergyLevel', maxEnergyLevel);
+  localStorage.setItem('hasSeenWelcome', 'true');
 }
 
 function updateUI() {
@@ -1409,6 +1655,7 @@ function updateUI() {
   document.getElementById('stars').innerText = stars.toLocaleString();
   document.getElementById('bertons').innerText = bertons.toLocaleString();
   document.getElementById('level').innerText = level;
+  document.getElementById('passiveIncome').innerText = '+' + passiveIncome + '/sec';
   
   let rank = 'Bronze';
   if (coins > 1000000) rank = 'Diamond 💎';
@@ -1418,9 +1665,21 @@ function updateUI() {
   else rank = 'Bronze 🥉';
   document.getElementById('rank').innerText = rank;
   
-  const energyPercent = Math.min(100, (energy / 1000) * 100);
+  const energyPercent = Math.min(100, (energy / maxEnergy) * 100);
   document.getElementById('energyBar').style.width = energyPercent + '%';
-  document.getElementById('energyText').innerText = energy + '/1000';
+  document.getElementById('energyText').innerText = energy + '/' + maxEnergy;
+  
+  document.getElementById('tapSkin').innerText = skins[currentSkin].emoji;
+}
+
+// Welcome screen
+function closeWelcome() {
+  document.getElementById('welcomeScreen').style.display = 'none';
+  save();
+}
+
+if (hasSeenWelcome) {
+  document.getElementById('welcomeScreen').style.display = 'none';
 }
 
 // TAB SWITCHING
@@ -1432,8 +1691,9 @@ function switchTab(tab) {
     main: [document.getElementById('mainTab'), 0],
     cases: [document.getElementById('casesTab'), 1],
     tasks: [document.getElementById('tasksTab'), 2],
-    leaderboard: [document.getElementById('leaderboardTab'), 3],
-    pvp: [document.getElementById('pvpTab'), 4]
+    shop: [document.getElementById('shopTab'), 3],
+    leaderboard: [document.getElementById('leaderboardTab'), 4],
+    pvp: [document.getElementById('pvpTab'), 5]
   };
   
   if (tabs[tab]) {
@@ -1442,20 +1702,37 @@ function switchTab(tab) {
     
     if (tab === 'tasks') loadTasks();
     if (tab === 'leaderboard') loadLeaderboard();
+    if (tab === 'shop') loadShop();
   }
 }
 
-// Energy regeneration
+// Energy regeneration (1 per second)
 setInterval(() => {
   const now = Date.now();
   const elapsed = now - lastEnergyUpdate;
   const regenAmount = Math.floor(elapsed / 1000);
   
-  if (regenAmount > 0 && energy < 1000) {
-    energy = Math.min(1000, energy + regenAmount);
+  if (regenAmount > 0 && energy < maxEnergy) {
+    energy = Math.min(maxEnergy, energy + regenAmount);
     lastEnergyUpdate = now;
     save();
     updateUI();
+  }
+}, 1000);
+
+// Passive income
+setInterval(() => {
+  if (passiveIncome > 0) {
+    const now = Date.now();
+    const elapsed = now - lastPassiveUpdate;
+    const earnedAmount = Math.floor((elapsed / 1000) * passiveIncome);
+    
+    if (earnedAmount > 0) {
+      coins += earnedAmount;
+      lastPassiveUpdate = now;
+      save();
+      updateUI();
+    }
   }
 }, 1000);
 
@@ -1489,17 +1766,17 @@ function handleTap(e) {
   energy = Math.max(0, energy - 1);
   
   let crit = Math.random();
-  let gain = 1;
+  let gain = tapPower;
   let critText = '';
   
   if (crit > 0.98) {
-    gain = 100;
+    gain *= 100;
     critText = ' 💥MEGA!';
   } else if (crit > 0.95) {
-    gain = 50;
+    gain *= 50;
     critText = ' ⚡SUPER!';
   } else if (crit > 0.85) {
-    gain = 10;
+    gain *= 10;
     critText = ' ✨CRIT!';
   }
   
@@ -1640,7 +1917,7 @@ function closeCaseSelection() {
   document.getElementById('caseSelectionPopup').classList.remove('active');
 }
 
-// ENHANCED CASE OPENING ANIMATION
+// CASE OPENING ANIMATION
 function openCaseAnimation(title, rewards, rewardType = 'coins') {
   const popup = document.getElementById('casePopup');
   const titleEl = document.getElementById('caseTitle');
@@ -1653,13 +1930,11 @@ function openCaseAnimation(title, rewards, rewardType = 'coins') {
   claimBtn.style.display = 'none';
   popup.classList.add('active');
   
-  // Generate reel items
   const items = [];
   for (let i = 0; i < 50; i++) {
     items.push(rewards[Math.floor(Math.random() * rewards.length)]);
   }
   
-  // Add winning item at specific position
   const winIndex = 42;
   const winAmount = rewards[Math.floor(Math.random() * rewards.length)];
   items[winIndex] = winAmount;
@@ -1672,13 +1947,11 @@ function openCaseAnimation(title, rewards, rewardType = 'coins') {
     reelItems.appendChild(item);
   });
   
-  // Animate
   setTimeout(() => {
     const targetPos = -(winIndex * 100 - 125);
     reelItems.style.left = targetPos + 'px';
   }, 100);
   
-  // Show result
   setTimeout(() => {
     rewardEl.innerText = '$' + winAmount.toLocaleString() + ' 💰';
     rewardEl.style.display = 'block';
@@ -1690,6 +1963,7 @@ function openCaseAnimation(title, rewards, rewardType = 'coins') {
     
     save();
     updateUI();
+    updateLeaderboard();
   }, 3500);
 }
 
@@ -1732,7 +2006,7 @@ function exchangeAllTokens() {
   alert(`✅ Exchanged $${(amount * 1000).toLocaleString()} for ${amount * 10} BER Tokens!`);
 }
 
-// DEPOSIT
+// DEPOSIT with addresses
 function showDeposit() {
   document.getElementById('depositPopup').classList.add('active');
 }
@@ -1741,26 +2015,14 @@ function closeDeposit() {
   document.getElementById('depositPopup').classList.remove('active');
 }
 
-function depositStars() {
-  const amount = parseInt(document.getElementById('depositStars').value) || 0;
-  if (amount > 0) {
-    stars += amount;
-    save();
-    updateUI();
-    document.getElementById('depositStars').value = '';
-    alert(`✅ Deposited ${amount} BER Stars!`);
-  }
-}
-
-function depositTons() {
-  const amount = parseInt(document.getElementById('depositTons').value) || 0;
-  if (amount > 0) {
-    bertons += amount;
-    save();
-    updateUI();
-    document.getElementById('depositTons').value = '';
-    alert(`✅ Deposited ${amount} BER Tons!`);
-  }
+function copyAddress(type) {
+  const addressId = type === 'ton' ? 'tonAddress' : 'tonsAddress';
+  const address = document.getElementById(addressId).innerText;
+  navigator.clipboard.writeText(address).then(() => {
+    alert('✅ Address copied to clipboard!');
+  }).catch(() => {
+    alert('❌ Failed to copy address');
+  });
 }
 
 // WITHDRAW
@@ -1772,7 +2034,277 @@ function closeWithdraw() {
   document.getElementById('withdrawPopup').classList.remove('active');
 }
 
-// === MINES GAME ===
+// SHOP
+function loadShop() {
+  const skinShop = document.getElementById('skinShop');
+  const upgradeShop = document.getElementById('upgradeShop');
+  
+  // Load skins
+  skinShop.innerHTML = '';
+  Object.keys(skins).forEach(skinId => {
+    const skin = skins[skinId];
+    const item = document.createElement('div');
+    item.className = 'shop-item';
+    
+    const owned = ownedSkins.includes(skinId);
+    const equipped = currentSkin === skinId;
+    
+    let btnText = `Buy $${skin.price.toLocaleString()}`;
+    let btnClass = 'shop-btn';
+    let btnClick = `buySkin('${skinId}')`;
+    
+    if (equipped) {
+      btnText = '✓ Equipped';
+      btnClass = 'shop-btn equipped';
+      btnClick = '';
+    } else if (owned) {
+      btnText = 'Equip';
+      btnClass = 'shop-btn owned';
+      btnClick = `equipSkin('${skinId}')`;
+    }
+    
+    item.innerHTML = `
+      <div class="shop-info">
+        <div class="shop-title">${skin.emoji} ${skin.name}</div>
+        <div class="shop-price">${skin.price === 0 ? 'Free' : '$' + skin.price.toLocaleString()}</div>
+      </div>
+      <button class="${btnClass}" onclick="${btnClick}">${btnText}</button>
+    `;
+    
+    skinShop.appendChild(item);
+  });
+  
+  // Load upgrades
+  upgradeShop.innerHTML = '';
+  
+  // Tap power upgrade
+  if (tapPowerLevel < upgrades.tapPower.length) {
+    const upgrade = upgrades.tapPower[tapPowerLevel];
+    const item = document.createElement('div');
+    item.className = 'shop-item';
+    item.innerHTML = `
+      <div class="shop-info">
+        <div class="shop-title">⚡ Tap Power</div>
+        <div class="shop-description">Level ${upgrade.level}: +${upgrade.value} per tap</div>
+        <div class="shop-price">$${upgrade.price.toLocaleString()}</div>
+      </div>
+      <button class="shop-btn" onclick="buyUpgrade('tapPower')">Buy</button>
+    `;
+    upgradeShop.appendChild(item);
+  }
+  
+  // Passive income upgrade
+  if (passiveIncomeLevel < upgrades.passiveIncome.length) {
+    const upgrade = upgrades.passiveIncome[passiveIncomeLevel];
+    const item = document.createElement('div');
+    item.className = 'shop-item';
+    item.innerHTML = `
+      <div class="shop-info">
+        <div class="shop-title">💰 Passive Income</div>
+        <div class="shop-description">Level ${upgrade.level}: +${upgrade.value}/sec</div>
+        <div class="shop-price">$${upgrade.price.toLocaleString()}</div>
+      </div>
+      <button class="shop-btn" onclick="buyUpgrade('passiveIncome')">Buy</button>
+    `;
+    upgradeShop.appendChild(item);
+  }
+  
+  // Max energy upgrade
+  if (maxEnergyLevel < upgrades.maxEnergy.length) {
+    const upgrade = upgrades.maxEnergy[maxEnergyLevel];
+    const item = document.createElement('div');
+    item.className = 'shop-item';
+    item.innerHTML = `
+      <div class="shop-info">
+        <div class="shop-title">🔋 Max Energy</div>
+        <div class="shop-description">Level ${upgrade.level}: ${upgrade.value} energy</div>
+        <div class="shop-price">$${upgrade.price.toLocaleString()}</div>
+      </div>
+      <button class="shop-btn" onclick="buyUpgrade('maxEnergy')">Buy</button>
+    `;
+    upgradeShop.appendChild(item);
+  }
+}
+
+function buySkin(skinId) {
+  const skin = skins[skinId];
+  if (coins >= skin.price) {
+    coins -= skin.price;
+    ownedSkins.push(skinId);
+    currentSkin = skinId;
+    save();
+    updateUI();
+    loadShop();
+    alert(`✅ Purchased ${skin.name}!`);
+  } else {
+    alert(`❌ Not enough money! Need $${skin.price.toLocaleString()}`);
+  }
+}
+
+function equipSkin(skinId) {
+  currentSkin = skinId;
+  save();
+  updateUI();
+  loadShop();
+  alert(`✅ Equipped ${skins[skinId].name}!`);
+}
+
+function buyUpgrade(type) {
+  let level, upgrade;
+  
+  if (type === 'tapPower') {
+    level = tapPowerLevel;
+    upgrade = upgrades.tapPower[level];
+  } else if (type === 'passiveIncome') {
+    level = passiveIncomeLevel;
+    upgrade = upgrades.passiveIncome[level];
+  } else if (type === 'maxEnergy') {
+    level = maxEnergyLevel;
+    upgrade = upgrades.maxEnergy[level];
+  }
+  
+  if (coins >= upgrade.price) {
+    coins -= upgrade.price;
+    
+    if (type === 'tapPower') {
+      tapPower = upgrade.value;
+      tapPowerLevel++;
+    } else if (type === 'passiveIncome') {
+      passiveIncome = upgrade.value;
+      passiveIncomeLevel++;
+    } else if (type === 'maxEnergy') {
+      maxEnergy = upgrade.value;
+      energy = maxEnergy;
+      maxEnergyLevel++;
+    }
+    
+    save();
+    updateUI();
+    loadShop();
+    alert(`✅ Upgrade purchased!`);
+  } else {
+    alert(`❌ Not enough money! Need $${upgrade.price.toLocaleString()}`);
+  }
+}
+
+// TASKS with real links
+const tasks = [
+  {id: 1, title: '📱 Join our Telegram', reward: 10000, link: 'https://t.me/beroncrypto'},
+  {id: 2, title: '📺 Subscribe to YouTube', reward: 7500, link: 'https://youtube.com/@beroncrypto'},
+  {id: 3, title: '🐦 Follow on Twitter/X', reward: 5000, link: 'https://twitter.com/beroncrypto'}
+];
+
+function loadTasks() {
+  const list = document.getElementById('taskList');
+  list.innerHTML = '';
+  
+  tasks.forEach(task => {
+    const item = document.createElement('div');
+    item.className = 'task-item';
+    
+    const isCompleted = completedTasks.includes(task.id);
+    
+    item.innerHTML = `
+      <div class="task-info">
+        <div class="task-title">${task.title}</div>
+        <div class="task-reward">Reward: $${task.reward.toLocaleString()}</div>
+      </div>
+      <button class="task-btn ${isCompleted ? 'completed' : ''}" onclick="completeTask(${task.id}, '${task.link}')">
+        ${isCompleted ? '✓ Done' : 'Start'}
+      </button>
+    `;
+    
+    list.appendChild(item);
+  });
+}
+
+function completeTask(taskId, link) {
+  if (completedTasks.includes(taskId)) return;
+  
+  window.open(link, '_blank');
+  
+  setTimeout(() => {
+    const task = tasks.find(t => t.id === taskId);
+    coins += task.reward;
+    completedTasks.push(taskId);
+    save();
+    updateUI();
+    loadTasks();
+    updateLeaderboard();
+    alert(`✅ Task completed! +$${task.reward.toLocaleString()}`);
+  }, 3000);
+}
+
+// LEADERBOARD with persistent storage
+async function updateLeaderboard() {
+  try {
+    await window.storage.set('player_' + playerName, JSON.stringify({
+      name: playerName,
+      score: coins
+    }), true);
+  } catch (error) {
+    console.error('Failed to update leaderboard:', error);
+  }
+}
+
+async function loadLeaderboard() {
+  const list = document.getElementById('leaderboardList');
+  list.innerHTML = '<div style="text-align:center;color:#ccc">Loading...</div>';
+  
+  try {
+    const result = await window.storage.list('player_', true);
+    
+    if (!result || !result.keys || result.keys.length === 0) {
+      list.innerHTML = '<div style="text-align:center;color:#ccc">No players yet</div>';
+      return;
+    }
+    
+    const players = [];
+    for (const key of result.keys) {
+      try {
+        const data = await window.storage.get(key, true);
+        if (data && data.value) {
+          const player = JSON.parse(data.value);
+          players.push(player);
+        }
+      } catch (e) {
+        console.error('Error loading player:', e);
+      }
+    }
+    
+    players.sort((a, b) => b.score - a.score);
+    
+    const userIndex = players.findIndex(p => p.name === playerName);
+    document.getElementById('userRank').innerText = userIndex >= 0 ? '#' + (userIndex + 1) : '#999';
+    
+    list.innerHTML = '';
+    players.slice(0, 100).forEach((player, i) => {
+      const item = document.createElement('div');
+      item.className = 'leaderboard-item' + (player.name === playerName ? ' current' : '');
+      
+      const medals = ['🥇', '🥈', '🥉'];
+      const rankDisplay = i < 3 ? medals[i] : `#${i + 1}`;
+      
+      item.innerHTML = `
+        <div class="leaderboard-rank">${rankDisplay}</div>
+        <div class="leaderboard-info">
+          <div class="leaderboard-name">${player.name}</div>
+          <div class="leaderboard-score">$${player.score.toLocaleString()}</div>
+        </div>
+      `;
+      
+      list.appendChild(item);
+    });
+  } catch (error) {
+    console.error('Failed to load leaderboard:', error);
+    list.innerHTML = '<div style="text-align:center;color:#ccc">Failed to load leaderboard</div>';
+  }
+}
+
+// Update leaderboard on first load
+updateLeaderboard();
+
+// MINES GAME
 let minesGame = null;
 
 function showMinesGame() {
@@ -1805,7 +2337,6 @@ function startMinesGame() {
   document.getElementById('minesStartBtn').style.display = 'none';
   document.getElementById('minesCloseBtn').style.display = 'none';
   
-  // Create mines grid (25 cells, 7 bombs = 28% mines, so ~30% fail rate)
   const grid = document.getElementById('minesGrid');
   grid.innerHTML = '';
   
@@ -1869,6 +2400,7 @@ function cashoutMines() {
   coins += minesGame.currentWin;
   save();
   updateUI();
+  updateLeaderboard();
   
   alert('✅ Cashed out $' + minesGame.currentWin + '!');
   closeMinesGame();
@@ -1879,7 +2411,7 @@ function closeMinesGame() {
   document.getElementById('minesPopup').classList.remove('active');
 }
 
-// === COIN FLIP ===
+// COIN FLIP
 let coinFlipGame = null;
 
 function showCoinFlip() {
@@ -1928,11 +2460,10 @@ function flipCoin() {
   
   const coin = document.getElementById('coin');
   coin.classList.remove('flipping');
-  void coin.offsetWidth; // Force reflow
+  void coin.offsetWidth;
   coin.classList.add('flipping');
   
-  // 30% win rate
-  const playerWins = Math.random() < 0.01;
+  const playerWins = Math.random() < 0.3;
   const result = playerWins ? coinFlipGame.choice : (coinFlipGame.choice === 'heads' ? 'tails' : 'heads');
   
   setTimeout(() => {
@@ -1945,8 +2476,9 @@ function flipCoin() {
         coins += winAmount;
         save();
         updateUI();
+        updateLeaderboard();
         resultDiv.innerText = `🎉 YOU WIN $${winAmount}!`;
-        resultDiv.style.color = '#ccc';
+        resultDiv.style.color = '#4ade80';
       } else {
         resultDiv.innerText = `😢 YOU LOST $${bet}`;
         resultDiv.style.color = '#fff';
@@ -1962,7 +2494,7 @@ function closeCoinFlip() {
   coinFlipGame = null;
 }
 
-// === DROP GAME WITH BET ===
+// DROP GAME
 let dropGame = null;
 
 function startDropGame() {
@@ -2119,6 +2651,7 @@ function endDropGame() {
   coins += result;
   save();
   updateUI();
+  updateLeaderboard();
   document.getElementById('dropEarned').innerText = result;
   document.getElementById('dropGameOver').style.display = 'flex';
 }
@@ -2132,7 +2665,7 @@ function closeDropGame() {
   document.getElementById('dropGamePopup').classList.remove('active');
 }
 
-// === SNAKE GAME WITH BET ===
+// SNAKE GAME
 let snakeGame = null;
 
 function startSnakeGame() {
@@ -2294,6 +2827,7 @@ function endSnakeGame() {
   coins += result;
   save();
   updateUI();
+  updateLeaderboard();
   document.getElementById('snakeEarned').innerText = result;
   document.getElementById('snakeGameOver').style.display = 'flex';
 }
@@ -2305,94 +2839,6 @@ function restartSnakeGame() {
 function closeSnakeGame() {
   snakeGame = null;
   document.getElementById('snakeGamePopup').classList.remove('active');
-}
-
-// === TASKS ===
-const tasks = [
-  {id: 1, title: '📢 Subscribe to our Telegram', reward: 10000, link: 'https://t.me/+eB7K4_RUKRZlZjky'},
-  {id: 2, title: '📺 Subscribe to YouTube', reward: 7500, link: 'https://youtube.com/beron'},
-  {id: 3, title: '📸 Follow on Tiktok', reward: 5000, link: 'https://www.tiktok.com/@beron.cripto'}
-];
-
-function loadTasks() {
-  const list = document.getElementById('taskList');
-  list.innerHTML = '';
-  
-  tasks.forEach(task => {
-    const item = document.createElement('div');
-    item.className = 'task-item';
-    
-    const isCompleted = completedTasks.includes(task.id);
-    
-    item.innerHTML = `
-      <div class="task-info">
-        <div class="task-title">${task.title}</div>
-        <div class="task-reward">Reward: $${task.reward.toLocaleString()}</div>
-      </div>
-      <button class="task-btn ${isCompleted ? 'completed' : ''}" onclick="completeTask(${task.id}, '${task.link}')">
-        ${isCompleted ? '✓ Done' : 'Start'}
-      </button>
-    `;
-    
-    list.appendChild(item);
-  });
-}
-
-function completeTask(taskId, link) {
-  if (completedTasks.includes(taskId)) return;
-  
-  window.open(link, '_blank');
-  
-  setTimeout(() => {
-    const task = tasks.find(t => t.id === taskId);
-    coins += task.reward;
-    completedTasks.push(taskId);
-    save();
-    updateUI();
-    loadTasks();
-    alert(`✅ Task completed! +$${task.reward.toLocaleString()}`);
-  }, 3000);
-}
-
-// === LEADERBOARD ===
-function loadLeaderboard() {
-  const list = document.getElementById('leaderboardList');
-  
-  // Generate mock leaderboard
-  const leaders = [
-    {name: 'CryptoKing👑', score: 5000000},
-    {name: 'DiamondHands💎', score: 3500000},
-    {name: 'MoonShot🚀', score: 2800000},
-    {name: 'WhaleWatch🐋', score: 2200000},
-    {name: 'BeronMaster⭐', score: 1900000},
-    {name: 'LuckyPlayer🍀', score: 1600000},
-    {name: 'ProGamer🎮', score: 1300000},
-    {name: 'You', score: coins}
-  ];
-  
-  leaders.sort((a, b) => b.score - a.score);
-  
-  const userIndex = leaders.findIndex(l => l.name === 'You');
-  document.getElementById('userRank').innerText = '#' + (userIndex + 1);
-  
-  list.innerHTML = '';
-  leaders.slice(0, 10).forEach((leader, i) => {
-    const item = document.createElement('div');
-    item.className = 'leaderboard-item' + (leader.name === 'You' ? ' current' : '');
-    
-    const medals = ['🥇', '🥈', '🥉'];
-    const rankDisplay = i < 3 ? medals[i] : `#${i + 1}`;
-    
-    item.innerHTML = `
-      <div class="leaderboard-rank">${rankDisplay}</div>
-      <div class="leaderboard-info">
-        <div class="leaderboard-name">${leader.name}</div>
-        <div class="leaderboard-score">$${leader.score.toLocaleString()}</div>
-      </div>
-    `;
-    
-    list.appendChild(item);
-  });
 }
 </script>
 </body>
