@@ -243,16 +243,16 @@ body{
   height:180px;
   border-radius:50%;
   border:none;
-  background:linear-gradient(135deg,#fff 0%,#ccc 100%);
+  background:linear-gradient(135deg,#888 0%,#666 100%);
   color:#fff;
   font-size:36px;
   font-weight:900;
   font-family:'Poppins',sans-serif;
   cursor:pointer;
   box-shadow:
-    0 0 60px rgba(255,255,255,0.6),
-    0 0 100px rgba(200,200,200,0.3),
-    inset 0 0 30px rgba(255,255,255,0.2);
+    0 0 40px rgba(120,120,120,0.5),
+    0 0 60px rgba(100,100,100,0.3),
+    inset 0 0 20px rgba(150,150,150,0.2);
   transition:all 0.15s;
   position:relative;
   overflow:hidden;
@@ -263,7 +263,7 @@ body{
   content:'';
   position:absolute;
   inset:-20px;
-  background:conic-gradient(from 0deg,transparent,rgba(255,255,255,0.4),transparent);
+  background:conic-gradient(from 0deg,transparent,rgba(150,150,150,0.3),transparent);
   animation:rotate 2s linear infinite;
 }
 
@@ -275,8 +275,8 @@ body{
 .tap-btn:active{
   transform:scale(0.9);
   box-shadow:
-    0 0 40px rgba(255,255,255,0.8),
-    inset 0 0 40px rgba(0,0,0,0.5);
+    0 0 30px rgba(120,120,120,0.6),
+    inset 0 0 30px rgba(0,0,0,0.4);
 }
 
 .tap-btn.cooldown{
@@ -317,9 +317,9 @@ body{
 }
 
 .action-btn{
-  background:linear-gradient(135deg,rgba(255,255,255,0.2),rgba(200,200,200,0.2));
-  border:2px solid rgba(200,200,200,0.3);
-  color:#ccc;
+  background:linear-gradient(135deg,rgba(80,80,80,0.3),rgba(60,60,60,0.3));
+  border:2px solid rgba(120,120,120,0.4);
+  color:#999;
   padding:15px;
   border-radius:15px;
   font-size:15px;
@@ -327,13 +327,13 @@ body{
   cursor:pointer;
   transition:all 0.3s;
   backdrop-filter:blur(10px);
-  text-shadow:0 0 10px rgba(200,200,200,0.5);
+  text-shadow:0 0 10px rgba(100,100,100,0.5);
 }
 
 .action-btn:hover{
-  background:linear-gradient(135deg,rgba(255,255,255,0.3),rgba(200,200,200,0.3));
+  background:linear-gradient(135deg,rgba(100,100,100,0.4),rgba(80,80,80,0.4));
   transform:translateY(-3px);
-  box-shadow:0 8px 25px rgba(200,200,200,0.4);
+  box-shadow:0 8px 25px rgba(120,120,120,0.4);
 }
 
 .action-btn:active{
@@ -617,7 +617,7 @@ body{
 }
 
 .popup-btn{
-  background:linear-gradient(135deg,#fff,#ccc);
+  background:linear-gradient(135deg,#888,#666);
   color:#fff;
   border:none;
   padding:14px 32px;
@@ -626,7 +626,7 @@ body{
   font-weight:bold;
   cursor:pointer;
   margin:8px;
-  box-shadow:0 8px 25px rgba(200,200,200,0.5);
+  box-shadow:0 8px 25px rgba(120,120,120,0.4);
   transition:all 0.3s;
   font-family:'Poppins',sans-serif;
 }
@@ -636,7 +636,7 @@ body{
 }
 
 .popup-btn:hover{
-  box-shadow:0 12px 35px rgba(200,200,200,0.7);
+  box-shadow:0 12px 35px rgba(120,120,120,0.6);
 }
 
 /* CASE OPENING ANIMATION */
@@ -916,7 +916,7 @@ body{
 
 .task-btn{
   padding:10px 20px;
-  background:linear-gradient(135deg,#fff,#ccc);
+  background:linear-gradient(135deg,#888,#666);
   border:none;
   border-radius:10px;
   color:#fff;
@@ -927,7 +927,7 @@ body{
 
 .task-btn:hover{
   transform:scale(1.05);
-  box-shadow:0 5px 20px rgba(200,200,200,0.5);
+  box-shadow:0 5px 20px rgba(120,120,120,0.4);
 }
 
 .task-btn.completed{
@@ -2309,10 +2309,9 @@ function closeSnakeGame() {
 
 // === TASKS ===
 const tasks = [
-  {id: 1, title: '📢 Subscribe to our Telegram', reward: 10000, link: 'https://t.me/BerOnCripto'},
+  {id: 1, title: '📢 Subscribe to our Telegram', reward: 10000, link: 'https://t.me/+eB7K4_RUKRZlZjky'},
   {id: 2, title: '📺 Subscribe to YouTube', reward: 7500, link: 'https://youtube.com/beron'},
-  {id: 3, title: '💬 Join Discord Server', reward: 8000, link: 'https://discord.gg/beron'},
-  {id: 4, title: '📸 Follow on Tiktok', reward: 5000, link: 'https://www.tiktok.com/@beron.cripto'}
+  {id: 3, title: '📸 Follow on Tiktok', reward: 5000, link: 'https://www.tiktok.com/@beron.cripto'}
 ];
 
 function loadTasks() {
